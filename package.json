@@ -1,0 +1,28 @@
+{
+  "name": "bitter",
+  "version": "1.0.0",
+  "description": "twitter clone",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tmockler22/bitter.git"
+  },
+  "author": "garon michael tristan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tmockler22/bitter/issues"
+  },
+  "homepage": "https://github.com/tmockler22/bitter#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "express-graphql": "^0.9.0",
+    "graphql": "^14.6.0",
+    "mongoose": "^5.9.2",
+    "nodemon": "^2.0.2"
+  }
+}
