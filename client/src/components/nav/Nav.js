@@ -17,6 +17,7 @@ const Nav = props => {
                   onClick={e => {
                     e.preventDefault();
                     localStorage.removeItem("auth-token");
+                    localStorage.removeItem("user");
                     client.writeData({ data: { isLoggedIn: false } });
                     props.history.push("/");
                   }}

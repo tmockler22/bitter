@@ -29,8 +29,9 @@ class Register extends Component {
       <Mutation
         mutation={REGISTER_USER}
         onCompleted={data => {
-          const { token } = data.register;
+          const { token, email, _id } = data.register;
           localStorage.setItem("auth-token", token);
+          localStorage.setItem("user", JSON.stringify({ id: _id, email: email }));
           this.props.history.push("/");
         }}
         update={(client, data) => this.updateCache(client, data)}

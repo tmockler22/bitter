@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Mutation } from "react-apollo";
 import { CREATE_POST } from "../../graphql/mutations";
 import { FETCH_POSTS } from "../../graphql/queries";
+import { currentUser } from "../../util/util"
 
 class CreatePost extends Component {
   constructor(props) {
@@ -36,11 +37,13 @@ class CreatePost extends Component {
   }
 
   handleSubmit(e, newPost) {
+    debugger;
+    let user = currentUser();  
     e.preventDefault();
     newPost({
       variables: {
         body: this.state.body,
-        user: "5e5d1afa79b5b383df60b4ab"
+        user: user.id
       }
     });
   }
