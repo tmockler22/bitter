@@ -8,6 +8,7 @@ export const FETCH_POSTS = gql`
     }
   }
 `;
+
 export const IS_LOGGED_IN = gql`
     query IsUserLoggedIn {
       isLoggedIn @client
@@ -16,13 +17,17 @@ export const IS_LOGGED_IN = gql`
 
 export const FETCH_USER = gql`
   query FetchUser($id: ID!) {
-    user(id: $id) {
-      id
+    user(_id: $id) {
+      _id
       username
       fullname
       email
       bio
       image
+      posts {
+          _id 
+          body
+        }
     }
   }
 `;

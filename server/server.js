@@ -24,18 +24,23 @@ mongoose
 
 app.use(bodyParser.json());
 
+app.use(cors());
+// ...
+// use the expressGraphQL middleware to connect our GraphQLSchema to Express
 app.use(
   "/graphql",
-  graphqlUploadExpress({ maxFileSize: 10000000, maxFiles: 10}),
-  expressGraphQL({
-    schema,
-    graphiql: true
-  }),
-  expressGraphQL({
-    schema,
-    graphiql: true
+  graphqlUploadExpress({ maxFileSize: 10000000, maxFiles: 10 }),
+  expressGraphQL(req => {
+    return {
+      schema,
+      context: {
+        token: req.headers.authorization
+      },
+      graphiql: true
+    };
   })
 );
+
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static("client/build"));
   app.get("/", (req, res) => {

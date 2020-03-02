@@ -1,7 +1,7 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const mongoose = require("mongoose");
-require("../../models/index")
+require("../models/index")
 const User = mongoose.model("users")
 const keys = require("../../config/keys");
 const validateRegisterInput = require("../validation/register");
@@ -82,6 +82,7 @@ const login = async data => {
 
     if (password_matches) {
       const token = jwt.sign({ id: user._id }, keys.secretOrKey);
+
       return { token, loggedIn: true, ...user._doc, password: null };
     }
   } catch (err) {

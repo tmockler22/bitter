@@ -41,7 +41,24 @@ const UserSchema = new Schema({
   ]
 });
 
+UserSchema.statics.findPosts = function (userId) {
+  return this.findById(userId)
+    .populate("posts")
+    .then(user => user.posts);
+};
 
+UserSchema.statics.addUserPost = (postId, userId) => {
+  const User = mongoose.model("users");
+  const Post = mongoose.model("posts");
 
+  return User.findById(userId).then(user => {
+    return Post.findById(postId).then(post => {
+      user.posts.push(post);
+      return Promise.all([post.save(), user.save()]).then(
+        ([post, user]) => post
+      );
+    });
+  });
+};
 
 module.exports = mongoose.model("users", UserSchema);
