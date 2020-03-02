@@ -8,10 +8,10 @@ module.exports = function validateRegisterInput(data) {
   data.password = validText(data.password) ? data.password : "";
 
   if(Validator.isEmpty(data.username)){
-    return {message: "Username field cannot be empty"}
+    return {message: "Username field cannot be empty", isValid: false}
   }
-  if (!Validator.isAlphanumeric(data.fullname)){
-    return {message: "Name must contain letters", isValid: false}
+  if (Validator.isEmpty(data.fullname)){
+    return {message: "Name is required", isValid: false}
   }
   if (!Validator.isEmail(data.email)) {
     return { message: "Email is invalid", isValid: false };

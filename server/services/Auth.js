@@ -15,7 +15,7 @@ const register = async data => {
       throw new Error(message);
     }
 
-    const { name, email, fullname, password } = data;
+    const { username, email, fullname, password } = data;
 
     const existingUser = await User.findOne({ email });
 
@@ -27,7 +27,7 @@ const register = async data => {
 
     const user = new User(
       {
-        name,
+        username,
         email,
         fullname,
         password: hashedPassword
