@@ -12,16 +12,16 @@ const mutation = new GraphQLObjectType({
     register: {
       type: UserType,
       args: {
-        name: { type: GraphQLString },
+        username: {type: GraphQLString},
+        fullname: { type: GraphQLString },
         email: { type: GraphQLString },
         password: { type: GraphQLString }
       },
       resolve(_, args) {
         return AuthService.register(args);
       }
-    }
-  },
-  logout: {
+    },
+    logout: {
     type: UserType,
     args: {
       // all we need to log the user our is an id
@@ -49,6 +49,7 @@ const mutation = new GraphQLObjectType({
     resolve(_, args) {
       return AuthService.verifyUser(args);
     }
+  }
   }
 });
 
