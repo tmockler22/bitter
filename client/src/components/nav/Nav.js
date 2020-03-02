@@ -27,6 +27,7 @@ const Nav = props => {
               return (
                 <div>
                   <Link to="/login">Login</Link>
+                  <Link to="/register">Sign Up</Link>
                 </div>
               );
             }
