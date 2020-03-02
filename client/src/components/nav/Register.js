@@ -1,14 +1,16 @@
 import React, { Component } from "react";
 import { Mutation } from "react-apollo";
-import { LOGIN_USER } from "../../graphql/mutations";
+import { REGISTER_USER } from "../../graphql/mutations";
 
-class Login extends Component {
+class Register extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       email: "",
-      password: ""
+      password: "",
+      fullname: "",
+      username: ""
     };
   }
 
@@ -17,32 +19,33 @@ class Login extends Component {
   }
 
   updateCache(client, { data }) {
-    console.log(data);
     client.writeData({
-      data: { isLoggedIn: data.login.loggedIn }
+      data: { isLoggedIn: data.register.loggedIn }
     });
   }
 
   render() {
     return (
       <Mutation
-        mutation={LOGIN_USER}
+        mutation={REGISTER_USER}
         onCompleted={data => {
-          const { token } = data.login;
+          const { token } = data.register;
           localStorage.setItem("auth-token", token);
           this.props.history.push("/");
         }}
         update={(client, data) => this.updateCache(client, data)}
       >
-        {loginUser => (
+        {registerUser => (
           <div>
             <form
               onSubmit={e => {
                 e.preventDefault();
-                loginUser({
+                registerUser({
                   variables: {
                     email: this.state.email,
-                    password: this.state.password
+                    password: this.state.password,
+                    username: this.state.username,
+                    fullname: this.state.fullname
                   }
                 });
               }}
@@ -53,12 +56,22 @@ class Login extends Component {
                 placeholder="Email"
               />
               <input
+                value={this.state.username}
+                onChange={this.update("username")}
+                placeholder="Username"
+              />
+              <input
+                value={this.state.fullname}
+                onChange={this.update("fullname")}
+                placeholder="Name"
+              />
+              <input
                 value={this.state.password}
                 onChange={this.update("password")}
                 type="password"
                 placeholder="Password"
               />
-              <button type="submit">Log In</button>
+              <button type="submit">Sign Up</button>
             </form>
           </div>
         )}
@@ -67,4 +80,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default Register;
