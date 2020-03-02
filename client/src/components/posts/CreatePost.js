@@ -1,17 +1,17 @@
 import React, { Component } from "react";
 import { Mutation } from "react-apollo";
 import { CREATE_POST } from "../../graphql/mutations";
-import { FETCH_POSTS } from "../../graphql/queries";
+import { FETCH_USER } from "../../graphql/queries";
 import { currentUser } from "../../util/util"
 
 class CreatePost extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       message: "",
       body: ""
     };
+
   }
 
   update(field) {
@@ -19,25 +19,30 @@ class CreatePost extends Component {
   }
 
   updateCache(cache, { data }) {
-    let posts;
+    const currentUserId = currentUser().id; 
+    let user; 
     try {
-      posts = cache.readQuery({ query: FETCH_POSTS });
-    } catch (err) {
-      return;
+      user = cache.readQuery({ query: FETCH_USER, variables: { id: currentUserId }});
+    } catch {
+      return; 
     }
-    
-    if (posts) {
-      let postArray = posts.posts;
+    if (user) { 
+      let postArray = user.user.posts;
       let newPost = data.newPost;
+      newPost.user = currentUser().id; 
+      
+      let newObj = Object.assign({}, user.user);
+      newObj["posts"] = newObj["posts"].concat(newPost);
+  
       cache.writeQuery({
-        query: FETCH_POSTS,
-        data: { posts: postArray.concat(newPost) }
+        query: FETCH_USER,
+        variables: { id: currentUserId },
+        data: { user: newObj }
       });
     }
   }
-
+// posts: postArray.concat(newPost)
   handleSubmit(e, newPost) {
-    debugger;
     let user = currentUser();  
     e.preventDefault();
     newPost({
@@ -71,7 +76,6 @@ class CreatePost extends Component {
               />
               <button type="submit">Ribet</button>
             </form>
-            <p>{this.state.message}</p>
           </div>
         )}
       </Mutation>

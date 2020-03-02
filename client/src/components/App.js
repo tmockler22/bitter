@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import PostIndex from "./posts/PostIndex";
-import CreatePost from "./posts/CreatePost";
 import { Route, Switch, Link } from "react-router-dom";
 import Login from "./nav/Login";
 import Register from "./nav/Register";
@@ -15,8 +14,7 @@ const App = () => {
       <Switch>
         <AuthRoute exact path="/login" component={Login} routeType="auth" />
         <AuthRoute exact path="/register" component={Register} routeType="auth" />
-        <ProtectedRoute exact path="/createpost" component={CreatePost} routeType="protected" />
-        <Route exact path="/" component={PostIndex} />
+        <ProtectedRoute path="/" component={PostIndex} routeType="protected" />
       </Switch>
     </div>
   );

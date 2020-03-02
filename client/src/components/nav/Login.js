@@ -17,7 +17,6 @@ class Login extends Component {
   }
 
   updateCache(client, { data }) {
-    console.log(data);
     client.writeData({
       data: { isLoggedIn: data.login.loggedIn }
     });
@@ -31,6 +30,7 @@ class Login extends Component {
           const { token, _id, email, username, fullname } = data.login;
           localStorage.setItem("auth-token", token);
           localStorage.setItem("user", JSON.stringify({ id: _id, email: email, fullname: fullname, username: username }));
+          console.log("this is the id: ", _id);
           this.props.history.push("/");
         }}
         update={(client, data) => this.updateCache(client, data)}
