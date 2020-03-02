@@ -18,14 +18,17 @@
   },
   "homepage": "https://github.com/tmockler22/bitter#readme",
   "dependencies": {
+    "aws-sdk": "^2.630.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "express-graphql": "^0.9.0",
     "graphql": "^14.6.0",
+    "graphql-upload": "^10.0.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.2",
     "nodemon": "^2.0.2",
+    "s3": "^4.4.0",
     "validator": "^12.2.0"
   }
 }

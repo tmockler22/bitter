@@ -24,6 +24,9 @@ const UserSchema = new Schema({
     min: 8,
     max: 32
   }, 
+  image: {
+    type: String
+  },
   posts: [
     {
       type: Schema.Types.ObjectId, 
@@ -37,5 +40,8 @@ const UserSchema = new Schema({
     }
   ]
 });
+
+
+
 
 module.exports = mongoose.model("users", UserSchema);
