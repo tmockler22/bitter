@@ -26,22 +26,13 @@ cache.writeData({
   }
 });
 
-<<<<<<< Updated upstream
-const httpLink = createHttpLink({
-  uri: "http://localhost:5000/graphql", 
-  headers: {
-    authorization: localStorage.getItem("auth-token")
-  }
-});
-=======
 
-let uri: "http://localhost:5000/graphql"
+let uri = "http://localhost:5000/graphql"
 
 if (process.env.NODE_ENV === 'production') {
-  // uri = "https://aws-s3-graphql.herokuapp.com/graphql";
+  uri = "http://localhost:5000/graphql";
 }
 
->>>>>>> Stashed changes
 
 // make sure we log any additional errors we receive
 const errorLink = onError(({ graphQLErrors }) => {

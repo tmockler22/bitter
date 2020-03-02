@@ -30,19 +30,11 @@ class EditProfile extends React.Component {
     return e => this.setState({ [field]: e.target.value });
   }
 
-  handleSubmit(e, createUser) {
-    e.preventDefault();
-    const { name, email, image } = this.state;
-    createUser({
-      variables: { name, email, image }
-    });
-  }
-
     render() {
     // if we are editing we'll return a Mutation component
     return (
       
-      <Mutation mutaton={UPDATE_USER}>
+      <Mutation mutation={UPDATE_USER}>
         {(updateUser, data) => (
           <div>
             <form
@@ -50,7 +42,8 @@ class EditProfile extends React.Component {
                 e.preventDefault();
                 updateUser({
                   variables: 
-                  { id: this.state.id, 
+                  {
+                    id: "5e5d7c8c00599c85cd2f2ac2", 
                     username: this.state.username, 
                     fullname: this.state.fullname,
                     email: this.state.email,
@@ -95,7 +88,7 @@ class EditProfile extends React.Component {
                 }) => validity.valid && this.setState({ image: file })}
               />
 
-              <div onClick={this.handleSubmit}>Continue</div>
+              <input type="submit"></input>
             </form>
           </div>
         )}

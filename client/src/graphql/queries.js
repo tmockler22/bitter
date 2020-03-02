@@ -16,7 +16,7 @@ export const IS_LOGGED_IN = gql`
 
 export const FETCH_USER = gql`
   query FetchUser($id: ID!) {
-    users(id: $id) {
+    user(id: $id) {
       id
       username
       fullname
