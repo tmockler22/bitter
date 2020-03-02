@@ -25,3 +25,12 @@ export const VERIFY_USER = gql`
     }
   }
 `;
+
+export const CREATE_POST = gql`
+  mutation CreatePost($body: String!, $user: ID!) {
+    newPost(body: $body, user: $user) {
+      body
+      _id
+    }
+  }
+`;

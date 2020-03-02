@@ -12,6 +12,7 @@ const Nav = props => {
           {({ data }) => {
             if (data.isLoggedIn) {
               return (
+                <div>
                 <button
                   onClick={e => {
                     e.preventDefault();
@@ -22,6 +23,8 @@ const Nav = props => {
                 >
                   Logout
                 </button>
+                  <Link to="/createpost">Create Post</Link>
+                </div>
               );
             } else {
               return (
