@@ -18,8 +18,6 @@ mongoose
 
 app.use(bodyParser.json());
 
-// ...
-// use the expressGraphQL middleware to connect our GraphQLSchema to Express
 app.use(
   "/graphql",
   expressGraphQL({

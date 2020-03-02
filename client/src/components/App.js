@@ -6,7 +6,7 @@ import Login from "./nav/Login";
 import Register from "./nav/Register";
 import Nav from "./nav/Nav";
 import { AuthRoute, ProtectedRoute } from "../util/route_util";
-
+import EditProfile from "./profile/editProfile";
 const App = () => {
   return (
     <div>
@@ -16,6 +16,7 @@ const App = () => {
         <AuthRoute exact path="/login" component={Login} routeType="auth" />
         <AuthRoute exact path="/register" component={Register} routeType="auth" />
         <ProtectedRoute exact path="/createpost" component={CreatePost} routeType="protected" />
+        <ProtectedRoute exact path="/editprofile/:id" component={EditProfile} routeType="protected" />
         <Route exact path="/" component={PostIndex} />
       </Switch>
     </div>
