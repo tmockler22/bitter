@@ -3,6 +3,7 @@ const { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLID, GraphQLNonNull 
 const mongoose = require("mongoose");
 const UserType = require("./types/user_type")
 require("../../models/index");
+const User = mongoose.model("users");
 const AuthService = require("../services/Auth");
 const { singleFileUpload } = require("../services/s3");
 const { GraphQLUpload } = require('graphql-upload');
@@ -60,9 +61,9 @@ const mutation = new GraphQLObjectType({
         fullname: {type: GraphQLString},      
         email: { type: GraphQLString },
         bio: { type: GraphQLString },
-        image: {type: GraphQLString}
+        image: { type: GraphQLUpload}
       },
-      async resolve(_parentvalu, { id, username, fullname, email, bio, image }) {
+      async resolve(_parentvalue, { id, username, fullname, email, bio, image }) {
         const updateObj = {};
 
         if (id) updateObj.id = id;
@@ -87,30 +88,4 @@ const mutation = new GraphQLObjectType({
   }
 });
 
-
-
-// const Mutation = new GraphQLObjectType({
-//   name: 'Mutation',
-//   fields: () => ({
-//     newUser: {
-//       type: UserType,
-//       args: {
-//         name: { type: new GraphQLNonNull(GraphQLString) },
-//         email: { type: new GraphQLNonNull(GraphQLString) },
-//         // type for the image file is GraphQLUpload
-//         image: { type: GraphQLUpload }
-//       },
-//       async resolve(_, { name, email, image }) {
-//         const updateObj = {};
-//         if (name) updateObj.name = name;
-//         if (email) updateObj.email = email;
-//         if (image) {
-//           updateObj.image = await singleFileUpload(image);
-//         }
-
-//         return new User(updateObj).save();
-//       }
-//     }
-//   })
-// });
 module.exports = mutation;
