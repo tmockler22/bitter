@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const graphql = require("graphql");
 const { GraphQLObjectType, GraphQLList, GraphQLID, GraphQLNonNull } = graphql;
-require("../../../models/index");
+require("../../models/index");
 const UserType = require("./user_type");
 const PostType = require("./post_type")
 
@@ -23,21 +23,21 @@ const RootQueryType = new GraphQLObjectType({
       resolve(_, args) {
         return User.findById(args._id);
       }
+    },
+    posts: {
+      type: new GraphQLList(PostType),
+        resolve() {
+        return Post.find({});
+      }
+    },
+    post: {
+      type: PostType,
+      args: { _id: { type: new GraphQLNonNull(GraphQLID) } },
+      resolve(_, args) {
+        return Post.findById(args._id);
+      }
     }
-  }),
-  posts: {
-    type: new GraphQLList(UserType),
-      resolve() {
-      return Post.find({});
-    }
-  },
-  post: {
-    type: PostType,
-    args: { _id: { type: new GraphQLNonNull(GraphQLID) } },
-    resolve(_, args) {
-      return Post.findById(args._id);
-    }
-  }
+  })
 });
 
 module.exports = RootQueryType;

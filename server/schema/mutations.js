@@ -1,8 +1,11 @@
 const graphql = require("graphql");
 const { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLID } = graphql;
 const mongoose = require("mongoose");
-const UserType = require("./types/user_type")
-require("../../models/index");
+const User = mongoose.model("users");
+const Post = mongoose.model("posts");
+const UserType = require("./types/user_type");
+const PostType = require("./types/post_type");
+require("../models/index");
 const AuthService = require("../services/Auth");
 
 
@@ -48,6 +51,21 @@ const mutation = new GraphQLObjectType({
     },
     resolve(_, args) {
       return AuthService.verifyUser(args);
+    }
+  },
+  newPost: {
+    type: PostType,
+    args: {
+      body: { type: GraphQLString },
+      user: { type: GraphQLID },
+    },
+      async resolve(_, { body, user }, ctx) {
+      const validUser = await AuthService.verifyUser({ token: ctx.token });
+      if (validUser.loggedIn) { 
+        return new Post({ body, user }).save().then(post => User.addUserPost(post._id, user));
+      } else {
+        throw new Error('Sorry, you need to be logged in to create a product.');
+      }
     }
   }
   }
