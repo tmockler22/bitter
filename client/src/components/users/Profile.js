@@ -14,7 +14,14 @@ class UserProfile extends Component {
     }
   }
 
+  componentDidUpdate() {
+    if (this.state.newFollow !== this.props.match.params.id) {
+      this.setState({newFollow: this.props.match.params.id});
+    }
+  }
+
   render() {
+     
     return <div>
       {(this.state.id === this.state.newFollow) ? <div></div> : 
         <Query query={FETCH_USER} variables={{ id: this.state.id }}>
@@ -22,7 +29,6 @@ class UserProfile extends Component {
             if (loading) return <p>Loading...</p>;
             if (error) return <p>Error</p>;
             const follows = data.user.follows;
-
             return (
               <div>
                 <Follow follows={follows} params={this.props} />
@@ -30,6 +36,7 @@ class UserProfile extends Component {
             )
           }}
         </Query>}
+         
       <PostIndex params={this.props}/>
     </div>
     

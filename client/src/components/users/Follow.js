@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Mutation } from "react-apollo";
 import { FOLLOW_USER, UNFOLLOW_USER } from "../../graphql/mutations";
 import { currentUser } from "../../util/util";
+import { FETCH_USER } from "../../graphql/queries";
 
 class Follow extends Component {
   constructor(props) {
@@ -13,11 +14,46 @@ class Follow extends Component {
     this.hasFollowed = this.hasFollowed.bind(this);
   }
  
-  // updateCache(client, { data }) {
-  //   client.writeData({
-  //     data: { isLoggedIn: data.login.loggedIn }
-  //   });
-  // }
+  updateCache(cache, { data }) {
+    const currentUserId = this.state.id;
+    let user;
+    try {
+      user = cache.readQuery({ query: FETCH_USER, variables: { id: currentUserId } });
+    } catch {
+      return;
+    }
+     
+    if (user && data.follow) {
+      let newFollow = data.follow;
+
+      let newObj = Object.assign({}, user.user);
+      newObj["follows"] = newObj["follows"].concat(newFollow);
+      cache.writeQuery({
+        query: FETCH_USER,
+        variables: { id: currentUserId },
+        data: { user: newObj }
+      });
+    } else if (user && data.unfollow) {
+      let newUnfollow = data.unfollow;
+      let newObj = Object.assign({}, user.user);
+      let currentFollow = Object.values(user.user.follows); 
+  
+      for (let i = 0; i < currentFollow.length; i++) {
+        const el = currentFollow[i];
+        if (el._id === newUnfollow._id) {
+          currentFollow.splice(i, 1);
+        }
+      }
+      
+      newObj["follows"] = currentFollow;
+      
+      cache.writeQuery({
+        query: FETCH_USER,
+        variables: { id: currentUserId },
+        data: { user: newObj }
+      });
+    }
+  }
  
   hasFollowed() {
     for (let index = 0; index < this.props.follows.length; index++) {
@@ -26,9 +62,11 @@ class Follow extends Component {
         return (<Mutation
           mutation={UNFOLLOW_USER}
           onCompleted={data => {
-            const { id, unfollow } = data.unfollow;
+            if (data.unfollow) {
+              const { id } = data.unfollow;
+            }
           }}
-        // update={(client, data) => this.updateCache(client, data)}
+          update={(client, data) => this.updateCache(client, data)}
         >
           {unfollowUser => (
               <button
@@ -50,9 +88,11 @@ class Follow extends Component {
     return (<Mutation
       mutation={FOLLOW_USER}
       onCompleted={data => {
-        const { id, newFollow } = data.follow;
+        if (data.unfollow) {
+          const { id } = data.unfollow;
+        }
       }}
-    // update={(client, data) => this.updateCache(client, data)}
+      update={(client, data) => this.updateCache(client, data)}
     >
       {followUser => (
         <div>

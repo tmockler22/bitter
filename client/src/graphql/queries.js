@@ -19,6 +19,10 @@ export const FETCH_USER = gql`
         }
         follows {
           _id
+          posts {
+            _id
+            body
+          }
         }
     }
   }
