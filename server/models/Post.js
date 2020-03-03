@@ -5,6 +5,9 @@ const PostSchema = new Schema({
     type: String, 
     required: true
   },
+  image: {
+    type: String
+  },
   favorites: [
     {
       type: Schema.Types.ObjectId, 

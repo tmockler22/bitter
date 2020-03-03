@@ -9,6 +9,8 @@ export const LOGIN_USER = gql`
       email
       fullname
       username
+      bio
+      image
     }
   }
 `;
@@ -36,16 +38,17 @@ export const VERIFY_USER = gql`
 `;
 
 export const CREATE_POST = gql`
-  mutation CreatePost($body: String!, $user: ID!) {
-    newPost(body: $body, user: $user) {
+  mutation CreatePost($body: String!, $user: ID!, $image: Upload) {
+    newPost(body: $body, user: $user, image: $image) {
       body
       _id
+      image
     }
   }
 `;
 
 export const UPDATE_USER = gql`
-  mutation UpdateUser($id: ID!, $username: String!, $fullname: String!, $email: String!, $bio: String!, $image: Upload!){
+  mutation UpdateUser($id: ID!, $username: String!, $fullname: String!, $email: String!, $bio: String!, $image: Upload){
     updateUser(id: $id, username: $username, fullname: $fullname, email: $email, bio: $bio, image: $image){
       _id
       username

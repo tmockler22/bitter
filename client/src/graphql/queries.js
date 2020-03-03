@@ -5,6 +5,7 @@ export const FETCH_POSTS = gql`
     posts {
       _id
       body
+      image
     }
   }
 `;
@@ -27,6 +28,7 @@ export const FETCH_USER = gql`
       posts {
           _id 
           body
+          image
         }
     }
   }
