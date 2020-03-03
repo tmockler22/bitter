@@ -64,10 +64,29 @@ const mutation = new GraphQLObjectType({
       if (validUser.loggedIn) { 
         return new Post({ body, user }).save().then(post => User.addUserPost(post._id, user));
       } else {
-        throw new Error('Sorry, you need to be logged in to create a product.');
+        throw new Error('Sorry, you need to be logged in to create a post.');
       }
     }
-  }
+  },
+    follow: {
+      type: UserType,
+      args: {
+        id: { type: GraphQLID },
+        newFollow: { type: GraphQLID },
+      },
+      async resolve(_, { id, newFollow }, ctx) {
+        const validUser = await AuthService.verifyUser({ token: ctx.token });
+        const alreadyFollows = await User.alreadyFollows(id, newFollow);
+       
+      if (alreadyFollows) { 
+          throw new Error('Already followed user.');
+        } else if (!validUser.loggedIn) {
+          return User.addFollow(id, newFollow);
+        } else {
+          throw new Error('Sorry, you need to be logged in to follow.');
+        }
+      }
+    }
   }
 });
 

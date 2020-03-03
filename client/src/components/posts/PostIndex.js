@@ -3,16 +3,21 @@ import { Query } from "react-apollo";
 import { FETCH_USER } from "../../graphql/queries";
 import { currentUser } from "../../util/util";
 
+const PostIndex = (props) => {
+  let userId; 
 
-
-const PostIndex = () => {
-  const currentUserId = currentUser() ? currentUser().id : null; 
-  return !currentUserId ? <div></div> : (
-    <Query query={FETCH_USER} variables={{ id: currentUserId }}>
+  props = (props.params) ? props.params : props;
+  if (props.match.path === "/user/:id") {
+    userId = props.match.params.id
+  }
+  else {
+    userId = currentUser() ? currentUser().id : null; 
+  }
+  return !userId ? <div></div> : (
+    <Query query={FETCH_USER} variables={{ id: userId }}>
       {({ loading, error, data }) => {
         if (loading) return "Loading...";
         if (error) return `Error! ${error.message}`;
-        console.dir(currentUserId);
         return (
           <ul>
             {data.user.posts.map(post => (

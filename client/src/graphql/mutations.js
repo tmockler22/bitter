@@ -42,3 +42,11 @@ export const CREATE_POST = gql`
     }
   }
 `;
+
+export const FOLLOW_USER = gql`
+  mutation FollowUser($id: ID!, $newFollow: ID!) {
+    follow(id: $id, newFollow: $newFollow) {
+      _id
+    }
+  }
+`;
