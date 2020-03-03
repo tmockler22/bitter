@@ -86,6 +86,41 @@ const mutation = new GraphQLObjectType({
         );
       },
     },
+    follow: {
+      type: UserType,
+      args: {
+        id: { type: GraphQLID },
+        newFollow: { type: GraphQLID },
+      },
+      async resolve(_, { id, newFollow }, ctx) {
+        const validUser = await AuthService.verifyUser({ token: ctx.token });
+        const alreadyFollows = await User.alreadyFollows(id, newFollow);
+       
+      if (alreadyFollows) { 
+          throw new Error('Already followed user.');
+        } else if (validUser.loggedIn) {
+          return User.addFollow(id, newFollow);
+        } else {
+          throw new Error('Sorry, you need to be logged in to follow.');
+        }
+      }
+    },
+    unfollow: {
+      type: UserType,
+      args: {
+        id: { type: GraphQLID },
+        unfollowId: { type: GraphQLID },
+      },
+      async resolve(_, { id, unfollowId }, ctx) {
+        const validUser = await AuthService.verifyUser({ token: ctx.token });
+        const alreadyFollows = await User.alreadyFollows(id, unfollowId);
+
+        if (!alreadyFollows) {
+          throw new Error("You don't follow this user.");
+        } else if (validUser.loggedIn) {
+          return User.removeFollow(id, unfollowId);
+        } else {
+          throw new Error('Sorry, you need to be logged in to unfollow.');
     newPost: {
       type: PostType,
       args: {

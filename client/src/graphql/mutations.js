@@ -47,6 +47,23 @@ export const CREATE_POST = gql`
   }
 `;
 
+
+export const FOLLOW_USER = gql`
+  mutation FollowUser($id: ID!, $newFollow: ID!) {
+    follow(id: $id, newFollow: $newFollow) {
+      _id
+    }
+  }
+`;
+
+export const UNFOLLOW_USER = gql`
+  mutation UnfollowUser($id: ID!, $unfollowId: ID!) {
+    unfollow(id: $id, unfollowId: $unfollowId) {
+      _id
+    }
+  }
+`;
+
 export const UPDATE_USER = gql`
   mutation UpdateUser($id: ID!, $username: String!, $fullname: String!, $email: String!, $bio: String!, $image: Upload){
     updateUser(id: $id, username: $username, fullname: $fullname, email: $email, bio: $bio, image: $image){
@@ -59,3 +76,4 @@ export const UPDATE_USER = gql`
     }
   }
 `;
+

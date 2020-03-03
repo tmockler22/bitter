@@ -30,6 +30,13 @@ export const FETCH_USER = gql`
           body
           image
         }
+        follows {
+          _id
+          posts {
+            _id
+            body
+          }
+        }
     }
   }
 `;
