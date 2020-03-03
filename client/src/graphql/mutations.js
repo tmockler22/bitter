@@ -50,3 +50,11 @@ export const FOLLOW_USER = gql`
     }
   }
 `;
+
+export const UNFOLLOW_USER = gql`
+  mutation UnfollowUser($id: ID!, $unfollowId: ID!) {
+    unfollow(id: $id, unfollowId: $unfollowId) {
+      _id
+    }
+  }
+`;

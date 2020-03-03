@@ -1,8 +1,10 @@
 import React, { Component } from "react";
-import { Mutation } from "react-apollo";
+import { Query } from "react-apollo";
 import { currentUser } from "../../util/util";
 import Follow from "./Follow";
 import PostIndex from "../posts/PostIndex";
+import { FETCH_USER } from "../../graphql/queries";
+
 class UserProfile extends Component {
   constructor(props) {
     super(props);
@@ -14,11 +16,25 @@ class UserProfile extends Component {
 
   render() {
     return <div>
-      {(this.state.id === this.state.newFollow) ? <div></div> : <Follow params={this.props}/>}
+      {(this.state.id === this.state.newFollow) ? <div></div> : 
+        <Query query={FETCH_USER} variables={{ id: this.state.id }}>
+          {({ loading, error, data }) => {
+            if (loading) return <p>Loading...</p>;
+            if (error) return <p>Error</p>;
+            const follows = data.user.follows;
+
+            return (
+              <div>
+                <Follow follows={follows} params={this.props} />
+              </div>
+            )
+          }}
+        </Query>}
       <PostIndex params={this.props}/>
     </div>
     
   }
 }
+
 
 export default UserProfile;

@@ -114,4 +114,17 @@ UserSchema.statics.addFollow = (id, newFollow) => {
   });
 };
 
+UserSchema.statics.removeFollow = (id, unfollowId) => {
+  const User = mongoose.model("users");
+
+  return User.findById(id).then(user => {
+    return User.findById(unfollowId).then(unfollow => {
+      user.follows.remove(unfollow);
+      unfollow.followers.remove(user);
+      return Promise.all([user.save(), unfollow.save()]).then(
+        ([user, unfollow]) => unfollow
+      );
+    });
+  });
+};
 module.exports = mongoose.model("users", UserSchema);

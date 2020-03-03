@@ -17,6 +17,9 @@ export const FETCH_USER = gql`
           _id 
           body
         }
+        follows {
+          _id
+        }
     }
   }
     `;
