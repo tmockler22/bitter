@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/tmockler22/bitter#readme",
   "dependencies": {
+    "apollo-upload-client": "^12.1.0",
     "aws-sdk": "^2.630.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",

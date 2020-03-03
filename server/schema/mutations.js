@@ -76,7 +76,6 @@ const mutation = new GraphQLObjectType({
         if (image) {
           updateObj.image = await singleFileUpload(image);
         }
-
         return User.findOneAndUpdate(
           { _id: id },
           { $set: updateObj },
@@ -85,27 +84,33 @@ const mutation = new GraphQLObjectType({
             return user;
           }
         );
-      }
-    },
-    resolve(_, args) {
-      return AuthService.verifyUser(args);
+      },
     },
     newPost: {
       type: PostType,
       args: {
         body: { type: GraphQLString },
         user: { type: GraphQLID },
-      },
-        async resolve(_, { body, user }, ctx) {
+        image: {type: GraphQLUpload}
+      },      
+        async resolve(_, { body, user, image }, ctx) {
+           const updateObj = {};
+
+         if (user) updateObj.user = user;
+         if (body) updateObj.body = body;
+         if (image) {
+           updateObj.image =  await singleFileUpload(image);
+         }
         const validUser = await AuthService.verifyUser({ token: ctx.token });
         if (validUser.loggedIn) { 
-          return new Post({ body, user }).save().then(post => User.addUserPost(post._id, user));
+          return new Post(updateObj)
+          .save().then(post => User.addUserPost(post._id, user));
         } else {
           throw new Error('Sorry, you need to be logged in to create a post.');
         }
       }
     }
   }
-  });
+});
 
 module.exports = mutation;
