@@ -3,6 +3,7 @@ import { Query } from "react-apollo";
 import { FETCH_USER } from "../../graphql/queries";
 import { currentUser } from "../../util/util";
 
+
 const PostIndex = (props) => {
   let userId; 
   let homeFeed = false; 
@@ -38,12 +39,14 @@ const PostIndex = (props) => {
           <ul>
             {posts.map(post => (
               <li key={post._id}>{post.body}</li>
+              <img src={post.image} />
             ))}
-          </ul>
-        );
-      }}
-    </Query>
-  );
+          </ul>  
+          );
+        }}
+      </Query>
+    );
+  }
 };
 
 export default PostIndex; 
