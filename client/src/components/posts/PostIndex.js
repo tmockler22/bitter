@@ -22,8 +22,7 @@ const PostIndex = (props) => {
         if (error) return `Error! ${error.message}`;
         let userPosts; 
         let posts; 
-        let follows; 
-        let homeFeedContent; 
+        let follows;  
         if (homeFeed) {
           userPosts = data.user.posts; 
           follows = Object.values(data.user.follows);
@@ -38,15 +37,16 @@ const PostIndex = (props) => {
         return (
           <ul>
             {posts.map(post => (
-              <li key={post._id}>{post.body}</li>
-              <img src={post.image} />
+              <li key={post._id}>
+                <p>{post.body}</p>
+                <img src={post.image} />
+              </li>
             ))}
           </ul>  
           );
         }}
       </Query>
     );
-  }
-};
+  };
 
 export default PostIndex; 

@@ -121,6 +121,9 @@ const mutation = new GraphQLObjectType({
           return User.removeFollow(id, unfollowId);
         } else {
           throw new Error('Sorry, you need to be logged in to unfollow.');
+        }
+      }
+    },
     newPost: {
       type: PostType,
       args: {
