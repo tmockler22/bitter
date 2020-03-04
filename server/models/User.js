@@ -45,7 +45,7 @@ const UserSchema = new Schema({
       ref: "users"
     }
   ],
-  favorites: [
+  favorited_posts: [
     {
       type: Schema.Types.ObjectId,
       ref: "posts"
@@ -117,6 +117,21 @@ UserSchema.statics.addFollow = (id, newFollow) => {
   });
 };
 
+UserSchema.statics.addFavorite = (userId, postId) => {
+  const User = mongoose.model("users");
+  const Post = mongoose.model("posts");
+
+  return User.findById(userId).then(user => {
+    return Post.findById(postId).then(post => {
+      user.favorited_posts.push(postId);
+      post.favorites.push(userId);
+      return Promise.all([user.save(), post.save()]).then(
+        ([user, post]) => post
+      );
+    });
+  });
+};
+
 UserSchema.statics.removeFollow = (id, unfollowId) => {
   const User = mongoose.model("users");
 
@@ -126,6 +141,45 @@ UserSchema.statics.removeFollow = (id, unfollowId) => {
       unfollow.followers.remove(user);
       return Promise.all([user.save(), unfollow.save()]).then(
         ([user, unfollow]) => unfollow
+      );
+    });
+  });
+};
+
+UserSchema.statics.findFavoritedPosts = function (userId) {
+  return this.findById(userId)
+    .populate("favorited_posts")
+    .then(user => user.favorited_posts);
+};
+
+
+UserSchema.statics.alreadyFavorited = function (userId, postId) {
+  const User = mongoose.model("users");
+
+  return User.findById(userId).then(user => {
+    const newPostString = JSON.stringify(postId);
+    for (let index = 0; index < user.favorited_posts.length; index++) {
+      const favorite = user.favorited_posts[index];
+      const favoriteString = JSON.stringify(favorite)
+
+      if (favoriteString === newPostString) {
+        return true;
+      }
+    }
+    return false;
+  });
+}
+
+UserSchema.statics.unfavorite = (userId, postId) => {
+  const User = mongoose.model("users");
+  const Post = mongoose.model("posts")
+
+  return User.findById(userId).then(user => {
+    return Post.findById(postId).then(post => {
+      user.favorited_posts.remove(post);
+      post.favorites.remove(user);
+      return Promise.all([user.save(), post.save()]).then(
+        ([user, post]) => post
       );
     });
   });
