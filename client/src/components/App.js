@@ -11,10 +11,10 @@ import EditProfile from "./profile/editProfile";
 const App = () => {
   return (
     <div>
-      <Route path="/" component={Nav} /> 
+      <ProtectedRoute path="/" component={Nav} routeType="protected" /> 
       <Switch>
         <AuthRoute exact path="/login" component={Login} routeType="auth" />
-        <AuthRoute exact path="/splash" component={Splash} routeType="auth" />
+        <AuthRoute exact path="/" component={Splash} routeType="auth" />
         <AuthRoute exact path="/register" component={Register} routeType="auth" />
         <ProtectedRoute exact path="/user/:id" component={UserProfile}/>
         <ProtectedRoute exact path="/editprofile/:id" component={EditProfile} routeType="protected" />

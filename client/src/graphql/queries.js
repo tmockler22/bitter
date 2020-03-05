@@ -51,6 +51,12 @@ export const FETCH_USER = gql`
           _id 
           body
           image
+          user {
+            _id
+            username
+            fullname
+            image
+          }
           favorites {
             _id
           }

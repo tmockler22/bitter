@@ -33,7 +33,8 @@ class Register extends Component {
           const { token, _id, email, username, fullname, bio, image } = data.login;
           localStorage.setItem("auth-token", token);
           localStorage.setItem("user", JSON.stringify({ id: _id, email: email, fullname: fullname, username: username, bio: bio, image: image }));
-          this.props.history.push("/");
+          localStorage.setItem("modal", "")
+          this.props.history.push("/home");
         }}
         update={(client, data) => this.updateCache(client, data)}
       >
