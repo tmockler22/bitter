@@ -43,6 +43,4 @@ const PostIndex = (props) => {
       </Query>
     );
   };
-
 export default PostIndex; 
-

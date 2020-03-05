@@ -19,7 +19,7 @@ export const AuthRoute = ({
               path={path}
               exact={exact}
               render={props =>
-                !data.isLoggedIn ? <Component {...props} /> : <Redirect to="/" />
+                !data.isLoggedIn ? <Component {...props} /> : <Redirect to="/home" />
               }
             />
           );
@@ -31,7 +31,7 @@ export const AuthRoute = ({
                 data.isLoggedIn ? (
                   <Component {...props} />
                 ) : (
-                    <Redirect to="/login" />
+                    <Redirect to="/splash" />
                   )
               }
             />

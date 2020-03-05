@@ -1,0 +1,27 @@
+.splash-main {
+  display: flex;
+  height: 100vh;
+}
+
+.splash-left {
+  display: flex;
+  background-color: rgb(113, 201, 248);
+  height: 100%;
+  width: 50%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.splash-left-text i {
+  color: white;
+  margin-right: 20px;
+}
+
+.splash-left-text {
+  margin: 40px;
+  font-size: 22px;
+  font-weight: bold;
+  color: white;
+  text-align: left;
+}
