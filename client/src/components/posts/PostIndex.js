@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Query } from "react-apollo";
 import { FETCH_USER } from "../../graphql/queries";
 import { currentUser } from "../../util/util";
-
+import PostIndexItem from './PostIndexItem';
 
 const PostIndex = (props) => {
   let userId; 
@@ -22,8 +22,7 @@ const PostIndex = (props) => {
         if (error) return `Error! ${error.message}`;
         let userPosts; 
         let posts; 
-        let follows; 
-        let homeFeedContent; 
+        let follows;  
         if (homeFeed) {
           userPosts = data.user.posts; 
           follows = Object.values(data.user.follows);
@@ -36,17 +35,14 @@ const PostIndex = (props) => {
           posts = data.user.posts; 
         }
         return (
-          <ul>
-            {posts.map(post => (
-              <li key={post._id}>{post.body}</li>
-              <img src={post.image} />
-            ))}
-          </ul>  
+          <div>
+            {posts.map(post => <PostIndexItem key={post._id} userId={userId} post={post} params={props} />  )}
+          </div>
           );
         }}
       </Query>
     );
-  }
-};
+  };
 
 export default PostIndex; 
+

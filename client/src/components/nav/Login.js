@@ -30,7 +30,6 @@ class Login extends Component {
           const { token, _id, email, username, fullname, bio, image } = data.login;
           localStorage.setItem("auth-token", token);
           localStorage.setItem("user", JSON.stringify({ id: _id, email: email, fullname: fullname, username: username, bio: bio, image: image }));
-          console.log("this is the id: ", _id);
           this.props.history.push("/");
         }}
         update={(client, data) => this.updateCache(client, data)}
