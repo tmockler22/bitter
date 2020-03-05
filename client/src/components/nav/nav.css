@@ -2,10 +2,16 @@
   position: absolute;
   display: flex;
   flex-direction: column;
-  width: 370px;
-  height: 100vh;
+  width: 21.5%;
 }
 
-.frog{
-  background-image: url('../../../public/logo192.png');
+.nav-frog-logo{
+     height: 70px;
+    width: 70px;
+    margin-left: 15%;
+    background-size: 75%;
+    background-repeat: no-repeat;
+    background-image: url(https://raw.githubusercontent.com/tmockler22/bitter/adds-sidebar-css/client/src/graphql/bigfroggy.png);
+    border-radius: 50%;
+    background-position: center;
 }

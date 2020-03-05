@@ -15,7 +15,7 @@ const Nav = props => {
               return (
                 <div className="nav-container">
                 <Link to="/home"><h1>Bitter</h1></Link>
-                <div className="frog"></div>
+                <div className="nav-frog-logo"></div>
                 <button
                   onClick={e => {
                     e.preventDefault();
