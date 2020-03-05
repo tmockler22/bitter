@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Mutation } from "react-apollo";
 import { LOGIN_USER } from "../../graphql/mutations";
+import { Route, Redirect } from "react-router-dom";
 
 class Login extends Component {
   constructor(props) {
@@ -30,14 +31,15 @@ class Login extends Component {
           const { token, _id, email, username, fullname, bio, image } = data.login;
           localStorage.setItem("auth-token", token);
           localStorage.setItem("user", JSON.stringify({ id: _id, email: email, fullname: fullname, username: username, bio: bio, image: image }));
-          console.log("this is the id: ", _id);
-          this.props.history.push("/");
+          localStorage.setItem("modal", "")
+          this.props.history.push("/home")
         }}
         update={(client, data) => this.updateCache(client, data)}
       >
         {loginUser => (
-          <div>
+          <div className="session-container">
             <form
+              className="session-form login-form"
               onSubmit={e => {
                 e.preventDefault();
                 loginUser({
@@ -48,18 +50,26 @@ class Login extends Component {
                 });
               }}
             >
-              <input
-                value={this.state.email}
-                onChange={this.update("email")}
-                placeholder="Email"
-              />
-              <input
-                value={this.state.password}
-                onChange={this.update("password")}
-                type="password"
-                placeholder="Password"
-              />
-              <button type="submit">Log In</button>
+              <div className="session-bitter-frog"></div>
+              <div className="session-title">Log in to Bitter</div>
+              <div className="session-field">
+                <input
+                  className="session-input"
+                  value={this.state.email}
+                  onChange={this.update("email")}
+                />
+                <label className="session-label">Email</label>
+                </div>
+              <div className="session-field">
+                <input
+                  className="session-input"
+                  value={this.state.password}
+                  onChange={this.update("password")}
+                  type="password"
+                />
+                <label className="session-label">Password</label>
+              </div>
+              <button className="session-submit" type="submit">Log In</button>
             </form>
           </div>
         )}

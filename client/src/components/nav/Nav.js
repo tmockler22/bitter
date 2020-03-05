@@ -13,14 +13,14 @@ const Nav = props => {
             if (data.isLoggedIn) {
               return (
                 <div>
+                <Link to="/home"><h1>Bitter</h1></Link>
                 <button
                   onClick={e => {
                     e.preventDefault();
                     localStorage.removeItem("auth-token");
                     localStorage.removeItem("user");
                     client.writeData({ data: { isLoggedIn: false } });
-                    console.log(localStorage.getItem("user"));
-                    props.history.push("/");
+                      props.history.push("/splash");
                   }}
                 >Logout</button>
                   <Link to="/user/5e5d611823fac9a96fefe040"> Tristan </Link>
@@ -31,10 +31,7 @@ const Nav = props => {
               );
             } else {
               return (
-                <div>
-                  <Link to="/login">Login</Link>
-                  <Link to="/register">Sign Up</Link>
-                </div>
+                null
               );
             }
           }}

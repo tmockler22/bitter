@@ -38,15 +38,16 @@ const PostIndex = (props) => {
         return (
           <ul>
             {posts.map(post => (
+              <div>
               <li key={post._id}>{post.body}</li>
               <img src={post.image} />
+              </div>
             ))}
           </ul>  
           );
         }}
       </Query>
     );
-  }
-};
+  };
 
 export default PostIndex; 
