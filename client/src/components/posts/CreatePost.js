@@ -3,6 +3,7 @@ import { Mutation } from "react-apollo";
 import { CREATE_POST } from "../../graphql/mutations";
 import { FETCH_USER } from "../../graphql/queries";
 import { currentUser } from "../../util/util"
+import "./create_post.css"
 
 class CreatePost extends Component {
   constructor(props) {
@@ -70,6 +71,7 @@ class CreatePost extends Component {
   }
 
   render() {
+    let user = currentUser()
     return (
       <Mutation
         mutation={CREATE_POST}
@@ -83,18 +85,34 @@ class CreatePost extends Component {
         }}
       >
         {(newPost, { data }) => (
-          <div>
-            <form onSubmit={e => this.handleSubmit(e, newPost)}>
+          <div className="create-post-container">
+            { user ? <div className="create-post-profile-picture" style={{ backgroundImage: `url(${user.image})` }}></div> : null}
+            <form className="create-post-form" onSubmit={e => this.handleSubmit(e, newPost)}>
               <textarea
+                className="create-post-text"
                 onChange={this.update("body")}
                 value={this.state.body}
                 placeholder="What's up?"
               />
-              <input
-                type="file"
-                onChange={this.handleFile.bind(this)}
-              />
-              <button type="submit">Ribet</button>
+              {this.state.photoUrl ? 
+              <div>
+                <div className="create-post-cancel-image" onClick={() => {this.setState({ photoUrl: '' })}}><i className="fas fa-times"></i></div>
+                <div 
+                  className="create-post-image-preview" 
+                  style={{ backgroundImage: `url(${this.state.photoUrl})`}}>
+                </div> 
+              </div>
+                : null}
+              <div className="create-post-buttons">
+                <label><i className=" create-post-label	far fa-image"></i>
+                <input
+                  type="file"
+                  className="hidden"
+                  onChange={this.handleFile.bind(this)}
+                />
+                </label>
+                <button className="create-post-submit" type="submit">Ribet</button>
+              </div>
             </form>
           </div>
         )}

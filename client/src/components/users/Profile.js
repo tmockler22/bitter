@@ -21,8 +21,7 @@ class UserProfile extends Component {
   }
 
   render() {
-     
-    return <div>
+    return <div className="profile-container">
       {(this.state.id === this.state.newFollow) ? <div></div> : 
         <Query query={FETCH_USER} variables={{ id: this.state.id }}>
           {({ loading, error, data }) => {
@@ -31,6 +30,7 @@ class UserProfile extends Component {
             const follows = data.user.follows;
             return (
               <div>
+                <div className="profile-title">User</div>
                 <Follow follows={follows} params={this.props} />
               </div>
             )
