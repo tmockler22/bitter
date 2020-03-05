@@ -36,7 +36,7 @@ const PostIndex = (props) => {
         }
         return (
           <div>
-            {posts.map(post => <PostIndexItem key={post._id} post={post} />  )}
+            {posts.map(post => <PostIndexItem key={post._id} userId={userId} post={post} params={props} />  )}
           </div>
           );
         }}

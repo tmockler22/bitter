@@ -126,7 +126,7 @@ UserSchema.statics.addFavorite = (userId, postId) => {
       user.favorited_posts.push(postId);
       post.favorites.push(userId);
       return Promise.all([user.save(), post.save()]).then(
-        ([user, post]) => post
+        ([user, post]) => (post, user)
       );
     });
   });

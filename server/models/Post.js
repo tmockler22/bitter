@@ -8,6 +8,10 @@ const PostSchema = new Schema({
   image: {
     type: String
   },
+  timestamps: { 
+    createdAt: 'created_at', 
+    updatedAt: 'updated_at' 
+  },
   favorites: [
     {
       type: Schema.Types.ObjectId, 

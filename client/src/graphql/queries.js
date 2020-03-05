@@ -6,6 +6,21 @@ export const FETCH_POSTS = gql`
       _id
       body
       image
+      favorites {
+        _id
+      }
+    }
+  }
+`;
+
+export const FETCH_POST = gql`
+  query FetchPost($id: ID!) {
+    post(_id: $id) {
+      _id
+      body
+      favorites {
+        _id
+      }
     }
   }
 `;
@@ -25,16 +40,25 @@ export const FETCH_USER = gql`
       email
       bio
       image
+      favorited_posts {
+        _id
+      }
       posts {
           _id 
           body
           image
+          favorites {
+            _id
+          }
         }
         follows {
           _id
           posts {
             _id
             body
+            favorites {
+              _id
+            }
           }
         }
     }

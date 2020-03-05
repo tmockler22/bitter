@@ -1,14 +1,15 @@
 import React, { Component } from "react";
-import { Query } from "react-apollo";
-import { FETCH_USER } from "../../graphql/queries";
-import { currentUser } from "../../util/util";
+import Favorite from "./Favorite";
 
 const PostIndexItem = (props) => {
   let post = props.post; 
+  let params = props.params; 
+  let userId = props.userId; 
   return (
         <div>
           <p>{post.body}</p>
           <img src={post.image} />
+          <Favorite post={post} params={params} userId={userId}/>
         </div>
     )
 }
