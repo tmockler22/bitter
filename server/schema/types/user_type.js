@@ -52,6 +52,12 @@ const UserType = new GraphQLObjectType({
       resolve(parentValue) {
         return User.findFavoritedPosts(parentValue._id);
       }
+    },
+    rebited_posts: {
+      type: new GraphQLList(require("./post_type")),
+      resolve(parentValue){
+        return User.findRebits(parentValue._id)
+      }
     }
   })
 });
