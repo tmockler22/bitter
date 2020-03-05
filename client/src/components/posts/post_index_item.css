@@ -1,0 +1,21 @@
+.post-item-container {
+  border-bottom: 1px solid rgb(56, 68, 77);
+}
+
+.post-item-container:hover {
+  background-color: rgb(25, 39, 52);
+}
+
+.post-item-profile-picture {
+  margin: 5px 15px;
+  display: inline-block;
+  left: 0px;
+  top: 10px;
+  position: relative;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
