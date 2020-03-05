@@ -86,7 +86,8 @@ class CreatePost extends Component {
       >
         {(newPost, { data }) => (
           <div className="create-post-container">
-            { user ? <div className="create-post-profile-picture" style={{ backgroundImage: `url(${user.image})` }}></div> : null}
+            { user && user.image ? <div className="create-post-profile-picture" style={{ backgroundImage: `url(${user.image})` }}></div> : 
+              <div className="create-post-profile-picture default-profile-picture"></div>}
             <form className="create-post-form" onSubmit={e => this.handleSubmit(e, newPost)}>
               <textarea
                 className="create-post-text"
@@ -111,7 +112,7 @@ class CreatePost extends Component {
                   onChange={this.handleFile.bind(this)}
                 />
                 </label>
-                <button className="create-post-submit" type="submit">Ribet</button>
+                <button className="create-post-submit" type="submit">beet</button>
               </div>
             </form>
           </div>
