@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Query, Mutation} from "react-apollo";
-//import {Mutation} from "react-apollo";
 import { UPDATE_USER } from '../../graphql/mutations';
 import { FETCH_USER } from "../../graphql/queries";
 import { currentUser } from "../../util/util";

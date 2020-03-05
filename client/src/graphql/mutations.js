@@ -15,7 +15,6 @@ export const LOGIN_USER = gql`
   }
 `;
 
-
 export const REGISTER_USER = gql`
   mutation RegisterUser($email: String!, $password: String!, $fullname: String!, $username: String!) {
     register(email: $email, password: $password, fullname: $fullname, username: $username) {
@@ -73,6 +72,24 @@ export const UPDATE_USER = gql`
       bio
       email
       image
+    }
+  }
+`;
+
+
+export const FAVORITE = gql`
+  mutation Favorite($userId: ID!, $postId: ID!){
+    favorite(userId: $userId, postId: $postId){
+      _id
+    }
+  }
+`;
+
+
+export const UNFAVORITE = gql`
+  mutation Unfavorite($userId: ID!, $postId: ID!){
+    unfavorite(userId: $userId, postId: $postId){
+      _id
     }
   }
 `;

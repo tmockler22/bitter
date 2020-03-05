@@ -122,7 +122,8 @@ const mutation = new GraphQLObjectType({
         } else {
           throw new Error('Sorry, you need to be logged in to unfollow.');
         }
-      },
+      }
+    },
     newPost: {
       type: PostType,
       args: {
@@ -144,6 +145,45 @@ const mutation = new GraphQLObjectType({
           .save().then(post => User.addUserPost(post._id, user));
         } else {
           throw new Error('Sorry, you need to be logged in to create a post.');
+        }
+      }
+    },
+    favorite: {
+      type: UserType,
+      args: {
+        userId: { type: GraphQLID },
+        postId: { type: GraphQLID },
+      },
+      async resolve(_, { userId, postId }, ctx) {
+        const validUser = await AuthService.verifyUser({ token: ctx.token });
+        const alreadyFavorited = await User.alreadyFavorited(userId, postId);
+
+        if (alreadyFavorited) {
+          throw new Error('Already favorited post.');
+        } else if (validUser.loggedIn) {
+          return User.addFavorite(userId, postId);
+        } else {
+          throw new Error('Sorry, you need to be logged in to favorite.');
+        }
+      }
+    },
+
+    unfavorite: {
+      type: UserType,
+      args:{
+        userId: {type: GraphQLID},
+        postId: {type: GraphQLID},   
+      },
+      async resolve(_, { userId, postId }, ctx) {
+        const validUser = await AuthService.verifyUser({ token: ctx.token });
+        const alreadyFavorited = await User.alreadyFavorited(userId, postId);
+
+        if (!alreadyFavorited) {
+          throw new Error('You need to favorite that post first.');
+        } else if (validUser.loggedIn) {
+          return User.unfavorite(userId, postId);
+        } else {
+          throw new Error('Sorry, you need to be logged in to unfavorite.');
         }
       }
     }
