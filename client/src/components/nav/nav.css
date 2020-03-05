@@ -1,0 +1,7 @@
+.nav-container {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: 370px;
+  height: 100vh;
+}

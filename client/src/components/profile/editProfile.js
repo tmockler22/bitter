@@ -40,7 +40,7 @@ class EditProfile extends React.Component {
     } else {
       return (
         <div>
-          <img src={this.state.photoUrl}></img>
+          <img src={this.state.photoUrl} />
         </div>
       );
     }

@@ -25,3 +25,59 @@
   color: white;
   text-align: left;
 }
+
+.splash-right {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.splash-right-header {
+  width: 370px;
+  color: white;
+  font-size: 30px;
+  font-weight: bold;
+  margin: 20px 0;
+}
+
+.splash-right-text {
+  margin-top: 50px;
+  width: 350px;
+  text-align: left;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.splash-button {
+  position: relative;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  color: white;
+  font-weight: bold;
+  background-color: rgb(29, 161, 242);
+  border: none;
+  border-radius: 20px;
+  width: 345px;
+  height: 40px;
+  cursor: pointer;
+}
+
+.sign-up:hover {
+  background-color: rgb(26, 145, 218);
+}
+
+.log-in {
+  color: rgb(27, 149, 224);
+  background-color: transparent;
+  border: 1px solid rgb(27, 149, 224);
+}
+
+.log-in:hover {
+  background-color: rgb(29, 161, 242, 0.1);
+}
