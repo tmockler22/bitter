@@ -38,6 +38,7 @@ class Rebit extends Component {
           el["rebits"] = el["rebits"].concat(data.rebit)
           newPost = el;
           newObj["posts"][index] = newPost
+          debugger;
         }
       }
       cache.writeQuery({
@@ -46,26 +47,26 @@ class Rebit extends Component {
         data: { user: newObj }
       });
 
-    } // else if (user && data.unfollow) {
-    //   let newUnfollow = data.unfollow;
-    //   let newObj = Object.assign({}, user.user);
-    //   let currentFollow = Object.values(user.user.follows);
+    }  else if (user && data.unRebit) {
+      let newObj = merge({}, user.user);
+      let posts = newObj["posts"]
 
-    //   for (let i = 0; i < currentFollow.length; i++) {
-    //     const el = currentFollow[i];
-    //     if (el._id === newUnfollow._id) {
-    //       currentFollow.splice(i, 1);
-    //     }
-    //   }
+      for(let i=0; i < posts.length; i++){
+        const post = posts[i];
+        if(posts[i]._id === this.state.postId){
+          post["rebits"] = post["rebits"].splice(i, data.unrebit);
+          // newPost = post;
+          // newObj["posts"] = newPost
+        }
+      }
 
-    // newObj["follows"] = currentFollow;
 
-    // cache.writeQuery({
-    //   query: FETCH_USER,
-    //   variables: { id: currentUserId },
-    //   data: { user: newObj }
-    // });
-    //}
+    cache.writeQuery({
+      query: FETCH_USER,
+      variables: { id: currentUserId },
+      data: { user: newObj }
+    });
+    }
   }
 
   hasRebited() {
