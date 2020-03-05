@@ -55,8 +55,6 @@ class Rebit extends Component {
         const post = posts[i];
         if(posts[i]._id === this.state.postId){
           post["rebits"] = post["rebits"].splice(i, data.unrebit);
-          // newPost = post;
-          // newObj["posts"] = newPost
         }
       }
 

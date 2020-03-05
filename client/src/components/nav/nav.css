@@ -5,3 +5,7 @@
   width: 370px;
   height: 100vh;
 }
+
+.frog{
+  background-image: url('../../../public/logo192.png');
+}
