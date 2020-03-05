@@ -94,3 +94,21 @@ export const UNFAVORITE = gql`
   }
 `;
 
+
+export const REBIT = gql`
+  mutation Rebit($userId: ID!, $postId: ID!){
+    rebit(userId: $userId, postId: $postId){
+      _id
+    }
+  }
+`;
+
+
+
+export const UNREBIT = gql`
+  mutation UnRebit($userId: ID!, $postId: ID!){
+    unRebit(userId: $userId, postId: $postId){
+      _id
+    }
+  }
+`;

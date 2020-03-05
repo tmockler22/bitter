@@ -186,8 +186,46 @@ const mutation = new GraphQLObjectType({
           throw new Error('Sorry, you need to be logged in to unfavorite.');
         }
       }
-    }
+    },
+    rebit: {
+      type: UserType,
+      args: {
+        userId: {type: GraphQLID},
+        postId: {type: GraphQLID},
+      },
+      async resolve(_, {userId, postId}, ctx){
+        const validUser = await AuthService.verifyUser({token: ctx.token});
+        const alreadyRebited = await User.alreadyRebited(userId, postId);
+
+        if(alreadyRebited){
+          throw new Error('You already rebited that post');
+        }else if (validUser.loggedIn){
+          return User.addRebit(userId, postId);
+        }else{
+          throw new Error('Sorry, you need to be logged in to rebit')
+        }
+      }
+    },
+    unRebit: {
+      type: UserType,
+      args: {
+        userId: { type: GraphQLID },
+        postId: { type: GraphQLID },
+      },
+      async resolve(_, { userId, postId }, ctx) {
+        const validUser = await AuthService.verifyUser({ token: ctx.token });
+        const alreadyRebited = await User.alreadyRebited(userId, postId);
+
+        if (!alreadyRebited) {
+          throw new Error('You need to rebit that post first');
+        } else if (validUser.loggedIn) {
+          return User.removeRebit(userId, postId);
+        } else {
+          throw new Error('Sorry, you need to be logged in to rebit')
+        }
+      }
+    },
   }
-}});
+});
 
 module.exports = mutation;

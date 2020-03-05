@@ -43,11 +43,18 @@ export const FETCH_USER = gql`
       favorited_posts {
         _id
       }
+      rebited_posts{
+        _id
+        body
+      }
       posts {
           _id 
           body
           image
           favorites {
+            _id
+          }
+          rebits{
             _id
           }
         }

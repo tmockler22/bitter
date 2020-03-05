@@ -50,6 +50,12 @@ const UserSchema = new Schema({
       type: Schema.Types.ObjectId,
       ref: "posts"
     }
+  ],
+  rebited_posts:[
+    {
+      type: Schema.Types.ObjectId,
+      ref: "posts"
+    }
   ]
 });
 
@@ -157,7 +163,7 @@ UserSchema.statics.alreadyFavorited = function (userId, postId) {
   const User = mongoose.model("users");
 
   return User.findById(userId).then(user => {
-    const newPostString = JSON.stringify(postId);
+    const newPostString = JSON.stringify(postId); ///postID
     for (let index = 0; index < user.favorited_posts.length; index++) {
       const favorite = user.favorited_posts[index];
       const favoriteString = JSON.stringify(favorite)
@@ -178,6 +184,64 @@ UserSchema.statics.unfavorite = (userId, postId) => {
     return Post.findById(postId).then(post => {
       user.favorited_posts.remove(post);
       post.favorites.remove(user);
+      return Promise.all([user.save(), post.save()]).then(
+        ([user, post]) => post
+      );
+    });
+  });
+};
+
+
+UserSchema.statics.findRebits = function (userId) {
+  return this.findById(userId)
+    .populate("rebited_posts")
+    .then(user => user.rebited_posts);
+};
+
+UserSchema.statics.alreadyRebited = function(userId, postId){
+  const User = mongoose.model("users");
+
+  return User.findById(userId).then(user => {
+    const newPostString = JSON.stringify(postId); 
+    for (let index = 0; index < user.rebited_posts.length; index++) {
+      const rebit = user.rebited_posts[index];
+      const rebitString = JSON.stringify(rebit)
+
+      if (rebitString === newPostString) {
+        return true;
+      }
+    }
+    return false;
+  });
+}
+
+UserSchema.statics.addRebit = (userId, postId) => {
+  const User = mongoose.model("users");
+  const Post = mongoose.model("posts");
+
+  return User.findById(userId).then(user => {
+    return Post.findById(postId).then(post => {
+      user.rebited_posts.push(postId);
+      user.posts.push(post)
+      post.rebits.push(userId);
+      return Promise.all([user.save(), post.save()]).then(
+        ([user, post]) => (post, user)
+      );
+    });
+  });
+};
+
+
+
+UserSchema.statics.removeRebit = (userId, postId) => {
+  const User = mongoose.model("users");
+  const Post = mongoose.model("posts")
+
+  return User.findById(userId).then(user => {
+    return Post.findById(postId).then(post => {
+      user.rebited_posts.remove(post);
+      user.posts.remove(post)
+      post.rebits.remove(user);
       return Promise.all([user.save(), post.save()]).then(
         ([user, post]) => post
       );

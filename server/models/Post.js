@@ -8,17 +8,13 @@ const PostSchema = new Schema({
   image: {
     type: String
   },
-  timestamps: { 
-    createdAt: 'created_at', 
-    updatedAt: 'updated_at' 
-  },
   favorites: [
     {
       type: Schema.Types.ObjectId, 
       ref: "users"
     }
   ],
-  rebit: [
+  rebits: [
     {
       type: Schema.Types.ObjectId,
       ref: "users"
@@ -36,5 +32,11 @@ PostSchema.statics.findFavorites = function (postId) {
     .populate("favorites")
     .then(post => post.favorites);
 };
+
+PostSchema.statics.findRebits = function (postId){
+  return this.findById(postId)
+  .populate("rebits")
+  .then(post => post.rebits);
+}
 
 module.exports = mongoose.model("posts", PostSchema);

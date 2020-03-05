@@ -16,7 +16,12 @@ const PostType = new GraphQLObjectType({
         return Post.findFavorites(parentValue._id);
       }
     },
-    rebit: { type: GraphQLList(require("./user_type")) },
+    rebits: { 
+      type: GraphQLList(require("./user_type")),
+      resole(parentValue){
+        return Post.findRebits(parentValue._id);
+      }
+    },
     image: {
         type: GraphQLString,
         resolve(parentValue) {
