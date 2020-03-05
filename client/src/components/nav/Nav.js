@@ -16,6 +16,12 @@ const Nav = props => {
                 <div className="nav-container">
                 <Link to="/home"><h1>Bitter</h1></Link>
                 <div className="nav-frog-logo"></div>
+                <div className="nav-home-logo-wrapper">
+                  <div className="nav-home-logo">
+                    <i className="fas fa-home nav-home-text"></i>
+                    <div className="home-text">Home</div>
+                  </div>
+                </div>
                 <button
                   onClick={e => {
                     e.preventDefault();

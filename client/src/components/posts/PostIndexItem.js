@@ -7,7 +7,6 @@ const PostIndexItem = (props) => {
   let post = props.post; 
   let params = props.params; 
   let userId = props.userId; 
-  debugger
   return (
         <div className="post-item-container">
           {post.user && post.user.image ? <div className="post-item-profile-picture" style={{ backgroundImage: `url(${post.user.image})` }}></div> :

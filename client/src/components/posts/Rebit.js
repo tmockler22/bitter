@@ -38,7 +38,6 @@ class Rebit extends Component {
           el["rebits"] = el["rebits"].concat(data.rebit)
           newPost = el;
           newObj["posts"][index] = newPost
-          debugger;
         }
       }
       cache.writeQuery({

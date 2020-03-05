@@ -6,12 +6,39 @@
 }
 
 .nav-frog-logo{
-     height: 70px;
-    width: 70px;
-    margin-left: 15%;
-    background-size: 75%;
-    background-repeat: no-repeat;
-    background-image: url(https://raw.githubusercontent.com/tmockler22/bitter/adds-sidebar-css/client/src/graphql/bigfroggy.png);
-    border-radius: 50%;
-    background-position: center;
+  height: 70px;
+  width: 70px;
+  margin-left: 8%;
+  background-size: 75%;
+  background-repeat: no-repeat;
+  background-image: url('/whitefroggy.png');
+  border-radius: 50%;
+  background-position: center;
+}
+
+.nav-frog-logo:hover{
+ background-color: rgb(29, 47, 66)
+}
+.nav-home-logo-wrapper{
+  width: 60%;
+  margin-left: 13%;
+  border-radius: 1000px;
+}
+.nav-home-logo-wrapper:hover{
+   background-color: rgb(29, 47, 66)
+}
+.nav-home-logo{
+    display: flex;
+    font-size: 35px;
+    margin-left: 5%;
+}
+.home-text{
+  font-size: 25px;
+  padding-top: 14px;
+  padding-left: 20px;
+}
+
+.nav-home-text{
+    font-weight: 900;
+    color: white;
 }
