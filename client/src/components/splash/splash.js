@@ -34,11 +34,11 @@ class Login extends Component {
           </div>
         </div>
         <div className="splash-right">
-          <div className="">froggy</div>
-          <div className="">See what’s happening in the world right now</div>
-          <div className="">Join Bitter today.</div>
-          <div onClick={() => { this.setModal("register")}}>Sign up</div>
-          <div onClick={() => {this.setModal("login")}}>Log in</div>
+          <div className="session-bitter-frog"></div>
+          <div className="splash-right-header">See what’s happening in the world right now</div>
+          <div className="splash-right-text">Join Bitter today.</div>
+          <div className="splash-button sign-up" onClick={() => { this.setModal("register")}}>Sign up</div>
+          <div className="splash-button log-in" onClick={() => {this.setModal("login")}}>Log in</div>
         </div>
       </div>
     )
