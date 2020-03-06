@@ -30,11 +30,11 @@ class Register extends Component {
       <Mutation
         mutation={REGISTER_USER}
         onCompleted={data => {
-          const { token, _id, email, username, fullname, bio, image } = data.login;
+          const { token, _id, email, username, fullname, bio, image } = data.register;
           localStorage.setItem("auth-token", token);
           localStorage.setItem("user", JSON.stringify({ id: _id, email: email, fullname: fullname, username: username, bio: bio, image: image }));
-          localStorage.setItem("modal", "")
           this.props.history.push("/home");
+          localStorage.setItem("modal", "")
         }}
         update={(client, data) => this.updateCache(client, data)}
       >
