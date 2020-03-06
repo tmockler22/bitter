@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Login from "../nav/Login"
 import Register from "../nav/Register"
+import CreatePost from "../posts/CreatePost";
 import "./modal.css"
 
 class Modal extends Component {
@@ -39,6 +40,8 @@ class Modal extends Component {
       case 'login':
         this.setState({ component: <Login history={this.props.history}/>})
         break
+      case 'create-beet':
+        this.setState({ component: <div className="create-post-modal"><CreatePost history={this.props.history} /></div>})
       default:
         return null;
     }
