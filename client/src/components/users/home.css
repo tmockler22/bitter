@@ -1,6 +1,7 @@
 .profile-container {
   position: absolute;
   overflow-y: scroll;
+  overflow-x: hidden;
   height: 100vh;
   left: 370px;
   width: 600px;

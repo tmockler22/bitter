@@ -9,6 +9,7 @@ const PostType = new GraphQLObjectType({
   fields: () => ({
     _id: { type: GraphQLID },
     body: { type: GraphQLString },
+    timestamp: { type: GraphQLString },
     user: {
       type: require('./user_type'),
       resolve(parentValue) {

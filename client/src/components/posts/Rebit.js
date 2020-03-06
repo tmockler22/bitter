@@ -83,7 +83,8 @@ class Rebit extends Component {
           update={(client, data) => this.updateCache(client, data)}
         >
           {unrebit => (
-            <button
+            <div
+              className="unrebit"
               onClick={e => {
                 e.preventDefault();
                 unrebit({
@@ -93,7 +94,7 @@ class Rebit extends Component {
                   }
                 });
               }}
-            >Unrebit</button>
+            ><i className="unrebit-icon fa fa-retweet"></i><span className="rebit-count-active">{this.props.post.rebits.length}</span></div>
           )}
         </Mutation>
         );
@@ -110,7 +111,8 @@ class Rebit extends Component {
     >
       {rebit=> (
         <div>
-          <button
+          <div
+            className="rebit"
             onClick={e => {
               e.preventDefault();
               rebit({
@@ -120,7 +122,7 @@ class Rebit extends Component {
                 }
               });
             }}
-          >Rebit</button>
+          ><i className="rebit-icon fa fa-retweet"></i><span className="rebit-count">{this.props.post.rebits.length}</span></div>
         </div>
       )}
     </Mutation>
