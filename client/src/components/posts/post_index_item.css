@@ -19,3 +19,97 @@
   background-repeat: no-repeat;
   background-position: center;
 }
+
+.post-item-label {
+  position: relative;
+  bottom: 30px;
+}
+
+.post-item-fullname {
+  color: white;
+  font-weight: bold;
+}
+
+.post-item-body {
+  position: relative;
+  bottom: 25px;
+  left: 80px;
+  color: white;
+}
+
+.post-item-image-frame {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 500px;
+  max-height: 300px;
+  overflow: hidden;
+  position: relative;
+  bottom: 25px;
+  margin-bottom: -15px;
+  left: 80px;
+  border-radius: 10px;
+  margin-top: 10px;
+  border: 1px solid rgb(56, 68, 77);
+}
+
+.post-item-image {
+  width: 500px;
+}
+
+.post-item-buttons {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 10px;
+}
+
+.rebit, .unrebit, .favorite, .unfavorite {
+  margin-left: 100px;
+}
+
+.favorite-icon, .unfavorite-icon  {
+  transition: .4s;
+  margin: 2px 0;
+  padding: 8px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.unfavorite-icon {
+  color: rgb(224, 36, 94);
+}
+
+.favorite:hover > .favorite-icon, .unfavorite:hover > .unfavorite-icon {
+  color: rgb(224, 36, 94);
+  cursor: pointer;
+  transition: .4s;
+  background-color: rgb(224, 36, 94, 0.1);
+}
+
+.favorite:hover > .favorite-count, .favorite-count-active {
+  cursor: pointer;
+  transition: .4s;
+  color: rgb(224, 36, 94);
+}
+
+.rebit-icon, .unrebit-icon {
+  padding: 10px 8px;
+  border-radius: 50%;
+  transition: .4s;
+}
+
+.rebit:hover > .rebit-icon, .unrebit:hover > .unrebit-icon {
+  transition: .4s;
+  color: rgb(23, 191, 99);
+  background-color: rgb(23, 191, 99, 0.1);
+}
+
+.unrebit-icon {
+  color: rgb(23, 191, 99);
+}
+
+.rebit-count-active, .rebit:hover > .rebit-count  {
+  cursor: pointer;
+  transition: .4s;
+  color: rgb(23, 191, 99);
+}
