@@ -10,7 +10,7 @@ class Favorite extends Component {
     super(props);
     this.state = {
       userId: currentUser().id,
-      postId: props.post._id 
+      postId: props.post._id
     }
     this.hasFavorited = this.hasFavorited.bind(this);
   }
@@ -83,7 +83,8 @@ class Favorite extends Component {
           update={(client, data) => this.updateCache(client, data)}
         >
           {unfavorite => (
-            <button
+            <div
+              className="unfavorite"
               onClick={e => {
                 e.preventDefault();
                 unfavorite({
@@ -93,7 +94,7 @@ class Favorite extends Component {
                   }
                 });
               }}
-            >Unfavorite</button>
+            ><i className="unfavorite-icon fas fa-heart"></i><span className="favorite-count-active">{this.props.post.favorites.length}</span></div>
           )}
         </Mutation>
         );
@@ -110,7 +111,8 @@ class Favorite extends Component {
     >
       {favorite => (
         <div>
-          <button
+          <div
+            className="favorite"
             onClick={e => {
               e.preventDefault();
               favorite({
@@ -120,7 +122,7 @@ class Favorite extends Component {
                 }
               });
             }}
-          >Favorite</button>
+          ><i className="favorite-icon far fa-heart"></i><span className="favorite-count">{this.props.post.favorites.length}</span></div>
         </div>
       )}
     </Mutation>

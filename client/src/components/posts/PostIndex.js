@@ -20,9 +20,11 @@ const PostIndex = (props) => {
       {({ loading, error, data }) => {
         if (loading) return "Loading...";
         if (error) return `Error! ${error.message}`;
+
         let userPosts; 
         let posts; 
         let follows;  
+
         if (homeFeed) {
           userPosts = data.user.posts; 
           follows = Object.values(data.user.follows);
@@ -33,10 +35,15 @@ const PostIndex = (props) => {
           posts = userPosts; 
         } else {
           posts = data.user.posts; 
-        }
-        return (
+        };
+
+        let sortedPosts = posts.sort(function (x, y) {
+          return y.timestamp - x.timestamp;
+        })
+
+          return (
           <div>
-            {posts.map(post => <PostIndexItem key={post._id} userId={userId} post={post} params={props} />  )}
+              {sortedPosts.map(post => <PostIndexItem key={post._id} userId={userId} post={post} params={props} />  )}
           </div>
           );
         }}
