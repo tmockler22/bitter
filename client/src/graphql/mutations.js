@@ -37,11 +37,18 @@ export const VERIFY_USER = gql`
 `;
 
 export const CREATE_POST = gql`
-  mutation CreatePost($body: String!, $user: ID!, $image: Upload) {
-    newPost(body: $body, user: $user, image: $image) {
+  mutation CreatePost($body: String!, $user: ID!, $image: Upload, $tags: [String]) {
+    newPost(body: $body, user: $user, image: $image, tags: $tags) {
       body
       _id
+      tags
       image
+      favorites {
+        _id
+      }
+      rebits {
+        _id
+      }
     }
   }
 `;

@@ -6,6 +6,7 @@ export const FETCH_POSTS = gql`
       _id
       body
       image
+      tags
       timestamp
       user {
         fullname
@@ -38,6 +39,44 @@ export const FETCH_POST = gql`
   }
 `;
 
+export const FETCH_HASHTAG = gql`
+  query FetchHashtag($tag: String!) {
+    tag(tag: $tag) {
+      _id
+      posts {
+      _id 
+      body
+      image
+      favorites {
+        _id
+      }
+      rebits{
+        _id
+      }
+    }
+    }
+  }
+`;
+
+export const SEARCH_USERS = gql`
+  query SearchUsers($search: String!) {
+    searchUsers(searchTerm: $search) {
+      _id
+      fullname
+      username
+    }
+  }
+`;
+
+export const SEARCH_HASHTAGS = gql`
+  query SearchTags($search: String!) {
+    searchHashtags(searchTerm: $search) {
+      _id
+      tag
+    }
+  }
+`;
+
 export const IS_LOGGED_IN = gql`
     query IsUserLoggedIn {
       isLoggedIn @client
@@ -59,11 +98,13 @@ export const FETCH_USER = gql`
       rebited_posts{
         _id
         body
+        tags
       }
       posts {
           _id 
           body
           image
+          tags
           timestamp
           user {
             _id
@@ -83,6 +124,7 @@ export const FETCH_USER = gql`
           posts {
             _id
             body
+            tags
             image
             timestamp
             user {

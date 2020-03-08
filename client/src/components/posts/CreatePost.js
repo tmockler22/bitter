@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import { Mutation } from "react-apollo";
 import { CREATE_POST } from "../../graphql/mutations";
 import { FETCH_USER } from "../../graphql/queries";
-import { currentUser } from "../../util/util"
-import "./create_post.css"
+import { currentUser } from "../../util/util";
+import "./create_post.css";
+import { Link } from "react-router-dom";
 
 class CreatePost extends Component {
   constructor(props) {
@@ -12,7 +13,8 @@ class CreatePost extends Component {
       message: "",
       body: "",
       photoFile: null,
-      photoUrl: null
+      photoUrl: null, 
+      tags: []
     };
   }
 
@@ -27,9 +29,12 @@ class CreatePost extends Component {
     }
   }
 
-  update(field) {
-    return e => this.setState({ [field]: e.target.value });
-  }
+  update(e, field) {
+    e.preventDefault();
+    return this.setState({ [field]: e.target.value });
+    }
+  
+  
 
   updateCache(cache, { data }) {
     const currentUserId = currentUser().id;
@@ -59,15 +64,26 @@ class CreatePost extends Component {
   }
 
   handleSubmit(e, newPost) {
+    let body = this.state.body.split(" "); 
+    for (let index = 0; index < body.length; index++) {
+      const el = body[index];
+      if (el[0] === "#") {
+        let tags = this.state.tags.push(el); 
+        this.setState({"tags": tags});
+      } 
+    }
     let user = currentUser();
     e.preventDefault();
+  
     newPost({
       variables: {
         image: this.state.photoFile,
         body: this.state.body,
-        user: user.id
+        user: user.id,
+        tags: this.state.tags
       }
     });
+    
   }
 
   render() {
@@ -89,9 +105,9 @@ class CreatePost extends Component {
             { user && user.image ? <div className="create-post-profile-picture" style={{ backgroundImage: `url(${user.image})` }}></div> : 
               <div className="create-post-profile-picture default-profile-picture"></div>}
             <form className="create-post-form" onSubmit={e => this.handleSubmit(e, newPost)}>
-              <textarea
+              <input
                 className="create-post-text"
-                onChange={this.update("body")}
+                onChange={(e) => this.update(e, "body")}
                 value={this.state.body}
                 placeholder="What's up?"
               />

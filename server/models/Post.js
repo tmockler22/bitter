@@ -14,6 +14,9 @@ const PostSchema = new Schema({
       ref: "users"
     }
   ],
+  tags: {
+      type: Array 
+  },
   rebits: [
     {
       type: Schema.Types.ObjectId,
@@ -32,6 +35,12 @@ const PostSchema = new Schema({
 });
 
 PostSchema.statics.findFavorites = function (postId) {
+  return this.findById(postId)
+    .populate("favorites")
+    .then(post => post.favorites);
+};
+
+PostSchema.statics.findTags = function (postId) {
   return this.findById(postId)
     .populate("favorites")
     .then(post => post.favorites);

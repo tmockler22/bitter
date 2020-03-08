@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const graphql = require("graphql");
-const { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLList } = graphql;
+const { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLList, GraphQLArray } = graphql;
 const { s3 } = require('../../services/s3');
 const Post = mongoose.model("posts");
 const PostType = new GraphQLObjectType({
@@ -22,6 +22,7 @@ const PostType = new GraphQLObjectType({
         return Post.findFavorites(parentValue._id);
       }
     },
+    tags: { type: new GraphQLList(GraphQLString) },
     rebits: { 
       type: GraphQLList(require("./user_type")),
       resole(parentValue){
