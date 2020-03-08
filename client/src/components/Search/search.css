@@ -1,0 +1,40 @@
+.search-bar {
+  margin: 120px 200px 0px 200px; 
+  position: relative;
+  z-index: 1; 
+}
+
+.search-input {
+  
+  z-index: 0; 
+  position: relative; 
+  width: 280px; 
+  padding: 8px 50px; 
+  border: 1px solid transparent; 
+  border-radius: 20px; 
+  background-color: rgb(33, 58, 78); 
+  color: gray; 
+}
+
+.search-glass {
+  position: absolute; 
+  color: gray;
+  font-size: 18px; 
+  z-index: 2; 
+  left: 18px; 
+  top: 9px; 
+}
+
+.search-input:focus {
+  transition: .15s ease; 
+  border-color: lightblue; 
+  background-color: rgb(21, 32, 43);
+}
+
+.user-search-list {
+  margin-top: 4px; 
+  width: 280px; 
+  padding: 8px 50px; 
+  border: 1px solid black; 
+  
+}

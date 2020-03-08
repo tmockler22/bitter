@@ -24,9 +24,9 @@ const Nav = props => {
                       props.history.push("/splash");
                   }}
                 >Logout</button>
-                  <Link to="/user/5e5d611823fac9a96fefe040"> Tristan </Link>
-                  <Link to="/user/5e5d1afa79b5b383df60b4ab"> Guest </Link>
-                  <Link to="/user/5e5edb5d9fc066eeecd637ea"> 2Guest2</Link>
+                  <Link to="/user/5e612afff942dc2ea136aea8"> Guest </Link>
+                  <Link to="/user/5e6128ff8765ff2407644c3e"> Michael </Link>
+                  <Link to="/user/5e6129fa33db51b116a71ea2"> Garon</Link>
                 </div>
               );
             } else {
