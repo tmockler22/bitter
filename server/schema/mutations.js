@@ -1,5 +1,5 @@
 const graphql = require("graphql");
-const { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLID, GraphQLNonNull } = graphql;
+const { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLID, GraphQLNonNull, GraphQLArray, GraphQLList } = graphql;
 const mongoose = require("mongoose");
 const User = mongoose.model("users");
 const Post = mongoose.model("posts");
@@ -129,16 +129,20 @@ const mutation = new GraphQLObjectType({
       args: {
         body: { type: GraphQLString },
         user: { type: GraphQLID },
-        image: {type: GraphQLUpload}
+        image: {type: GraphQLUpload},
+        tags: {type: GraphQLList(GraphQLString)}
       },      
-        async resolve(_, { body, user, image }, ctx) {
+        async resolve(_, { body, user, image, tags }, ctx) {
            const updateObj = {};
-
+          console.log(tags);
          if (user) updateObj.user = user;
          if (body) updateObj.body = body;
          if (image) {
            updateObj.image =  await singleFileUpload(image);
          }
+         if (tags) {
+           updateObj.tags = tags;
+         } 
         const validUser = await AuthService.verifyUser({ token: ctx.token });
         if (validUser.loggedIn) { 
           return new Post(updateObj)

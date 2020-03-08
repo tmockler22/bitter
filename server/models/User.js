@@ -77,18 +77,19 @@ UserSchema.statics.findFollowers = function (userId) {
     .then(user => user.followers);
 };
 
-UserSchema.statics.addUserPost = (postId, userId) => {
+UserSchema.statics.addUserPost = function (postId, userId) {
   const User = mongoose.model("users");
   const Post = mongoose.model("posts");
-
+  const Tag = mongoose.model("tags");
   return User.findById(userId).then(user => {
     return Post.findById(postId).then(post => {
       user.posts.push(post);
+      Tag.addTags(post);
       return Promise.all([post.save(), user.save()]).then(
-        ([post, user]) => post
+        ([post, user]) => (post, user)
       );
     });
-  });
+    });
 };
 
 UserSchema.statics.alreadyFollows = (id, newFollow) => {
@@ -240,7 +241,7 @@ UserSchema.statics.removeRebit = (userId, postId) => {
   return User.findById(userId).then(user => {
     return Post.findById(postId).then(post => {
       user.rebited_posts.remove(post);
-      user.posts.remove(post)
+      user.posts.remove(post);
       post.rebits.remove(user);
       return Promise.all([user.save(), post.save()]).then(
         ([user, post]) => post
