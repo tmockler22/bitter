@@ -1,0 +1,162 @@
+.create-post-container-modal{
+  height: 300px;
+  width: 600px;
+  background-color: rgb(21, 32, 43);
+  z-index: 10;
+  margin-top: 50px;
+  border-radius: 3%;
+}
+
+.create-post-modal{
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+}
+
+.create-post-form-modal {
+  top: -50px;
+  position: relative;
+}
+
+.escape-div{
+    border-bottom: 1px solid rgb(56, 68, 77);
+    height: 40px;
+    padding-bottom: 10px;
+}
+.exit{
+  position: relative;
+  top: 55px;
+  left: 45px;
+  color: rgb(29, 161, 242);
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  font-size: 25px;
+  margin-left: 10px;
+  margin-top: 5px;
+  padding: 2px;
+  z-index: 11;
+}
+
+
+.exit:hover{
+  background-color: rgb(29, 47, 66)
+}
+
+
+.create-post-profile-picture-modal {
+  margin: 10px 15px;
+  display: inline-block;
+  left: 0px;
+  top: 10px;
+  position: relative;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.create-post-text-modal {
+    resize: none;
+    top: 10px;
+    left: 80px;
+    /* position: relative; */
+    font-weight: bold;
+    color: white;
+    min-height: 40px;
+    width:550px;
+    padding-left: 10px;
+    height: 150px;
+    background-color: transparent;
+    font-size: 18px;
+    margin-left: 5px;
+    border: none;
+}
+
+.create-post-text::placeholder {
+  color: rgb(187, 187, 187);
+}
+
+.create-post-image-preview-modal {
+  margin-top: 30px;
+  margin-left: 80px;
+  border-radius: 15px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 300px;
+  width: 500px;
+}
+
+.create-post-cancel-image-modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color:rgba(0, 0, 0, 0.77);
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 85px;
+  right: 30px;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.create-post-cancel-image:hover {
+  background-color:rgba(0, 0, 0, 0.63);
+}
+
+.create-post-cancel-image i {
+  color: white;
+}
+
+.create-post-buttons-modal {
+  position: relative;
+  top: 20px;
+  display: flex;
+  width: 100%;
+}
+
+.create-post-label-modal {
+  position: relative;
+  left: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  width: 40px;
+  font-size: 25px;
+  cursor: pointer;
+  color: rgba(29,161,242,1.00);
+}
+
+.create-post-label:hover {
+  background-color: rgb(29, 161, 242, 0.1);
+  border-radius: 50%;
+}
+
+.create-post-submit-modal {
+  position: absolute;
+  right: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: bold;
+  background-color: rgb(29, 161, 242);
+  border: none;
+  border-radius: 20px;
+  width: 80px;
+  height: 40px;
+  cursor: pointer;
+}
+
+.create-post-submit:hover {
+  background-color: rgb(26, 145, 218);
+}

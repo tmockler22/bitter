@@ -3,9 +3,10 @@ import { Mutation } from "react-apollo";
 import { CREATE_POST } from "../../graphql/mutations";
 import { FETCH_USER } from "../../graphql/queries";
 import { currentUser } from "../../util/util"
-import "./create_post.css"
+import "./create_post_modal.css";
+import "./create_post.css";
 
-class CreatePost extends Component {
+class CreatePostModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,6 +15,11 @@ class CreatePost extends Component {
       photoFile: null,
       photoUrl: null
     };
+  }
+
+  componentDidMount(){
+    //document.querySelector('.modal-background').style.zIndex = 0;
+    document.querySelector('.modal-background').style.backgroundColor = "rgba(110, 118, 125, 0.4)";
   }
 
   handleFile(event) {
@@ -45,7 +51,7 @@ class CreatePost extends Component {
     if (user) {
       let postArray = user.user.posts;
       let newPost = data.newPost;
-     // newPost.user = currentUser().id;
+      newPost.user = currentUser().id;
 
       let newObj = Object.assign({}, user.user);
       newObj["posts"] = newObj["posts"].concat(newPost);
@@ -53,9 +59,14 @@ class CreatePost extends Component {
       cache.writeQuery({
         query: FETCH_USER,
         variables: { id: currentUserId },
-        data: { user: newObj}
+        data: { user: newObj }
       });
     }
+  }
+  closeModal() {
+    localStorage.setItem("modal", "")
+    this.setState({ modal: "", component: "" })
+    this.forceUpdate()
   }
 
   handleSubmit(e, newPost) {
@@ -69,6 +80,12 @@ class CreatePost extends Component {
       }
     });
   }
+//   handleExitClick(e) {
+//     e.preventDefault();
+//     document.querySelector(".create-post-container-modal").style.display = 'none';
+//     document.querySelector('.modal-background').style.backgroundColor = 'rgb(21, 32, 43)';
+// }
+
 
   render() {
     let user = currentUser()
@@ -78,41 +95,42 @@ class CreatePost extends Component {
         onError={err => this.setState({ message: err.message })}
         update={(cache, data) => this.updateCache(cache, data)}
         onCompleted={data => {
-          const { body, image} = data.newPost;
+          const { body, image } = data.newPost;
           this.setState({
             message: body
           });
         }}
       >
         {(newPost, { data }) => (
-          <div className="create-post-container">
-            { user && user.image ? <div className="create-post-profile-picture" style={{ backgroundImage: `url(${user.image})` }}></div> : 
-              <div className="create-post-profile-picture default-profile-picture"></div>}
-            <form className="create-post-form" onSubmit={e => this.handleSubmit(e, newPost)}>
+          <div className="create-post-container-modal">
+            <div className="escape-div"></div>
+            {user && user.image ? <div className="create-post-profile-picture-modal" style={{ backgroundImage: `url(${user.image})` }}></div> :
+              <div className="create-post-profile-picture default-profile-picture-modal"></div>}
+            <form className="create-post-form-modal" onSubmit={e => this.handleSubmit(e, newPost)}>
               <textarea
-                className="create-post-text"
+                className="create-post-text-modal"
                 onChange={this.update("body")}
                 value={this.state.body}
                 placeholder="What's up?"
               />
-              {this.state.photoUrl ? 
-              <div>
-                <div className="create-post-cancel-image" onClick={() => {this.setState({ photoUrl: '' })}}><i className="fas fa-times"></i></div>
-                <div 
-                  className="create-post-image-preview" 
-                  style={{ backgroundImage: `url(${this.state.photoUrl})`}}>
-                </div> 
-              </div>
+              {this.state.photoUrl ?
+                <div>
+                  <div className="create-post-cancel-image-modal" onClick={() => { this.setState({ photoUrl: '' }) }}><i className="fas fa-times"></i></div>
+                  <div
+                    className="create-post-image-preview-modal"
+                    style={{ backgroundImage: `url(${this.state.photoUrl})` }}>
+                  </div>
+                </div>
                 : null}
-              <div className="create-post-buttons">
+              <div className="create-post-buttons-modal">
                 <label><i className=" create-post-label	far fa-image"></i>
-                <input
-                  type="file"
-                  className="hidden"
-                  onChange={this.handleFile.bind(this)}
-                />
+                  <input
+                    type="file"
+                    className="hidden"
+                    onChange={this.handleFile.bind(this)}
+                  />
                 </label>
-                <button className="create-post-submit" type="submit">beet</button>
+                <button className="create-post-submit-modal" type="submit" onClick={this.closeModal}>beet</button>
               </div>
             </form>
           </div>
@@ -122,4 +140,4 @@ class CreatePost extends Component {
   }
 }
 
-export default CreatePost;
+export default CreatePostModal;

@@ -16,7 +16,6 @@
   background-position: center;
 }
 
-
 .nav-frog-logo:hover{
  background-color: rgb(29, 47, 66)
 }
@@ -61,6 +60,3 @@
     cursor: pointer;
 }
 
-.create-post-modal{
-  z-index: 10;
-}

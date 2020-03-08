@@ -24,6 +24,9 @@ class Nav extends React.Component{
     localStorage.setItem("modal", `${modal}`)
     this.forceUpdate()
   }
+
+
+
   render(){
     let modal = localStorage.getItem("modal")
     return (
@@ -44,7 +47,7 @@ class Nav extends React.Component{
                             <div className="home-text">Home</div>
                           </div>
                         </div>
-                      <button className='tweet-button' onClick={() => {this.setModal("create-beet")}}>Beet</button>
+                      <button className='tweet-button' onClick={() => this.setModal("create-beet")}>Beet</button>
                     </div>
                     <button
                       onClick={e => {
