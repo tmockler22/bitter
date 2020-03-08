@@ -5,6 +5,7 @@ import Follow from "./Follow";
 import PostIndex from "../posts/PostIndex";
 import { FETCH_USER } from "../../graphql/queries";
 import CreatePost from "../posts/CreatePost";
+import Search from "../Search/Search";
 import "./home.css"
 
 class HomeProfile extends Component {
@@ -17,7 +18,9 @@ class HomeProfile extends Component {
   render() {
     return (
     <div className="profile-container">
-      <div className="profile-title">Home</div>
+      <div className="profile-title">Home
+      <Search />
+      </div>
       <CreatePost />
       <PostIndex params={this.props} />
     </div>

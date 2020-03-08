@@ -24,9 +24,6 @@ const Nav = props => {
                       props.history.push("/");
                   }}
                 >Logout</button>
-                  <Link to="/user/5e612afff942dc2ea136aea8"> Guest </Link>
-                  <Link to="/user/5e6128ff8765ff2407644c3e"> Michael </Link>
-                  <Link to="/user/5e6129fa33db51b116a71ea2"> Garon</Link>
                 </div>
               );
             } else {
