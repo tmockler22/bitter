@@ -16,6 +16,7 @@ class Nav extends React.Component{
     this.props.history.push("/home");
   }
 
+
   componentWillMount() {
     localStorage.setItem("modal", "")
   }
@@ -58,9 +59,6 @@ class Nav extends React.Component{
                         this.props.history.push("/");
                       }}
                     >Logout</button>
-                    <Link to="/user/5e5d611823fac9a96fefe040"> Tristan </Link>
-                    <Link to="/user/5e5d1afa79b5b383df60b4ab"> Guest </Link>
-                    <Link to="/user/5e5edb5d9fc066eeecd637ea"> 2Guest2</Link>
                   </div>
                 );
               } else {

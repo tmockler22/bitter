@@ -46,6 +46,11 @@ export const FETCH_HASHTAG = gql`
       posts {
       _id 
       body
+      user {
+        username 
+        fullname 
+        image
+      }
       image
       favorites {
         _id

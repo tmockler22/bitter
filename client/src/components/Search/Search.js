@@ -26,16 +26,16 @@ class Search extends React.Component {
       <div>
         <Query query={SEARCH_HASHTAGS} variables={{ search: this.state.search }}>
           {({ loading, error, data }) => {
-            if (loading) return <div className="user-search-list">Loading...</div>;
+            if (loading) return <div className="tag-search-list">Loading...</div>;
             if (error) return `Error! ${error.message}`;
             let tags;
             tags = data.searchHashtags;
             debugger; 
             if (tags.length === 0) {
-              return <div className="user-search-list">No tags match your search.</div>
+              return <div className="tag-search-list">No tags match your search.</div>
             } else {
             return (
-              <div className="user-search-list">
+              <div className="tag-search-list">
                 {tags.map(tag => <Link to={`/hashtag/${tag.tag.slice(1)}`}><p key={tag._id}>{tag.tag}</p></Link>)}
               </div>
             )};
@@ -52,7 +52,7 @@ class Search extends React.Component {
             } else {
            return (
             <div className="user-search-list">
-              {users.map(user => <Link to={`/user/${user._id}`}><p key={user._id}>{user.username}</p></Link>)}
+               {users.map(user => <div className="search-user"><Link to={`/user/${user._id}`}><p key={user._id}>{user.username}</p></Link></div>)}
             </div>
           )};
         }}
