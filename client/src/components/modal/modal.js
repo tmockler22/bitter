@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Login from "../nav/Login"
 import Register from "../nav/Register"
+import CreatePostModal from "../posts/CreatePostModal";
 import "./modal.css"
 
 class Modal extends Component {
@@ -39,6 +40,18 @@ class Modal extends Component {
       case 'login':
         this.setState({ component: <Login history={this.props.history}/>})
         break
+      case 'create-beet':
+        this.setState({
+          component: (
+            <div className="create-post-modal">
+                <div className="exit" onClick={this.closeModal}>
+                  <i className="fa fa-times"></i>
+              </div>
+              
+              <CreatePostModal history={this.props.history} />
+            </div>
+          )
+        });
       default:
         return null;
     }

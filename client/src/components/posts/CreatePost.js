@@ -50,7 +50,7 @@ class CreatePost extends Component {
     if (user) {
       let postArray = user.user.posts;
       let newPost = data.newPost;
-      newPost.user = currentUser().id;
+     // newPost.user = currentUser().id;
 
       let newObj = Object.assign({}, user.user);
       newObj["posts"] = newObj["posts"].concat(newPost);
