@@ -9,7 +9,9 @@ const PostType = new GraphQLObjectType({
   fields: () => ({
     _id: { type: GraphQLID },
     body: { type: GraphQLString },
-    user: { type: require('./user_type'),
+    timestamp: { type: GraphQLString },
+    user: {
+      type: require('./user_type'),
       resolve(parentValue) {
         return Post.findById(parentValue._id).populate("user").then(post => post.user);
       }

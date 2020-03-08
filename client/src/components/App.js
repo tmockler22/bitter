@@ -13,12 +13,15 @@ import EditProfile from "./profile/editProfile";
 const App = () => {
   return (
     <div>
+
       <Route exact path="/hashtag/:hashtag" component={HashTagIndex}/>
       <Route exact path="/search" component={Search} />
-      <Route path="/" component={Nav} />
+
+      <ProtectedRoute path="/" component={Nav} routeType="protected" /> 
+
       <Switch>
         <AuthRoute exact path="/login" component={Login} routeType="auth" />
-        <AuthRoute exact path="/splash" component={Splash} routeType="auth" />
+        <AuthRoute exact path="/" component={Splash} routeType="auth" />
         <AuthRoute exact path="/register" component={Register} routeType="auth" />
         <ProtectedRoute exact path="/user/:id" component={UserProfile}/>
         

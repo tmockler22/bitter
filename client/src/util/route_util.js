@@ -31,7 +31,7 @@ export const AuthRoute = ({
                 data.isLoggedIn ? (
                   <Component {...props} />
                 ) : (
-                    <Redirect to="/splash" />
+                    <Redirect to="/" />
                   )
               }
             />

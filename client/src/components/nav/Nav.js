@@ -21,7 +21,7 @@ const Nav = props => {
                     localStorage.removeItem("auth-token");
                     localStorage.removeItem("user");
                     client.writeData({ data: { isLoggedIn: false } });
-                      props.history.push("/splash");
+                      props.history.push("/");
                   }}
                 >Logout</button>
                   <Link to="/user/5e612afff942dc2ea136aea8"> Guest </Link>

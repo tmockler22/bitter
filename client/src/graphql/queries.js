@@ -7,6 +7,12 @@ export const FETCH_POSTS = gql`
       body
       image
       tags
+      timestamp
+      user {
+        fullname
+        username
+        image
+      }
       favorites {
         _id
       }
@@ -19,6 +25,13 @@ export const FETCH_POST = gql`
     post(_id: $id) {
       _id
       body
+      image
+      timestamp
+      user {
+        fullname
+        username
+        image
+      }
       favorites {
         _id
       }
@@ -92,6 +105,13 @@ export const FETCH_USER = gql`
           body
           image
           tags
+          timestamp
+          user {
+            _id
+            username
+            fullname
+            image
+          }
           favorites {
             _id
           }
@@ -105,12 +125,20 @@ export const FETCH_USER = gql`
             _id
             body
             tags
+            image
+            timestamp
+            user {
+              _id
+              username
+              fullname
+              image
+            }
             favorites {
               _id
             }
             rebits{
             _id
-          }
+            }
           }
         }
     }
