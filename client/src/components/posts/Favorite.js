@@ -46,26 +46,26 @@ class Favorite extends Component {
         data: { user: newObj }
       });
      
-    } // else if (user && data.unfollow) {
-    //   let newUnfollow = data.unfollow;
-    //   let newObj = Object.assign({}, user.user);
-    //   let currentFollow = Object.values(user.user.follows);
+    } else if (user && data.unfavorite) {
 
-    //   for (let i = 0; i < currentFollow.length; i++) {
-    //     const el = currentFollow[i];
-    //     if (el._id === newUnfollow._id) {
-    //       currentFollow.splice(i, 1);
-    //     }
-    //   }
+      let newObj = merge({}, user.user);
 
-      // newObj["follows"] = currentFollow;
-
-      // cache.writeQuery({
-      //   query: FETCH_USER,
-      //   variables: { id: currentUserId },
-      //   data: { user: newObj }
-      // });
-    //}
+      let newPost;
+      let posts = newObj["posts"];
+      for (let index = 0; index < posts.length; index++) {
+        const el = posts[index];
+        if (el._id === this.state.postId) {
+          el["favorites"] = el["favorites"].filter(fav => fav._id === data.unfavorite._id);
+          newPost = el;
+          newObj["posts"][index] = newPost
+        }
+      }
+      cache.writeQuery({
+        query: FETCH_USER,
+        variables: { id: currentUserId },
+        data: { user: newObj }
+      });
+    }
   }
 
   hasFavorited() {

@@ -12,7 +12,7 @@
   padding: 8px 50px; 
   border: 1px solid transparent; 
   border-radius: 20px; 
-  background-color: rgb(33, 58, 78); 
+  background-color: rgb(25, 43, 58); 
   color: gray; 
 }
 
@@ -32,29 +32,56 @@
 }
 
 .tag-search-list {
-  background: black; 
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  background: rgb(25, 43, 58); 
   position: absolute; 
   margin-top: 4px; 
-  width: 280px; 
-  padding: 8px 50px; 
-  border: 1px solid black; 
-  height: 140px;
+  width: 382px; 
+  padding: 8px 0px; 
+  border: 1px solid rgb(25, 43, 58); 
+  height: 220px;
   overflow: hidden;
   z-index: 20; 
 }
 
+.search-hashtag {
+  margin: 12px; 
+}
+
 .user-search-list {
-  background: black; 
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  background: rgb(25, 43, 58); 
   position: absolute; 
-  top: 140px; 
-  width: 280px; 
-  padding: 8px 50px; 
-  border: 1px solid black; 
-  height: 140px;
+  top: 220px; 
+  width: 382px; 
+  padding: 8px 0px; 
+  border: 1px solid rgb(25, 43, 58); 
+  height: 220;
   overflow: hidden;
   z-index: 20;
 }
 
 .search-user {
-  height: 40px; 
+  width: 382px; 
+  margin-left: 12px; 
+  display: flex; 
+  text-decoration: none!; 
+  margin-bottom: 10px;  
+}
+
+.search-info {
+  display: flex; 
+  flex-direction: column; 
+  font-size: 14px;
+  justify-content: space-around;   
+  text-decoration: none; 
+}
+
+.user-search-pic {
+  height: 44px; 
+  width: 44px; 
+  border-radius: 50%; 
+  margin-right: 8px; 
 }
