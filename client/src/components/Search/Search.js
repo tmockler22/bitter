@@ -30,7 +30,6 @@ class Search extends React.Component {
             if (error) return `Error! ${error.message}`;
             let tags;
             tags = data.searchHashtags;
-            debugger; 
             if (tags.length === 0) {
               return <div className="tag-search-list">No tags match your search.</div>
             } else {

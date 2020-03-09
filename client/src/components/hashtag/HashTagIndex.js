@@ -4,7 +4,6 @@ import { FETCH_HASHTAG } from "../../graphql/queries";
 import PostIndexItem from '../posts/PostIndexItem';
 
 const HashTagIndex = (props) => {
-  debugger; 
   console.log(props);
   let searchTerm = "#" + props.match.params.hashtag
  
