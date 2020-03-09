@@ -4,13 +4,10 @@ import { currentUser } from "../../util/util";
 import Follow from "./Follow";
 import PostIndex from "../posts/PostIndex";
 import { FETCH_USER } from "../../graphql/queries";
-<<<<<<< HEAD
 import Modal from "../modal/modal"
 import "./profile.css"
-=======
 import "./home.css";
 import Search from "../Search/Search";
->>>>>>> master
 
 class UserProfile extends Component {
   constructor(props) {
