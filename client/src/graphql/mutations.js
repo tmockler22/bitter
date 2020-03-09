@@ -42,7 +42,14 @@ export const CREATE_POST = gql`
       body
       _id
       tags
+      timestamp
       image
+      user {
+        _id
+        username 
+        fullname
+        image
+      }
       favorites {
         _id
       }

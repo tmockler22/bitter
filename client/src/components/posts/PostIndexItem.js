@@ -7,10 +7,6 @@ import "./post_index_item.css";
 
 
 const PostIndexItem = (props) => {
-
-  // reactStringReplace('whats your name', 'your', (match, i) => (
-  //   <span>{match}</span>
-  // ));
   const reactStringReplace = require('react-string-replace');
   let post = props.post; 
   let params = props.params; 

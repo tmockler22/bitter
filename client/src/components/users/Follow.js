@@ -70,6 +70,7 @@ class Follow extends Component {
         >
           {unfollowUser => (
               <button
+                className="follow-submit"
                 onClick={e => {
                   e.preventDefault();
                   unfollowUser({
@@ -97,6 +98,7 @@ class Follow extends Component {
       {followUser => (
         <div>
           <button
+            className="follow-submit"
             onClick={e => {
               e.preventDefault();
               followUser({
