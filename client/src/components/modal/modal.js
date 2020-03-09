@@ -46,6 +46,7 @@ class Modal extends Component {
             <div className="create-post-modal">
                 <div className="exit" onClick={this.closeModal}>
                   <i className="fa fa-times"></i>
+                <div className=""></div>
               </div>
               
               <CreatePostModal history={this.props.history} />
