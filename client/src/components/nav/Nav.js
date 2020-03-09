@@ -19,6 +19,7 @@ class Nav extends React.Component {
     this.showProfilePicture = this.showProfilePicture.bind(this);
     this.handleProfileButtonClick = this.handleProfileButtonClick.bind(this);
   }
+
   handleFrogLogoOrHomeLogoClick(e) {
     e.preventDefault();
     this.props.history.push("/home");
@@ -73,6 +74,7 @@ class Nav extends React.Component {
                       <Modal history={this.props.history} modal={modal} />
                     ) : null}
                     <div className="logo container">
+
                       <div
                         className="nav-frog-logo"
                         onClick={this.handleFrogLogoOrHomeLogoClick}
@@ -99,6 +101,12 @@ class Nav extends React.Component {
                       <div>
                         <div onClick={this.handleProfileButtonClick}>
                           {this.showProfilePicture()}
+                      <div className="nav-frog-logo" onClick={this.handleClick}></div>                      
+                        <div className="nav-home-logo-wrapper" onClick={this.handleClick}>
+                          <div className="nav-home-logo">
+                            <i className="fas fa-home nav-home-text"></i>
+                            <div className="home-text">Home</div>
+                          </div>
                         </div>
                       </div>
                       <div
@@ -121,6 +129,7 @@ class Nav extends React.Component {
                         Beet
                       </button>
                     </div>
+
                   </div>
                 );
               } else {

@@ -2,8 +2,10 @@ import React, { Component } from "react";
 import { Mutation } from "react-apollo";
 import { CREATE_POST } from "../../graphql/mutations";
 import { FETCH_USER } from "../../graphql/queries";
+
 import { currentUser } from "../../util/util"
 import "./create_post.css"
+
 
 class CreatePost extends Component {
   constructor(props) {
@@ -14,6 +16,8 @@ class CreatePost extends Component {
       photoFile: null,
       photoUrl: null
     };
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.updateCache = this.updateCache.bind(this);
   }
 
   handleFile(event) {
@@ -27,11 +31,16 @@ class CreatePost extends Component {
     }
   }
 
-  update(field) {
-    return e => this.setState({ [field]: e.target.value });
-  }
+
+  update(e, field) {
+    e.preventDefault();
+    return this.setState({ [field]: e.target.value });
+    }
+  
+  
 
   updateCache(cache, { data }) {
+    
     const currentUserId = currentUser().id;
     let user;
     try {
@@ -43,6 +52,7 @@ class CreatePost extends Component {
       return;
     }
     if (user) {
+      
       let postArray = user.user.posts;
       let newPost = data.newPost;
 
@@ -58,8 +68,18 @@ class CreatePost extends Component {
   }
 
   handleSubmit(e, newPost) {
-    let user = currentUser();
+
     e.preventDefault();
+    let body = this.state.body.split(" "); 
+    for (let index = 0; index < body.length; index++) {
+      const el = body[index];
+      if (el[0] === "#") {
+        let tags = this.state.tags.push(el); 
+        this.setState({"tags": tags});
+      } 
+    }
+    let user = currentUser();
+  
     newPost({
       variables: {
         image: this.state.photoFile,
@@ -75,20 +95,23 @@ class CreatePost extends Component {
       <Mutation
         mutation={CREATE_POST}
         onError={err => this.setState({ message: err.message })}
-        update={(cache, data) => this.updateCache(cache, data)}
         onCompleted={data => {
-          const { body, image} = data.newPost;
+          console.log(data);
+          const { body, image } = data.post;
+          console.log(data);
           this.setState({
             message: body
           });
         }}
+        update={(client, data) => this.updateCache(client, data)}
       >
-        {(newPost, { data }) => (
+        {newPost => (
           <div className="create-post-container">
             { user && user.image ? <div className="create-post-profile-picture" style={{ backgroundImage: `url(${user.image})` }}></div> : 
               <div className="create-post-profile-picture default-profile-picture"></div>}
-            <form className="create-post-form" onSubmit={e => this.handleSubmit(e, newPost)}>
-              <textarea
+
+            <form className="create-post-form" onSubmit={(e) => this.handleSubmit(e, newPost)}>
+              <input
                 className="create-post-text"
                 onChange={this.update("body")}
                 value={this.state.body}
