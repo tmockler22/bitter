@@ -35,10 +35,6 @@ class CreatePost extends Component {
     e.preventDefault();
     return e => {this.setState({ [field]: e.target.value })};
     }
-<<<<<<< HEAD
-=======
-
->>>>>>> master
   updateCache(cache, { data }) {
     
     const currentUserId = currentUser().id;

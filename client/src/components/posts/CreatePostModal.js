@@ -63,10 +63,6 @@ class CreatePostModal extends Component {
       });
     }
   }
-<<<<<<< HEAD
-=======
-
->>>>>>> master
 
   handleSubmit(e, newPost) {
     let user = currentUser();
@@ -78,12 +74,8 @@ class CreatePostModal extends Component {
         user: user.id
       }
     });
-<<<<<<< HEAD
-    window.location.reload()
-=======
      document.querySelector(".modal-background").style.width = "0";
      document.querySelector(".create-post-modal").style.display = "none";
->>>>>>> master
   }
 
 
