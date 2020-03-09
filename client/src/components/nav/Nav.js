@@ -21,12 +21,10 @@ class Nav extends React.Component {
   }
 
   handleFrogLogoOrHomeLogoClick(e) {
-    e.preventDefault();
     this.props.history.push("/home");
   }
 
   handleEditButtonClick(e) {
-    e.preventDefault();
     this.props.history.push(`/editProfile/${this.state.userId}`);
   }
 
@@ -60,6 +58,7 @@ class Nav extends React.Component {
           this.props.history.push(`/user/${this.state.userId}`);
     }
   }
+
   render() {
     let modal = localStorage.getItem("modal");
     return (
@@ -74,7 +73,6 @@ class Nav extends React.Component {
                       <Modal history={this.props.history} modal={modal} />
                     ) : null}
                     <div className="logo container">
-
                       <div
                         className="nav-frog-logo"
                         onClick={this.handleFrogLogoOrHomeLogoClick}
@@ -101,12 +99,6 @@ class Nav extends React.Component {
                       <div>
                         <div onClick={this.handleProfileButtonClick}>
                           {this.showProfilePicture()}
-                      <div className="nav-frog-logo" onClick={this.handleClick}></div>                      
-                        <div className="nav-home-logo-wrapper" onClick={this.handleClick}>
-                          <div className="nav-home-logo">
-                            <i className="fas fa-home nav-home-text"></i>
-                            <div className="home-text">Home</div>
-                          </div>
                         </div>
                       </div>
                       <div
@@ -129,7 +121,6 @@ class Nav extends React.Component {
                         Beet
                       </button>
                     </div>
-
                   </div>
                 );
               } else {
@@ -142,4 +133,4 @@ class Nav extends React.Component {
     );
   }
 }
-export default Nav; 
+export default Nav;

@@ -159,7 +159,7 @@
   background-color: rgb(29, 47, 66);
 }
 
-.logout-button:hover .fa-sign-in-alt, .logout-button:hover .logout-button-text{
+/* .logout-button:hover .fa-sign-in-alt, .logout-button:hover .logout-button-text{
   background-color: rgb(29, 47, 66);
   cursor: pointer;
   color: rgb(29, 161, 242);
@@ -179,5 +179,5 @@
 
 .logout-button:hover {
   background-color: rgb(26, 145, 218);
-}
+} */
 

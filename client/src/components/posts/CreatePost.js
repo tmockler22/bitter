@@ -34,10 +34,8 @@ class CreatePost extends Component {
 
   update(e, field) {
     e.preventDefault();
-    return this.setState({ [field]: e.target.value });
+    return e => {this.setState({ [field]: e.target.value })};
     }
-  
-  
 
   updateCache(cache, { data }) {
     
@@ -113,7 +111,7 @@ class CreatePost extends Component {
             <form className="create-post-form" onSubmit={(e) => this.handleSubmit(e, newPost)}>
               <input
                 className="create-post-text"
-                onChange={this.update("body")}
+                onChange={(e) => this.update(e, "body")}
                 value={this.state.body}
                 placeholder="What's up?"
               />
