@@ -12,12 +12,18 @@ class Nav extends React.Component {
     super(props);
     this.state = {
       userId: currentUser() ? currentUser().id : null,
-      photoUrl: currentUser().image 
+      photoUrl: null
     };
     this.handleFrogLogoOrHomeLogoClick = this.handleFrogLogoOrHomeLogoClick.bind(this);
     this.handleEditButtonClick = this.handleEditButtonClick.bind(this);
     this.showProfilePicture = this.showProfilePicture.bind(this);
     this.handleProfileButtonClick = this.handleProfileButtonClick.bind(this);
+  }
+
+  componentDidMount() {
+    if (currentUser()) {
+      this.setState({ photoUrl: currentUser().image })
+    }
   }
 
   handleFrogLogoOrHomeLogoClick(e) {
@@ -97,8 +103,14 @@ class Nav extends React.Component {
                         <div className="edit-profile-text">Edit</div>
                       </div>
                       <div>
-                        <div onClick={this.handleProfileButtonClick}>
-                          {this.showProfilePicture()}
+                          <div className="image-profile-button-wrapper" onClick={this.handleProfileButtonClick}>
+                          <i
+                            class="fa fa-user nav-edit-logo"
+                            aria-hidden="true"
+                          ></i>
+                          <div className="profile-text">
+                            Profile
+                          </div>
                         </div>
                       </div>
                       <div

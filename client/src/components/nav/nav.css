@@ -98,11 +98,10 @@
     color: white;
 }
 .image-profile-button-wrapper{
-
-    border-radius: 1000 px;
     border-radius: 1000px;
     color: white;
     display: flex;
+    flex-direction: row;
     width: 50%;
     margin-left: 2%;
     border-radius: 1000px;
@@ -112,7 +111,7 @@
     text-decoration: none;
 }
 .nav-image{
-      width: 40px;
+    width: 40px;
     height: 40px;
     position: relative;
     border-radius: 50%;

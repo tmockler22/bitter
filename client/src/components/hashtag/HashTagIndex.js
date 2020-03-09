@@ -9,7 +9,6 @@ const HashTagIndex = (props) => {
 
   let searchTerm = "#" + props.match.params.hashtag
  
-  console.log(searchTerm);
   return !searchTerm ? <div></div> : (
     <Query query={FETCH_HASHTAG} variables={{ tag: searchTerm }}>
       {({ loading, error, data }) => {
