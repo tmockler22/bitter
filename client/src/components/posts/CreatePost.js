@@ -15,6 +15,8 @@ class CreatePost extends Component {
       photoUrl: null, 
       tags: []
     };
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.updateCache = this.updateCache.bind(this);
   }
 
   handleFile(event) {
@@ -32,8 +34,8 @@ class CreatePost extends Component {
     e.preventDefault();
     return this.setState({ [field]: e.target.value });
     }
-
   updateCache(cache, { data }) {
+    
     const currentUserId = currentUser().id;
     let user;
     try {
@@ -47,8 +49,7 @@ class CreatePost extends Component {
     if (user) {
       // let postArray = user.user.posts;
       let newPost = data.newPost;
-     // newPost.user = currentUser().id;
-
+      debugger; 
       let newObj = Object.assign({}, user.user);
       newObj["posts"] = newObj["posts"].concat(newPost);
 
@@ -61,6 +62,7 @@ class CreatePost extends Component {
   }
 
   handleSubmit(e, newPost) {
+    e.preventDefault();
     let body = this.state.body.split(" "); 
     for (let index = 0; index < body.length; index++) {
       const el = body[index];
@@ -70,7 +72,6 @@ class CreatePost extends Component {
       } 
     }
     let user = currentUser();
-    e.preventDefault();
   
     newPost({
       variables: {
@@ -80,7 +81,6 @@ class CreatePost extends Component {
         tags: this.state.tags
       }
     });
-    
   }
 
   render() {
@@ -89,18 +89,18 @@ class CreatePost extends Component {
       <Mutation
         mutation={CREATE_POST}
         onError={err => this.setState({ message: err.message })}
-        update={(cache, data) => this.updateCache(cache, data)}
         onCompleted={data => {
           this.setState({
             body: ''
           });
         }}
+        update={(client, data) => this.updateCache(client, data)}
       >
-        {(newPost, { data }) => (
+        {newPost => (
           <div className="create-post-container">
             { user && user.image ? <div className="create-post-profile-picture" style={{ backgroundImage: `url(${user.image})` }}></div> : 
               <div className="create-post-profile-picture default-profile-picture"></div>}
-            <form className="create-post-form" onSubmit={e => this.handleSubmit(e, newPost)}>
+            <form className="create-post-form" onSubmit={(e) => this.handleSubmit(e, newPost)}>
               <input
                 className="create-post-text"
                 onChange={(e) => this.update(e, "body")}

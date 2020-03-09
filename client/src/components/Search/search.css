@@ -10,7 +10,7 @@
   padding: 8px 50px; 
   border: 1px solid transparent; 
   border-radius: 20px; 
-  background-color: rgb(33, 58, 78); 
+  background-color: rgb(25, 43, 58); 
   color: gray; 
 }
 
@@ -51,6 +51,10 @@
   overflow: hidden;
   z-index: 20; 
   text-align: center;
+}
+
+.search-hashtag {
+  margin: 12px; 
 }
 
 .user-search-list {

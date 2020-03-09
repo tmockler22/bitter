@@ -35,7 +35,11 @@ class Search extends React.Component {
             } else {
             return (
               <div className="tag-search-list">
+<<<<<<< HEAD
                 {tags.map(tag => <Link to={`/hashtag/${tag.tag.slice(1)}`}><p className="search-item" key={tag._id}>{tag.tag}</p></Link>)}
+=======
+                {tags.map(tag => <Link to={`/hashtag/${tag.tag.slice(1)}`}><p className="search-hashtag" key={tag._id}>{tag.tag}</p></Link>)}
+>>>>>>> master
               </div>
             )};
           }}
@@ -51,7 +55,14 @@ class Search extends React.Component {
             } else {
            return (
             <div className="user-search-list">
+<<<<<<< HEAD
                {users.map(user => <div className="search-user"><Link to={`/user/${user._id}`}><p className="search-item" key={user._id}>{user.username}</p></Link></div>)}
+=======
+               {users.map(user => <Link to={`/user/${user._id}`}>
+                 <div className="search-user">
+                   {user.image ? <img className="user-search-pic" src={user.image}></img> : <img className="user-search-pic" src={"/light_blue_back_guy.png"}></img>}
+                 <div className="search-info" key={user._id}><p>{user.username}</p><p>{user.fullname}</p></div></div></Link>)}
+>>>>>>> master
             </div>
           )};
         }}

@@ -1,0 +1,24 @@
+.profile-container {
+  position: absolute;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 100vh;
+  left: 21.5%;
+  width: 600px;
+  border: 1px solid rgb(56, 68, 77);
+  border-top: none;
+}
+
+.profile-title {
+  display: flex; 
+  justify-content: space-between;
+  padding: 15px;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  border-bottom: 1px solid rgb(56, 68, 77);
+}
+
+.search-title {
+  margin-top: 10px; 
+}

@@ -26,6 +26,7 @@ export const FETCH_POST = gql`
       _id
       body
       image
+      tags
       timestamp
       user {
         fullname
@@ -44,6 +45,7 @@ export const FETCH_HASHTAG = gql`
     tag(tag: $tag) {
       _id
       posts {
+      tags 
       _id 
       body
       user {
@@ -69,6 +71,7 @@ export const SEARCH_USERS = gql`
       _id
       fullname
       username
+      image
     }
   }
 `;
