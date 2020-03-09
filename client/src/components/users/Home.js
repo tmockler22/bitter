@@ -18,8 +18,10 @@ class HomeProfile extends Component {
   render() {
     return (
     <div className="profile-container">
-      <div className="profile-title">Home
-      <Search />
+      <div className="profile-title">
+        <p className="home-title">Home</p>
+        <Search />
+        
       </div>
       <CreatePost />
       <PostIndex params={this.props} />

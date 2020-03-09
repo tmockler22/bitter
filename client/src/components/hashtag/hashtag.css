@@ -19,15 +19,6 @@
   border-bottom: 1px solid rgb(56, 68, 77);
 }
 
-.nav-title {
-  margin-top: 10px; 
-}
-
-.profile-title {
-  display: flex; 
-  justify-content: space-between; 
-}
-
-.home-title {
+.search-title {
   margin-top: 10px; 
 }

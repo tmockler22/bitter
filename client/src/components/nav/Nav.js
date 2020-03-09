@@ -11,6 +11,7 @@ class Nav extends React.Component{
     super(props)
     this.handleClick = this.handleClick.bind(this);
   }
+
   handleClick(e){
     e.preventDefault();
     this.props.history.push("/home");
@@ -40,7 +41,6 @@ class Nav extends React.Component{
                   <div className="nav-container">
                     {modal ? <Modal history={this.props.history} modal={modal} /> : null}
                     <div className="logo container">
-                      <Link className="text-link" to="/home"><h1>Bitter</h1></Link>
                       <div className="nav-frog-logo" onClick={this.handleClick}></div>                      
                         <div className="nav-home-logo-wrapper" onClick={this.handleClick}>
                           <div className="nav-home-logo">
@@ -51,6 +51,7 @@ class Nav extends React.Component{
                       <button className='tweet-button' onClick={() => this.setModal("create-beet")}>Beet</button>
                     </div>
                     <button
+                      className="logout-button"
                       onClick={e => {
                         e.preventDefault();
                         localStorage.removeItem("auth-token");
