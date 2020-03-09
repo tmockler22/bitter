@@ -1,16 +1,8 @@
 import React, { Component } from "react";
-import { Mutation } from "react-apollo";
-import { LOGIN_USER } from "../../graphql/mutations";
 import Modal from "../modal/modal"
 import "./splash.css"
 
 class Login extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-    }
-  }
 
   componentWillMount() {
     localStorage.setItem("modal", "")

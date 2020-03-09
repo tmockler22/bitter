@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Query } from "react-apollo";
 import { FETCH_HASHTAG } from "../../graphql/queries";
 import PostIndexItem from '../posts/PostIndexItem';
@@ -19,8 +19,13 @@ const HashTagIndex = (props) => {
         posts = data.tag.posts;
         console.log(data);
         return (
-          <div>
-            {posts.map(post => <PostIndexItem key={post._id} post={post} params={props} />)}
+          <div className="profile-container">
+            <div className="profile-header">
+              <div className="profile-title">{searchTerm}</div>
+            </div>
+            <div className="hashtag-index">
+              {posts.map(post => <PostIndexItem key={post._id} post={post} params={props} />)}
+            </div>
           </div>
         );
       }}

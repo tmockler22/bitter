@@ -4,7 +4,6 @@ import { CREATE_POST } from "../../graphql/mutations";
 import { FETCH_USER } from "../../graphql/queries";
 import { currentUser } from "../../util/util";
 import "./create_post.css";
-import { Link } from "react-router-dom";
 
 class CreatePost extends Component {
   constructor(props) {
@@ -33,8 +32,6 @@ class CreatePost extends Component {
     e.preventDefault();
     return this.setState({ [field]: e.target.value });
     }
-  
-  
 
   updateCache(cache, { data }) {
     const currentUserId = currentUser().id;
@@ -48,7 +45,7 @@ class CreatePost extends Component {
       return;
     }
     if (user) {
-      let postArray = user.user.posts;
+      // let postArray = user.user.posts;
       let newPost = data.newPost;
      // newPost.user = currentUser().id;
 
@@ -94,9 +91,8 @@ class CreatePost extends Component {
         onError={err => this.setState({ message: err.message })}
         update={(cache, data) => this.updateCache(cache, data)}
         onCompleted={data => {
-          const { body, image} = data.newPost;
           this.setState({
-            message: body
+            body: ''
           });
         }}
       >

@@ -1,3 +1,12 @@
+.profile-header {
+  position: fixed;
+  width: 600px;
+  background-color: rgb(21, 32, 43);
+  z-index: 1;
+  border-bottom: 1px solid rgb(56, 68, 77);
+  padding: 15px 0;
+}
+
 .profile-container {
   position: absolute;
   overflow-y: scroll;
@@ -12,9 +21,13 @@
 .profile-title {
   display: flex; 
   justify-content: space-between;
-  padding: 15px;
+  align-items: center;
   color: white;
   font-weight: bold;
   font-size: 20px;
-  border-bottom: 1px solid rgb(56, 68, 77);
+  padding: 0 15px;
+}
+
+.profile-container-body {
+  margin-top: 64px;
 }

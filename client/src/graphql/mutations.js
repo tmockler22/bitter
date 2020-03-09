@@ -43,12 +43,6 @@ export const CREATE_POST = gql`
       _id
       tags
       image
-      favorites {
-        _id
-      }
-      rebits {
-        _id
-      }
     }
   }
 `;
@@ -71,14 +65,15 @@ export const UNFOLLOW_USER = gql`
 `;
 
 export const UPDATE_USER = gql`
-  mutation UpdateUser($id: ID!, $username: String!, $fullname: String!, $email: String!, $bio: String!, $image: Upload){
-    updateUser(id: $id, username: $username, fullname: $fullname, email: $email, bio: $bio, image: $image){
+  mutation UpdateUser($id: ID!, $username: String!, $fullname: String!, $email: String!, $bio: String!, $image: Upload, $cover_image: Upload){
+    updateUser(id: $id, username: $username, fullname: $fullname, email: $email, bio: $bio, image: $image, cover_image: $cover_image){
       _id
       username
       fullname
       bio
       email
       image
+      cover_image
     }
   }
 `;

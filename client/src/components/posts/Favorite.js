@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Mutation } from "react-apollo";
 import { FAVORITE, UNFAVORITE} from "../../graphql/mutations";
 import { currentUser } from "../../util/util";
-import { FETCH_USER, FETCH_POST } from "../../graphql/queries";
+import { FETCH_USER } from "../../graphql/queries";
 import merge from 'lodash.merge';
 
 class Favorite extends Component {
@@ -76,9 +76,9 @@ class Favorite extends Component {
         return (<Mutation
           mutation={UNFAVORITE}
           onCompleted={data => {
-            if (data.unfavorite) {
-              const { id } = data.unfavorite;
-            }
+            // if (data.unfavorite) {
+            //   const { id } = data.unfavorite;
+            // }
           }}
           update={(client, data) => this.updateCache(client, data)}
         >
@@ -103,9 +103,9 @@ class Favorite extends Component {
     return (<Mutation
       mutation={FAVORITE}
       onCompleted={data => {
-        if (data.favorite) {
-          const { id } = data.favorite;
-        }
+        // if (data.favorite) {
+        //   const { id } = data.favorite;
+        // }
       }}
       update={(client, data) => this.updateCache(client, data)}
     >

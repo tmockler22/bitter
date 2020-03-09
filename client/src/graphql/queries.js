@@ -97,6 +97,7 @@ export const FETCH_USER = gql`
       email
       bio
       image
+      cover_image
       favorited_posts {
         _id
       }
@@ -124,28 +125,28 @@ export const FETCH_USER = gql`
             _id
           }
         }
-        follows {
+      follows {
+        _id
+        posts {
           _id
-          posts {
+          body
+          tags
+          image
+          timestamp
+          user {
             _id
-            body
-            tags
+            username
+            fullname
             image
-            timestamp
-            user {
-              _id
-              username
-              fullname
-              image
-            }
-            favorites {
-              _id
-            }
-            rebits{
+          }
+          favorites {
             _id
-            }
+          }
+          rebits{
+          _id
           }
         }
+      }
     }
   }
 `;

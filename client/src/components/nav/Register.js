@@ -55,42 +55,44 @@ class Register extends Component {
                 });
               }}
               >
-              <div className="session-bitter-frog"></div>
-              <div className="session-title">Create your account</div>
-              <div className="session-field">
-                <input
-                  className="session-input"
-                  value={this.state.email}
-                  onChange={this.update("email")}
-                />
-                <label className="session-label">Email</label>
+              <div className="session-form-container">
+                <div className="session-bitter-frog"></div>
+                <div className="session-title">Create your account</div>
+                <div className="session-field">
+                  <input
+                    className="session-input"
+                    value={this.state.email}
+                    onChange={this.update("email")}
+                  />
+                  <label className="session-label">Email</label>
+                </div>
+                <div className="session-field">
+                  <input
+                    className="session-input"
+                    value={this.state.username}
+                    onChange={this.update("username")}
+                  />
+                  <label className="session-label">Username</label>
+                </div>
+                <div className="session-field">
+                  <input
+                    className="session-input"
+                    value={this.state.fullname}
+                    onChange={this.update("fullname")}
+                  />
+                  <label className="session-label">Name</label>
+                </div>
+                <div className="session-field">
+                  <input
+                    className="session-input"
+                    value={this.state.password}
+                    onChange={this.update("password")}
+                    type="password"
+                  />
+                  <label className="session-label">Password</label>
+                </div>
+                <button type="submit" className="session-submit">Sign Up</button>
               </div>
-              <div className="session-field">
-                <input
-                  className="session-input"
-                  value={this.state.username}
-                  onChange={this.update("username")}
-                />
-                <label className="session-label">Username</label>
-              </div>
-              <div className="session-field">
-                <input
-                  className="session-input"
-                  value={this.state.fullname}
-                  onChange={this.update("fullname")}
-                />
-                <label className="session-label">Name</label>
-              </div>
-              <div className="session-field">
-                <input
-                  className="session-input"
-                  value={this.state.password}
-                  onChange={this.update("password")}
-                  type="password"
-                />
-                <label className="session-label">Password</label>
-              </div>
-              <button type="submit" className="session-submit">Sign Up</button>
             </form>
           </div>
         )}

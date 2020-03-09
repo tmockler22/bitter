@@ -38,7 +38,7 @@ class Nav extends React.Component{
               if (data.isLoggedIn) {
                 return (
                   <div className="nav-container">
-                    {modal ? <Modal history={this.props.history} modal={modal} /> : null}
+                    {modal ? <Modal params={this.props.params} modal={modal} /> : null}
                     <div className="logo container">
                       <Link className="text-link" to="/home"><h1>Bitter</h1></Link>
                       <div className="nav-frog-logo" onClick={this.handleClick}></div>                      
