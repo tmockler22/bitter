@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import { Mutation } from "react-apollo";
 import { CREATE_POST } from "../../graphql/mutations";
 import { FETCH_USER } from "../../graphql/queries";
-import { currentUser } from "../../util/util";
-import "./create_post.css";
+
+import { currentUser } from "../../util/util"
+import "./create_post.css"
 
 
 class CreatePost extends Component {
@@ -13,8 +14,7 @@ class CreatePost extends Component {
       message: "",
       body: "",
       photoFile: null,
-      photoUrl: null, 
-      tags: []
+      photoUrl: null
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.updateCache = this.updateCache.bind(this);
@@ -31,12 +31,14 @@ class CreatePost extends Component {
     }
   }
 
+
   update(e, field) {
     e.preventDefault();
     return this.setState({ [field]: e.target.value });
     }
   
   
+
   updateCache(cache, { data }) {
     
     const currentUserId = currentUser().id;
@@ -53,7 +55,7 @@ class CreatePost extends Component {
       
       let postArray = user.user.posts;
       let newPost = data.newPost;
-      debugger; 
+
       let newObj = Object.assign({}, user.user);
       newObj["posts"] = newObj["posts"].concat(newPost);
 
@@ -66,6 +68,7 @@ class CreatePost extends Component {
   }
 
   handleSubmit(e, newPost) {
+
     e.preventDefault();
     let body = this.state.body.split(" "); 
     for (let index = 0; index < body.length; index++) {
@@ -81,8 +84,7 @@ class CreatePost extends Component {
       variables: {
         image: this.state.photoFile,
         body: this.state.body,
-        user: user.id,
-        tags: this.state.tags
+        user: user.id
       }
     });
   }
@@ -107,10 +109,11 @@ class CreatePost extends Component {
           <div className="create-post-container">
             { user && user.image ? <div className="create-post-profile-picture" style={{ backgroundImage: `url(${user.image})` }}></div> : 
               <div className="create-post-profile-picture default-profile-picture"></div>}
+
             <form className="create-post-form" onSubmit={(e) => this.handleSubmit(e, newPost)}>
               <input
                 className="create-post-text"
-                onChange={(e) => this.update(e, "body")}
+                onChange={this.update("body")}
                 value={this.state.body}
                 placeholder="What's up?"
               />
