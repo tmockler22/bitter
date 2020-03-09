@@ -13,12 +13,12 @@ class CreatePostModal extends Component {
       message: "",
       body: "",
       photoFile: null,
-      photoUrl: null
+      photoUrl: null,
     };
+//this.handleSubmitClick = this.handleSubmitClick.bind(this);
   }
 
   componentDidMount(){
-    //document.querySelector('.modal-background').style.zIndex = 0;
     document.querySelector('.modal-background').style.backgroundColor = "rgba(110, 118, 125, 0.4)";
   }
 
@@ -63,6 +63,10 @@ class CreatePostModal extends Component {
       });
     }
   }
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
 
   handleSubmit(e, newPost) {
     let user = currentUser();
@@ -74,13 +78,14 @@ class CreatePostModal extends Component {
         user: user.id
       }
     });
+<<<<<<< HEAD
     window.location.reload()
+=======
+     document.querySelector(".modal-background").style.width = "0";
+     document.querySelector(".create-post-modal").style.display = "none";
+>>>>>>> master
   }
-//   handleExitClick(e) {
-//     e.preventDefault();
-//     document.querySelector(".create-post-container-modal").style.display = 'none';
-//     document.querySelector('.modal-background').style.backgroundColor = 'rgb(21, 32, 43)';
-// }
+
 
 
   render() {
@@ -126,7 +131,7 @@ class CreatePostModal extends Component {
                     onChange={this.handleFile.bind(this)}
                   />
                 </label>
-                <button className="create-post-submit-modal" type="submit" onClick={this.closeModal}>beet</button>
+                <button className="create-post-submit-modal">beet</button>
               </div>
             </form>
           </div>

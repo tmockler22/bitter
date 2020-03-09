@@ -6,7 +6,7 @@ import "./hashtag.css";
 import Search from "../Search/Search";
 
 const HashTagIndex = (props) => {
-  
+
   let searchTerm = "#" + props.match.params.hashtag
  
   console.log(searchTerm);
