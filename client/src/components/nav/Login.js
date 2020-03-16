@@ -69,6 +69,13 @@ class Login extends Component {
                 <label className="session-label">Password</label>
               </div>
               <button className="session-submit" type="submit">Log In</button>
+              <button 
+              className="session-submit" 
+              type="submit" 
+              onClick={() => {
+                this.state.email = "BitterFrog@Bitter.com"; 
+                this.state.password = "hello123";
+                }}>Demo Log In</button>
             </form>
           </div>
         )}
