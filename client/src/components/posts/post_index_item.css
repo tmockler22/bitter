@@ -6,6 +6,10 @@
   background-color: rgb(25, 39, 52);
 }
 
+.post-item-link {
+  cursor: pointer;
+}
+
 .post-item-profile-picture {
   margin: 5px 15px;
   display: inline-block;
@@ -112,4 +116,8 @@
   cursor: pointer;
   transition: .4s;
   color: rgb(23, 191, 99);
+}
+
+.hashtag-index {
+  margin-top: 50px;
 }

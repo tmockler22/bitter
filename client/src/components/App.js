@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
 import HomeProfile from "./users/Home";
 import UserProfile from "./users/Profile";
 import HashTagIndex from "./hashtag/HashTagIndex";
-import { Route, Switch, Link } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import Login from "./nav/Login";
 import Register from "./nav/Register";
 import Nav from "./nav/Nav";

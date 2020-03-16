@@ -63,9 +63,10 @@ const mutation = new GraphQLObjectType({
         fullname: {type: GraphQLString},      
         email: { type: GraphQLString },
         bio: { type: GraphQLString },
-        image: { type: GraphQLUpload}
+        image: { type: GraphQLUpload},
+        cover_image: { type: GraphQLUpload}
       },
-      async resolve(_parentvalue, { id, username, fullname, email, bio, image }) {
+      async resolve(_parentvalue, { id, username, fullname, email, bio, image, cover_image }) {
         const updateObj = {};
 
         if (id) updateObj.id = id;
@@ -75,6 +76,9 @@ const mutation = new GraphQLObjectType({
         if (bio) updateObj.bio = bio;
         if (image) {
           updateObj.image = await singleFileUpload(image);
+        }
+        if (cover_image) {
+          updateObj.cover_image = await singleFileUpload(cover_image);
         }
         return User.findOneAndUpdate(
           { _id: id },

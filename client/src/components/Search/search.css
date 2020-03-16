@@ -1,11 +1,9 @@
 .search-bar {
- 
   position: relative;
   z-index: 1; 
 }
 
 .search-input {
-  
   z-index: 0; 
   position: relative; 
   width: 280px; 
@@ -25,24 +23,34 @@
   top: 9px; 
 }
 
+.search-results {
+  display: none;
+  position: absolute;
+  box-shadow: rgba(136, 153, 166, 0.2) 0px 0px 15px, rgba(136, 153, 166, 0.15) 0px 0px 3px 1px;
+  border-radius: 5px;
+  border: 1px solid rgb(56, 68, 77); 
+  overflow: hidden;
+}
+
 .search-input:focus {
   transition: .15s ease; 
   border-color: lightblue; 
   background-color: rgb(21, 32, 43);
 }
 
+.search-input:focus + .search-results, .search-results:active {
+  display: flex;
+  flex-direction: column;
+}
+
 .tag-search-list {
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-  background: rgb(25, 43, 58); 
-  position: absolute; 
+  background: rgb(21, 32, 43); 
   margin-top: 4px; 
-  width: 382px; 
-  padding: 8px 0px; 
-  border: 1px solid rgb(25, 43, 58); 
-  height: 220px;
+  width: 350px;
+  border-bottom: 8px solid rgb(56, 68, 77); 
   overflow: hidden;
   z-index: 20; 
+  text-align: center;
 }
 
 .search-hashtag {
@@ -50,38 +58,22 @@
 }
 
 .user-search-list {
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-  background: rgb(25, 43, 58); 
-  position: absolute; 
-  top: 220px; 
-  width: 382px; 
-  padding: 8px 0px; 
-  border: 1px solid rgb(25, 43, 58); 
-  height: 220;
+  background: rgb(21, 32, 43); 
+  width: 350px;
   overflow: hidden;
   z-index: 20;
+  text-align: center;
 }
 
-.search-user {
-  width: 382px; 
-  margin-left: 12px; 
-  display: flex; 
-  text-decoration: none!; 
-  margin-bottom: 10px;  
+.search-item {
+  transition: .2s;
+  color: white;
+  text-align: center;
+  padding: 10px 60px;
+  border-bottom: 1px solid rgb(56, 68, 77); 
 }
 
-.search-info {
-  display: flex; 
-  flex-direction: column; 
-  font-size: 14px;
-  justify-content: space-around;   
-  text-decoration: none; 
-}
-
-.user-search-pic {
-  height: 44px; 
-  width: 44px; 
-  border-radius: 50%; 
-  margin-right: 8px; 
+.search-item:hover {
+  transition: .2s;
+  background-color: rgb(25, 39, 52);
 }

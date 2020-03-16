@@ -2,11 +2,8 @@ import React, { Component } from "react";
 import { Mutation } from "react-apollo";
 import { CREATE_POST } from "../../graphql/mutations";
 import { FETCH_USER } from "../../graphql/queries";
-
-import { currentUser } from "../../util/util"
-import "./create_post.css"
-
-
+import { currentUser } from "../../util/util";
+import "./create_post.css";
 class CreatePost extends Component {
   constructor(props) {
     super(props);
@@ -14,12 +11,12 @@ class CreatePost extends Component {
       message: "",
       body: "",
       photoFile: null,
-      photoUrl: null
+      photoUrl: null,
+      tags: []
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.updateCache = this.updateCache.bind(this);
   }
-
   handleFile(event) {
     const file = event.currentTarget.files[0];
     const fileReader = new FileReader();
@@ -30,17 +27,11 @@ class CreatePost extends Component {
       fileReader.readAsDataURL(file);
     }
   }
-
-
   update(e, field) {
     e.preventDefault();
     return this.setState({ [field]: e.target.value });
-    }
-  
-  
-
+  }
   updateCache(cache, { data }) {
-    
     const currentUserId = currentUser().id;
     let user;
     try {
@@ -52,43 +43,37 @@ class CreatePost extends Component {
       return;
     }
     if (user) {
-      
       let postArray = user.user.posts;
       let newPost = data.newPost;
-
       let newObj = Object.assign({}, user.user);
       newObj["posts"] = newObj["posts"].concat(newPost);
-
       cache.writeQuery({
         query: FETCH_USER,
         variables: { id: currentUserId },
-        data: { user: newObj}
+        data: { user: newObj }
       });
     }
   }
-
   handleSubmit(e, newPost) {
-
     e.preventDefault();
-    let body = this.state.body.split(" "); 
+    let body = this.state.body.split(" ");
     for (let index = 0; index < body.length; index++) {
       const el = body[index];
       if (el[0] === "#") {
-        let tags = this.state.tags.push(el); 
-        this.setState({"tags": tags});
-      } 
+        let tags = this.state.tags.push(el);
+        this.setState({ "tags": tags });
+      }
     }
     let user = currentUser();
-  
     newPost({
       variables: {
         image: this.state.photoFile,
         body: this.state.body,
-        user: user.id
+        user: user.id,
+        tags: this.state.tags
       }
     });
   }
-
   render() {
     let user = currentUser()
     return (
@@ -107,32 +92,31 @@ class CreatePost extends Component {
       >
         {newPost => (
           <div className="create-post-container">
-            { user && user.image ? <div className="create-post-profile-picture" style={{ backgroundImage: `url(${user.image})` }}></div> : 
+            {user && user.image ? <div className="create-post-profile-picture" style={{ backgroundImage: `url(${user.image})` }}></div> :
               <div className="create-post-profile-picture default-profile-picture"></div>}
-
             <form className="create-post-form" onSubmit={(e) => this.handleSubmit(e, newPost)}>
               <input
                 className="create-post-text"
-                onChange={this.update("body")}
+                onChange={(e) => this.update(e, "body")}
                 value={this.state.body}
                 placeholder="What's up?"
               />
-              {this.state.photoUrl ? 
-              <div>
-                <div className="create-post-cancel-image" onClick={() => {this.setState({ photoUrl: '' })}}><i className="fas fa-times"></i></div>
-                <div 
-                  className="create-post-image-preview" 
-                  style={{ backgroundImage: `url(${this.state.photoUrl})`}}>
-                </div> 
-              </div>
+              {this.state.photoUrl ?
+                <div>
+                  <div className="create-post-cancel-image" onClick={() => { this.setState({ photoUrl: '' }) }}><i className="fas fa-times"></i></div>
+                  <div
+                    className="create-post-image-preview"
+                    style={{ backgroundImage: `url(${this.state.photoUrl})` }}>
+                  </div>
+                </div>
                 : null}
               <div className="create-post-buttons">
-                <label><i className=" create-post-label	far fa-image"></i>
-                <input
-                  type="file"
-                  className="hidden"
-                  onChange={this.handleFile.bind(this)}
-                />
+                <label><i className=" create-post-label far fa-image"></i>
+                  <input
+                    type="file"
+                    className="hidden"
+                    onChange={this.handleFile.bind(this)}
+                  />
                 </label>
                 <button className="create-post-submit" type="submit">beet</button>
               </div>
@@ -143,5 +127,4 @@ class CreatePost extends Component {
     );
   }
 }
-
 export default CreatePost;

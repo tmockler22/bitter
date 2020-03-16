@@ -62,15 +62,16 @@ class Follow extends Component {
         return (<Mutation
           mutation={UNFOLLOW_USER}
           onCompleted={data => {
-            if (data.unfollow) {
-              const { id } = data.unfollow;
-            }
+            // if (data.unfollow) {
+            //   const { id } = data.unfollow;
+            // }
           }}
           update={(client, data) => this.updateCache(client, data)}
         >
           {unfollowUser => (
-              <button
-                className="follow-submit"
+            <div className="follow-container">
+              <div
+                className="follow-button"
                 onClick={e => {
                   e.preventDefault();
                   unfollowUser({
@@ -80,7 +81,8 @@ class Follow extends Component {
                     }
                   });
                 }}
-              >Unfollow</button>
+              >Unfollow</div>
+            </div>
           )}
         </Mutation>
         ); 
@@ -89,16 +91,16 @@ class Follow extends Component {
     return (<Mutation
       mutation={FOLLOW_USER}
       onCompleted={data => {
-        if (data.unfollow) {
-          const { id } = data.unfollow;
-        }
+        // if (data.unfollow) {
+        //   const { id } = data.unfollow;
+        // }
       }}
       update={(client, data) => this.updateCache(client, data)}
     >
       {followUser => (
-        <div>
-          <button
-            className="follow-submit"
+        <div className="follow-container">
+          <div
+            className="follow-button"
             onClick={e => {
               e.preventDefault();
               followUser({
@@ -108,7 +110,7 @@ class Follow extends Component {
                 }
               });
             }}
-          >Follow</button>
+          >Follow</div>
         </div>
       )}
     </Mutation>

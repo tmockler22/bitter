@@ -29,6 +29,19 @@ const UserType = new GraphQLObjectType({
           return imageUrl || parentValue.image;
         }
       },
+    cover_image: {
+      type: GraphQLString,
+      resolve(parentValue) {
+        let coverImageUrl;
+        if (parentValue.cover_image) {
+          coverImageUrl = s3.getSignedUrl('getObject', {
+            Bucket: "bitter-app",
+            Key: parentValue.cover_image
+          });
+        }
+        return coverImageUrl || parentValue.cover_image;
+      }
+    },
     posts: {
       type: new GraphQLList(require("./post_type")),
       resolve(parentValue) {

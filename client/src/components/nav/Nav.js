@@ -12,7 +12,7 @@ class Nav extends React.Component {
     super(props);
     this.state = {
       userId: currentUser() ? currentUser().id : null,
-      photoUrl: currentUser().image 
+      photoUrl: null
     };
     this.handleFrogLogoOrHomeLogoClick = this.handleFrogLogoOrHomeLogoClick.bind(this);
     this.handleEditButtonClick = this.handleEditButtonClick.bind(this);
@@ -20,13 +20,17 @@ class Nav extends React.Component {
     this.handleProfileButtonClick = this.handleProfileButtonClick.bind(this);
   }
 
+  componentDidMount() {
+    if (currentUser()) {
+      this.setState({ photoUrl: currentUser().image })
+    }
+  }
+
   handleFrogLogoOrHomeLogoClick(e) {
-    e.preventDefault();
     this.props.history.push("/home");
   }
 
   handleEditButtonClick(e) {
-    e.preventDefault();
     this.props.history.push(`/editProfile/${this.state.userId}`);
   }
 
@@ -60,6 +64,7 @@ class Nav extends React.Component {
           this.props.history.push(`/user/${this.state.userId}`);
     }
   }
+
   render() {
     let modal = localStorage.getItem("modal");
     return (
@@ -74,7 +79,6 @@ class Nav extends React.Component {
                       <Modal history={this.props.history} modal={modal} />
                     ) : null}
                     <div className="logo container">
-
                       <div
                         className="nav-frog-logo"
                         onClick={this.handleFrogLogoOrHomeLogoClick}
@@ -99,13 +103,13 @@ class Nav extends React.Component {
                         <div className="edit-profile-text">Edit</div>
                       </div>
                       <div>
-                        <div onClick={this.handleProfileButtonClick}>
-                          {this.showProfilePicture()}
-                      <div className="nav-frog-logo" onClick={this.handleClick}></div>                      
-                        <div className="nav-home-logo-wrapper" onClick={this.handleClick}>
-                          <div className="nav-home-logo">
-                            <i className="fas fa-home nav-home-text"></i>
-                            <div className="home-text">Home</div>
+                          <div className="image-profile-button-wrapper" onClick={this.handleProfileButtonClick}>
+                          <i
+                            class="fa fa-user nav-edit-logo"
+                            aria-hidden="true"
+                          ></i>
+                          <div className="profile-text">
+                            Profile
                           </div>
                         </div>
                       </div>
@@ -129,7 +133,6 @@ class Nav extends React.Component {
                         Beet
                       </button>
                     </div>
-
                   </div>
                 );
               } else {
@@ -142,4 +145,4 @@ class Nav extends React.Component {
     );
   }
 }
-export default Nav; 
+export default Nav;

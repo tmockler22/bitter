@@ -49,7 +49,7 @@ class CreatePostModal extends Component {
       return;
     }
     if (user) {
-      let postArray = user.user.posts;
+      // let postArray = user.user.posts;
       let newPost = data.newPost;
       newPost.user = currentUser().id;
 
@@ -63,7 +63,6 @@ class CreatePostModal extends Component {
       });
     }
   }
-
 
   handleSubmit(e, newPost) {
     let user = currentUser();
@@ -89,7 +88,7 @@ class CreatePostModal extends Component {
         onError={err => this.setState({ message: err.message })}
         update={(cache, data) => this.updateCache(cache, data)}
         onCompleted={data => {
-          const { body, image } = data.newPost;
+          const { body } = data.newPost;
           this.setState({
             message: body
           });

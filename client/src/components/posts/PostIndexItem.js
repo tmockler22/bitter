@@ -1,10 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
 import Favorite from "./Favorite";
 import Rebit from "./Rebit";
 import { Link } from "react-router-dom";
 import "./post_index_item.css";
-
-
 
 const PostIndexItem = (props) => {
   const reactStringReplace = require('react-string-replace');
@@ -25,14 +23,16 @@ const PostIndexItem = (props) => {
   } 
   return (
         <div className="post-item-container">
-          {post.user && post.user.image ? <div className="post-item-profile-picture" style={{ backgroundImage: `url(${post.user.image})` }}></div> :
-          <div className="post-item-profile-picture default-profile-picture"></div>}
+          <Link className="post-item-link" to={`/user/${post.user._id}`}>
+            {post.user && post.user.image ? <div className="post-item-profile-picture" style={{ backgroundImage: `url(${post.user.image})` }}></div> :
+            <div className="post-item-profile-picture default-profile-picture"></div>}
+          </Link>
           <span className="post-item-fullname post-item-label">{post.user.fullname}</span>
           <span className="post-item-username post-item-label">{` @${post.user.username}`}</span>
           <p className="post-item-body">{body}</p>
           { post.image ?
           <div className="post-item-image-frame">
-            <img className="post-item-image" src={post.image} />
+            <img alt="" className="post-item-image" src={post.image} />
           </div> : null
           }
           <div className="post-item-buttons">
