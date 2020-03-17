@@ -16,9 +16,9 @@ const App = () => {
     <div>
       <Route exact path="/hashtag/:hashtag" component={HashTagIndex}/>
       <Route exact path="/search" component={Search} />
+      <ProtectedRoute path="/" component={Trending} routeType="protected"/>
 
       <ProtectedRoute path="/" component={Nav} routeType="protected" /> 
-      <ProtectedRoute path="/" component={Trending} routeType="protected" />
       <Switch>
         <AuthRoute exact path="/login" component={Login} routeType="auth" />
         <AuthRoute exact path="/" component={Splash} routeType="auth" />

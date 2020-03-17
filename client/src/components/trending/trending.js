@@ -14,6 +14,8 @@ class Trending extends React.Component {
   }
 
 
+  hande
+
 
   render() {
     return (
@@ -34,9 +36,36 @@ class Trending extends React.Component {
 
                let topHashtags = hashtag.slice(0,3);
                 return (
-                  <ul>
-                  <li className='top-hash-tags'>{topHashtags.map(tag => <Link to={`hashtag/${tag.slice(1)}`}>{tag}</Link>)}</li>
-                  </ul>
+                  <div className="trending-container">
+                    <div className="trends-for-you-container">
+                      <h1 className="trends-for-you-title">Trends For You</h1>
+                      <div className="top-hash-tags-container">
+                        <ul>
+                          <li className="top-hash-tags">
+                            {topHashtags.map(tag => (
+                            <div  className="top-tag-link" onClick={()=>{
+                              if(this.props.history.location.pathname !== `/hashtag/${tag.slice(1)}`){
+                                this.props.history.push(`/hashtag/${tag.slice(1)}`)
+                              }else{
+                                this.props.history.push(
+                                  `${tag.slice(1)}`
+                                )
+                              }                             
+                            }}> 
+                              {tag}
+                            </div>
+                              // <Link
+                              //   to={`hashtag/${tag.slice(1)}`}
+                              //   className="top-tag-link"
+                              // >
+                              //   {tag}
+                              // </Link>
+                            ))}
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
                 );
               } else {
                 return null;
