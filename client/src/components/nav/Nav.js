@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import "./nav.css";
 import Modal from "../modal/modal";
 import {currentUser} from "../../util/util";
+import { FETCH_USER } from "../../graphql/queries";
 
 class Nav extends React.Component {
   constructor(props) {
@@ -74,9 +75,14 @@ class Nav extends React.Component {
             {({ data }) => {
               if (data.isLoggedIn) {
                 return (
+                  <Query query={FETCH_USER} variables={{ id: this.state.userId }}>
+                    {({ loading, error, data }) => {
+                      if (loading) return "Loading...";
+                      if (error) return `Error! ${error.message}`;
+                    return (
                   <div className="nav-container">
                     {modal ? (
-                      <Modal history={this.props.history} modal={modal} />
+                      <Modal history={this.props.history} user={data.user} modal={modal} />
                     ) : null}
                     <div className="logo container">
                       <div
@@ -94,7 +100,7 @@ class Nav extends React.Component {
                       </div>
                       <div
                         className="edit-profile-button"
-                        onClick={this.handleEditButtonClick}
+                        onClick={() => { this.setModal("edit-profile") }}
                       >
                         <i
                           class="fa fa-wrench nav-edit-logo"
@@ -134,6 +140,8 @@ class Nav extends React.Component {
                       </button>
                     </div>
                   </div>
+                    )}}
+                  </Query>
                 );
               } else {
                 return null;
