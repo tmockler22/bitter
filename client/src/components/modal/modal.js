@@ -3,6 +3,7 @@ import Login from "../nav/Login"
 import Register from "../nav/Register"
 import CreatePostModal from "../posts/CreatePostModal";
 import "./modal.css"
+import EditProfile from "../profile/editProfile"
 
 class Modal extends Component {
   constructor(props) {
@@ -49,10 +50,18 @@ class Modal extends Component {
                 <div className=""></div>
               </div>
               
-              <CreatePostModal history={this.props.history} />
+              <CreatePostModal params={this.props.params} user={this.props.user} />
             </div>
           )
         });
+        break
+      case 'edit-profile':
+        this.setState({ 
+          component: (
+            <div>
+              <EditProfile user={this.props.user} />
+            </div>) })
+        break
       default:
         return null;
     }

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Mutation } from "react-apollo";
 import { REBIT, UNREBIT } from "../../graphql/mutations";
 import { currentUser } from "../../util/util";
-import { FETCH_USER, FETCH_POST } from "../../graphql/queries";
+import { FETCH_USER } from "../../graphql/queries";
 import merge from 'lodash.merge';
 
 class Rebit extends Component {
@@ -74,9 +74,9 @@ class Rebit extends Component {
         return (<Mutation
           mutation={UNREBIT}
           onCompleted={data => {
-            if (data.unrebit) {
-              const { id } = data.unrebit;
-            }
+            // if (data.unrebit) {
+            //   const { id } = data.unrebit;
+            // }
           }}
           update={(client, data) => this.updateCache(client, data)}
         >
@@ -101,9 +101,9 @@ class Rebit extends Component {
     return (<Mutation
       mutation={REBIT}
       onCompleted={data => {
-        if (data.rebit) {
-          const { id } = data.rebit;
-        }
+        // if (data.rebit) {
+        //   const { id } = data.rebit;
+        // }
       }}
       update={(client, data) => this.updateCache(client, data)}
     >

@@ -98,11 +98,10 @@
     color: white;
 }
 .image-profile-button-wrapper{
-
-    border-radius: 1000 px;
     border-radius: 1000px;
     color: white;
     display: flex;
+    flex-direction: row;
     width: 50%;
     margin-left: 2%;
     border-radius: 1000px;
@@ -112,8 +111,12 @@
     text-decoration: none;
 }
 .nav-image{
-      width: 40px;
+    width: 40px;
     height: 40px;
+    display: inline-block;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     position: relative;
     border-radius: 50%;
     vertical-align: middle;
@@ -159,9 +162,25 @@
   background-color: rgb(29, 47, 66);
 }
 
-.logout-button:hover .fa-sign-in-alt, .logout-button:hover .logout-button-text{
+/* .logout-button:hover .fa-sign-in-alt, .logout-button:hover .logout-button-text{
   background-color: rgb(29, 47, 66);
   cursor: pointer;
   color: rgb(29, 161, 242);
 }
+
+.logout-button {
+  color: white;
+  font-weight: bold;
+  background-color: rgb(29, 161, 242);
+  border: none;
+  border-radius: 20px;
+  width: 70%;
+  height: 40px;
+  cursor: pointer;
+  margin: 12px; 
+}
+
+.logout-button:hover {
+  background-color: rgb(26, 145, 218);
+} */
 

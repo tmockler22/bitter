@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Query } from "react-apollo";
 import { FETCH_USER } from "../../graphql/queries";
 import { currentUser } from "../../util/util";
@@ -37,8 +37,8 @@ const PostIndex = (props) => {
           posts = data.user.posts; 
         };
 
-        let sortedPosts = posts.sort(function (x, y) {
-          return y.timestamp - x.timestamp;
+        let sortedPosts = posts.sort(function (postA, postB) {
+          return postA.timestamp - postB.timestamp;
         })
 
           return (

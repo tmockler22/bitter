@@ -27,9 +27,11 @@ TagSchema.statics.addTags = async function (post) {
     if (tag.length !== 0) { 
       tag[0].posts.push(post._id);
       tag[0].save(); 
+      return post; 
     }
     else { 
       new Tag(newObj).save();
+      return post; 
     }
   } 
 }

@@ -27,6 +27,9 @@ const UserSchema = new Schema({
   image: {
     type: String
   },
+  cover_image: {
+    type: String
+  },
   posts: [
     {
       type: Schema.Types.ObjectId, 
@@ -86,7 +89,7 @@ UserSchema.statics.addUserPost = function (postId, userId) {
       user.posts.push(post);
       Tag.addTags(post);
       return Promise.all([post.save(), user.save()]).then(
-        ([post, user]) => (post, user)
+        ([post, user]) => (post)
       );
     });
     });

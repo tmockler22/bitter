@@ -5,14 +5,11 @@ import App from './components/App';
 import * as serviceWorker from './serviceWorker';
 import ApolloClient from "apollo-client";
 import { InMemoryCache } from "apollo-cache-inmemory";
-import { createHttpLink } from "apollo-link-http";
 import { ApolloProvider } from "react-apollo";
 import { onError } from "apollo-link-error";
-import { ApolloLink } from "apollo-link";
 import { HashRouter} from "react-router-dom"; 
 import { VERIFY_USER } from "./graphql/mutations";
 import { createUploadLink } from 'apollo-upload-client';
-
 
 const token = localStorage.getItem("auth-token");
 
@@ -30,12 +27,12 @@ cache.writeData({
 let uri = "http://localhost:5000/graphql"
 
 if (process.env.NODE_ENV === 'production') {
-  uri = "http://localhost:5000/graphql";
+  uri = `https://bitter-graphql.herokuapp.com/graphql`;
 }
 
 
 // make sure we log any additional errors we receive
-const errorLink = onError(({ graphQLErrors }) => {
+onError(({ graphQLErrors }) => {
   if (graphQLErrors) graphQLErrors.map(({ message }) => console.log(message));
 });
 

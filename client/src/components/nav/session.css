@@ -7,6 +7,10 @@
 }
 
 .session-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   z-index: 10;
   background-color:rgb(21, 32, 43);
   width: 600px;
@@ -14,13 +18,18 @@
   height: 90vh;
   overflow-y: scroll;
   border-radius: 15px;
+}
+
+.session-form-container {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 .login-form {
-  height: 400px;
+  height: 480px;
 }
 
 .session-bitter-frog {
@@ -42,6 +51,7 @@
 
 .session-field {
   width: 90%;
+  height: 60px;
   margin: 15px 0;
   background-color: rgb(25, 39, 52);
   display: flex;

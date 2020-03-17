@@ -37,6 +37,7 @@ export const FETCH_POST = gql`
       _id
       body
       image
+      tags
       timestamp
       user {
         fullname
@@ -55,6 +56,7 @@ export const FETCH_HASHTAG = gql`
     tag(tag: $tag) {
       _id
       posts {
+      tags 
       _id 
       body
       user {
@@ -80,6 +82,7 @@ export const SEARCH_USERS = gql`
       _id
       fullname
       username
+      image
     }
   }
 `;
@@ -108,6 +111,7 @@ export const FETCH_USER = gql`
       email
       bio
       image
+      cover_image
       favorited_posts {
         _id
       }
@@ -135,28 +139,28 @@ export const FETCH_USER = gql`
             _id
           }
         }
-        follows {
+      follows {
+        _id
+        posts {
           _id
-          posts {
+          body
+          tags
+          image
+          timestamp
+          user {
             _id
-            body
-            tags
+            username
+            fullname
             image
-            timestamp
-            user {
-              _id
-              username
-              fullname
-              image
-            }
-            favorites {
-              _id
-            }
-            rebits{
+          }
+          favorites {
             _id
-            }
+          }
+          rebits{
+          _id
           }
         }
+      }
     }
   }
 `;

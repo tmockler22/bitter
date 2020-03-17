@@ -14,12 +14,10 @@ class CreatePostModal extends Component {
       body: "",
       photoFile: null,
       photoUrl: null,
+      tags: []
     };
-//this.handleSubmitClick = this.handleSubmitClick.bind(this);
-  }
-
-  componentDidMount(){
-    document.querySelector('.modal-background').style.backgroundColor = "rgba(110, 118, 125, 0.4)";
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.updateCache = this.updateCache.bind(this);
   }
 
   handleFile(event) {
@@ -49,13 +47,9 @@ class CreatePostModal extends Component {
       return;
     }
     if (user) {
-      let postArray = user.user.posts;
       let newPost = data.newPost;
-      newPost.user = currentUser().id;
-
       let newObj = Object.assign({}, user.user);
       newObj["posts"] = newObj["posts"].concat(newPost);
-
       cache.writeQuery({
         query: FETCH_USER,
         variables: { id: currentUserId },
@@ -64,32 +58,39 @@ class CreatePostModal extends Component {
     }
   }
 
-
   handleSubmit(e, newPost) {
-    let user = currentUser();
     e.preventDefault();
+    let body = this.state.body.split(" ");
+    for (let index = 0; index < body.length; index++) {
+      const el = body[index];
+      if (el[0] === "#") {
+        let tags = this.state.tags.push(el);
+        this.setState({ "tags": tags });
+      }
+    }
+    let user = currentUser();
     newPost({
       variables: {
         image: this.state.photoFile,
         body: this.state.body,
-        user: user.id
+        user: user.id,
+        tags: this.state.tags
       }
     });
-     document.querySelector(".modal-background").style.width = "0";
-     document.querySelector(".create-post-modal").style.display = "none";
+    this.setState({
+      body: ''
+    })
+     document.querySelector(".modal-background").click()
   }
 
-
-
   render() {
-    let user = currentUser()
     return (
       <Mutation
         mutation={CREATE_POST}
         onError={err => this.setState({ message: err.message })}
         update={(cache, data) => this.updateCache(cache, data)}
         onCompleted={data => {
-          const { body, image } = data.newPost;
+          const { body } = data.newPost;
           this.setState({
             message: body
           });
@@ -98,7 +99,7 @@ class CreatePostModal extends Component {
         {(newPost, { data }) => (
           <div className="create-post-container-modal">
             <div className="escape-div"></div>
-            {user && user.image ? <div className="create-post-profile-picture-modal" style={{ backgroundImage: `url(${user.image})` }}></div> :
+            {this.props.user && this.props.user.image ? <div className="create-post-profile-picture-modal" style={{ backgroundImage: `url(${this.props.user.image})` }}></div> :
               <div className="create-post-profile-picture default-profile-picture-modal"></div>}
             <form className="create-post-form-modal" onSubmit={e => this.handleSubmit(e, newPost)}>
               <textarea
