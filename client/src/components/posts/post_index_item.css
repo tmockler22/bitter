@@ -8,6 +8,7 @@
 
 .post-item-link {
   cursor: pointer;
+  text-decoration: none;
 }
 
 .post-item-profile-picture {

@@ -37,8 +37,8 @@ const PostIndex = (props) => {
           posts = data.user.posts; 
         };
 
-        let sortedPosts = posts.sort(function (x, y) {
-          return y.timestamp - x.timestamp;
+        let sortedPosts = posts.sort(function (postA, postB) {
+          return postA.timestamp - postB.timestamp;
         })
 
           return (

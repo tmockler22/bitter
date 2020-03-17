@@ -13,7 +13,6 @@ import EditProfile from "./profile/editProfile";
 const App = () => {
   return (
     <div>
-
       <Route exact path="/hashtag/:hashtag" component={HashTagIndex}/>
       <Route exact path="/search" component={Search} />
 
