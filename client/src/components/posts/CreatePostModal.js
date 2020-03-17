@@ -20,10 +20,6 @@ class CreatePostModal extends Component {
     this.updateCache = this.updateCache.bind(this);
   }
 
-  componentDidMount(){
-    document.querySelector('.modal-background').style.backgroundColor = "rgba(110, 118, 125, 0.4)";
-  }
-
   handleFile(event) {
     const file = event.currentTarget.files[0];
     const fileReader = new FileReader();
@@ -84,9 +80,7 @@ class CreatePostModal extends Component {
     this.setState({
       body: ''
     })
-     document.querySelector(".modal-background").style.width = "0";
-     document.querySelector(".create-post-modal").style.display = "none";
-     document.querySelector(".modal-component").style.display = "none";
+     document.querySelector(".modal-background").click()
   }
 
   render() {
