@@ -27,7 +27,7 @@ cache.writeData({
 let uri = "http://localhost:5000/graphql"
 
 if (process.env.NODE_ENV === 'production') {
-  uri = "http://localhost:5000/graphql";
+  uri = `/graphql`;
 }
 
 
