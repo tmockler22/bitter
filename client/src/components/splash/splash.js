@@ -28,9 +28,9 @@ class Login extends Component {
         {modal ? <Modal history={this.props.history} modal={modal}/> : null}
         <div className="splash-left left-splash-bitter-frog">
           <div className="splash-left-textbox">
-            <div className="splash-left-text"><i class="fa fa-search" aria-hidden="true"></i>Follow your interests.</div>
-            <div className="splash-left-text"><i class="fa fa-users" aria-hidden="true"></i>Hear what people are talking about.</div>
-            <div className="splash-left-text"><i class="fa fa-comment" aria-hidden="true"></i>Join the conversation.</div>
+            <div className="splash-left-text"><i className="fa fa-search" aria-hidden="true"></i>Follow your interests.</div>
+            <div className="splash-left-text"><i className="fa fa-users" aria-hidden="true"></i>Hear what people are talking about.</div>
+            <div className="splash-left-text"><i className="fa fa-comment" aria-hidden="true"></i>Join the conversation.</div>
           </div>
         </div>
         <div className="splash-right">
