@@ -10,28 +10,32 @@ import "./home.css"
 class HomeProfile extends Component {
 
   render() {
-    let userId = currentUser().id
-    return (
-      <Query query={FETCH_USER} variables={{ id: userId }}>
-        {({ loading, error, data }) => {
-          if (loading) return "Loading...";
-          if (error) return `Error! ${error.message}`;
-          return (
-            <div className="profile-container">
-              <div className="profile-header">
-                <div className="profile-title">Home
-                <Search />
+    if (currentUser()) {
+      let userId = currentUser().id
+      return (
+        <Query query={FETCH_USER} variables={{ id: userId }}>
+          {({ loading, error, data }) => {
+            if (loading) return "Loading...";
+            if (error) return `Error! ${error.message}`;
+            return (
+              <div className="profile-container">
+                <div className="profile-header">
+                  <div className="profile-title">Home
+                  <Search />
+                </div>
+                </div>
+                <div className="profile-container-body">
+                  <CreatePost user={data.user} />
+                  <PostIndex params={this.props} />
+                </div>
               </div>
-              </div>
-              <div className="profile-container-body">
-                <CreatePost user={data.user} />
-                <PostIndex params={this.props} />
-              </div>
-            </div>
-          )
-        }}
-      </Query>
-    )
+            )
+          }}
+        </Query>
+      )
+    } else {
+      return <div></div>
+    }
   }
 }
 

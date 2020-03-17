@@ -17,13 +17,14 @@ class Nav extends React.Component {
     };
     this.handleFrogLogoOrHomeLogoClick = this.handleFrogLogoOrHomeLogoClick.bind(this);
     this.handleEditButtonClick = this.handleEditButtonClick.bind(this);
-    // this.showProfilePicture = this.showProfilePicture.bind(this);
     this.handleProfileButtonClick = this.handleProfileButtonClick.bind(this);
   }
 
-  componentDidMount() {
-    if (currentUser()) {
-      this.setState({ photoUrl: currentUser().image })
+  componentDidUpdate() {
+    if (!this.state.userId && currentUser()) {
+      this.setState({
+        userId: currentUser().id
+      })
     }
   }
 
@@ -44,21 +45,6 @@ class Nav extends React.Component {
     this.forceUpdate();
   }
 
-  // showProfilePicture() {
-  //   if (!this.state.photoUrl) {
-  //     return <div> no profile pic</div>;
-  //   } else {
-  //     return <div className="image-profile-button-wrapper">
-  //         <img className="nav-image"
-  //           src={data.user.image}
-  //         ></img>
-  //         <div className="profile-text">
-  //          Profile 
-  //         </div>
-  //       </div>
-  //   }
-  // }
-
   handleProfileButtonClick(e){
     e.preventDefault();
     if(this.props.history.location.pathname !== `/user/${this.state.userId}`){
@@ -73,7 +59,7 @@ class Nav extends React.Component {
         {client => (
           <Query query={IS_LOGGED_IN}>
             {({ data }) => {
-              if (data.isLoggedIn) {
+              if (this.state.userId) {
                 return (
                   <Query query={FETCH_USER} variables={{ id: this.state.userId }}>
                     {({ loading, error, data }) => {
