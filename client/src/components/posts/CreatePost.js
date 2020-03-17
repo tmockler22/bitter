@@ -92,7 +92,7 @@ class CreatePost extends Component {
       >
         {newPost => (
           <div className="create-post-container">
-            {user && user.image ? <div className="create-post-profile-picture" style={{ backgroundImage: `url(${user.image})` }}></div> :
+            {user && this.props.user.image ? <div className="create-post-profile-picture" style={{ backgroundImage: `url(${this.props.user.image})` }}></div> :
               <div className="create-post-profile-picture default-profile-picture"></div>}
             <form className="create-post-form" onSubmit={(e) => this.handleSubmit(e, newPost)}>
               <input

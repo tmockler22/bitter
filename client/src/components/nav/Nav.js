@@ -103,7 +103,7 @@ class Nav extends React.Component {
                         onClick={() => { this.setModal("edit-profile") }}
                       >
                         <i
-                          class="fa fa-wrench nav-edit-logo"
+                          className="fa fa-wrench nav-edit-logo"
                           aria-hidden="true"
                         ></i>
                         <div className="edit-profile-text">Edit</div>
@@ -111,7 +111,7 @@ class Nav extends React.Component {
                       <div>
                           <div className="image-profile-button-wrapper" onClick={this.handleProfileButtonClick}>
                           <i
-                            class="fa fa-user nav-edit-logo"
+                            className="fa fa-user nav-edit-logo"
                             aria-hidden="true"
                           ></i>
                           <div className="profile-text">
@@ -129,7 +129,7 @@ class Nav extends React.Component {
                           this.props.history.push("/");
                         }}
                       >
-                        <i class="fas fa-sign-in-alt"></i>
+                        <i className="fas fa-sign-in-alt"></i>
                         <div className="logout-button-text">Logout</div>
                       </div>
                       <button

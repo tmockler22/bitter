@@ -50,7 +50,7 @@ class Modal extends Component {
                 <div className=""></div>
               </div>
               
-              <CreatePostModal params={this.props.params} />
+              <CreatePostModal params={this.props.params} user={this.props.user} />
             </div>
           )
         });

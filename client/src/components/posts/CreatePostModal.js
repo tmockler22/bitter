@@ -97,7 +97,7 @@ class CreatePostModal extends Component {
         {(newPost, { data }) => (
           <div className="create-post-container-modal">
             <div className="escape-div"></div>
-            {user && user.image ? <div className="create-post-profile-picture-modal" style={{ backgroundImage: `url(${user.image})` }}></div> :
+            {this.props.user && this.props.user.image ? <div className="create-post-profile-picture-modal" style={{ backgroundImage: `url(${this.props.user.image})` }}></div> :
               <div className="create-post-profile-picture default-profile-picture-modal"></div>}
             <form className="create-post-form-modal" onSubmit={e => this.handleSubmit(e, newPost)}>
               <textarea
