@@ -17,7 +17,7 @@ class Nav extends React.Component {
     };
     this.handleFrogLogoOrHomeLogoClick = this.handleFrogLogoOrHomeLogoClick.bind(this);
     this.handleEditButtonClick = this.handleEditButtonClick.bind(this);
-    this.showProfilePicture = this.showProfilePicture.bind(this);
+    // this.showProfilePicture = this.showProfilePicture.bind(this);
     this.handleProfileButtonClick = this.handleProfileButtonClick.bind(this);
   }
 
@@ -44,20 +44,20 @@ class Nav extends React.Component {
     this.forceUpdate();
   }
 
-  showProfilePicture() {
-    if (!this.state.photoUrl) {
-      return <div> no profile pic</div>;
-    } else {
-      return <div className="image-profile-button-wrapper">
-          <img className="nav-image"
-            src={this.state.photoUrl}
-          ></img>
-          <div className="profile-text">
-           Profile 
-          </div>
-        </div>
-    }
-  }
+  // showProfilePicture() {
+  //   if (!this.state.photoUrl) {
+  //     return <div> no profile pic</div>;
+  //   } else {
+  //     return <div className="image-profile-button-wrapper">
+  //         <img className="nav-image"
+  //           src={data.user.image}
+  //         ></img>
+  //         <div className="profile-text">
+  //          Profile 
+  //         </div>
+  //       </div>
+  //   }
+  // }
 
   handleProfileButtonClick(e){
     e.preventDefault();
@@ -110,13 +110,12 @@ class Nav extends React.Component {
                       </div>
                       <div>
                           <div className="image-profile-button-wrapper" onClick={this.handleProfileButtonClick}>
-                          <i
-                            className="fa fa-user nav-edit-logo"
-                            aria-hidden="true"
-                          ></i>
-                          <div className="profile-text">
-                            Profile
-                          </div>
+                              {/* <div className="nav-image" style={{ backgroundImage: `url(${data.user.image})` }}></div> */}
+                              {data.user.image ? <div className="nav-image" style={{ backgroundImage: `url(${data.user.image})` }}></div> :
+                                <div className="nav-image default-profile-picture-modal"></div>}
+                              <div className="profile-text">
+                                Profile
+                             </div>
                         </div>
                       </div>
                       <div
