@@ -14,8 +14,10 @@ class CreatePostModal extends Component {
       body: "",
       photoFile: null,
       photoUrl: null,
+      tags: []
     };
-//this.handleSubmitClick = this.handleSubmitClick.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.updateCache = this.updateCache.bind(this);
   }
 
   componentDidMount(){
@@ -49,13 +51,9 @@ class CreatePostModal extends Component {
       return;
     }
     if (user) {
-      // let postArray = user.user.posts;
       let newPost = data.newPost;
-      newPost.user = currentUser().id;
-
       let newObj = Object.assign({}, user.user);
       newObj["posts"] = newObj["posts"].concat(newPost);
-
       cache.writeQuery({
         query: FETCH_USER,
         variables: { id: currentUserId },
@@ -65,23 +63,33 @@ class CreatePostModal extends Component {
   }
 
   handleSubmit(e, newPost) {
-    let user = currentUser();
     e.preventDefault();
+    let body = this.state.body.split(" ");
+    for (let index = 0; index < body.length; index++) {
+      const el = body[index];
+      if (el[0] === "#") {
+        let tags = this.state.tags.push(el);
+        this.setState({ "tags": tags });
+      }
+    }
+    let user = currentUser();
     newPost({
       variables: {
         image: this.state.photoFile,
         body: this.state.body,
-        user: user.id
+        user: user.id,
+        tags: this.state.tags
       }
     });
+    this.setState({
+      body: ''
+    })
      document.querySelector(".modal-background").style.width = "0";
      document.querySelector(".create-post-modal").style.display = "none";
+     document.querySelector(".modal-component").style.display = "none";
   }
 
-
-
   render() {
-    let user = currentUser()
     return (
       <Mutation
         mutation={CREATE_POST}

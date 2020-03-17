@@ -4,6 +4,7 @@ import { CREATE_POST } from "../../graphql/mutations";
 import { FETCH_USER } from "../../graphql/queries";
 import { currentUser } from "../../util/util";
 import "./create_post.css";
+
 class CreatePost extends Component {
   constructor(props) {
     super(props);
@@ -17,6 +18,7 @@ class CreatePost extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.updateCache = this.updateCache.bind(this);
   }
+
   handleFile(event) {
     const file = event.currentTarget.files[0];
     const fileReader = new FileReader();
@@ -27,10 +29,12 @@ class CreatePost extends Component {
       fileReader.readAsDataURL(file);
     }
   }
+
   update(e, field) {
     e.preventDefault();
     return this.setState({ [field]: e.target.value });
   }
+
   updateCache(cache, { data }) {
     const currentUserId = currentUser().id;
     let user;
@@ -43,7 +47,6 @@ class CreatePost extends Component {
       return;
     }
     if (user) {
-      let postArray = user.user.posts;
       let newPost = data.newPost;
       let newObj = Object.assign({}, user.user);
       newObj["posts"] = newObj["posts"].concat(newPost);
@@ -54,6 +57,7 @@ class CreatePost extends Component {
       });
     }
   }
+  
   handleSubmit(e, newPost) {
     e.preventDefault();
     let body = this.state.body.split(" ");
