@@ -38,21 +38,21 @@ class EditProfile extends React.Component {
   }
 
   showCoverPicture() {
-    if (!this.state.coverPhotoUrl) {
+    if (!this.props.user.cover_image) {
       return <div className="edit-cover-picture edit-cover-image-default" style={{ backgroundImage: `url("./froggy.png")` }}></div>;
     } else {
       return (
-        <div className="edit-cover-picture" style={{ backgroundImage: `url("${this.state.coverPhotoUrl}")` }}></div>
+        <div className="edit-cover-picture" style={{ backgroundImage: `url("${this.props.user.cover_image}")` }}></div>
       );
     }
   }
 
   showProfilePicture() {
-    if (!this.state.photoUrl) {
+    if (!this.props.user.image) {
       return <div className="edit-profile-picture" style={{ backgroundImage: `url("./light_blue_back_guy.png")`}}></div>;
     } else {
       return (
-        <div className="edit-profile-picture" style={{ backgroundImage: `url("${this.state.photoUrl}")` }}></div>
+        <div className="edit-profile-picture" style={{ backgroundImage: `url("${this.props.user.image}")` }}></div>
       );
     }
   }

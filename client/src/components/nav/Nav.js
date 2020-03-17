@@ -109,13 +109,12 @@ class Nav extends React.Component {
                         <div className="edit-profile-text">Edit</div>
                       </div>
                       <div>
-                          <div className="image-profile-button-wrapper" onClick={this.handleProfileButtonClick}>
-                              {/* <div className="nav-image" style={{ backgroundImage: `url(${data.user.image})` }}></div> */}
-                              {data.user.image ? <div className="nav-image" style={{ backgroundImage: `url(${data.user.image})` }}></div> :
-                                <div className="nav-image default-profile-picture-modal"></div>}
-                              <div className="profile-text">
-                                Profile
-                             </div>
+                        <div className="image-profile-button-wrapper" onClick={this.handleProfileButtonClick}>
+                            {data.user.image ? <div className="nav-image" style={{ backgroundImage: `url(${data.user.image})` }}></div> :
+                              <div className="nav-image default-profile-picture-modal"></div>}
+                            <div className="profile-text">
+                              Profile
+                            </div>
                         </div>
                       </div>
                       <div
