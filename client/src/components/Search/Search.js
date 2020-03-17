@@ -19,7 +19,7 @@ class Search extends React.Component {
   }
   getResults() {
     return this.state.search ? (
-      <div>
+      <div className="search-results">
         <Query query={SEARCH_HASHTAGS} variables={{ search: this.state.search }}>
           {({ loading, error, data }) => {
             if (loading) return <div className="tag-search-list">Loading...</div>;
@@ -31,7 +31,8 @@ class Search extends React.Component {
             } else {
               return (
                 <div className="tag-search-list">
-                  {tags.map(tag => <Link to={`/hashtag/${tag.tag.slice(1)}`}><p className="search-hashtag" key={tag._id}>{tag.tag}</p></Link>)}
+                  {tags.map(tag => <Link className="search-link" to={`/hashtag/${tag.tag.slice(1)}`}>
+                    <p className="search-hashtag search-item" key={tag._id}>{tag.tag}</p></Link>)}
                 </div>
               )
             };
@@ -48,10 +49,15 @@ class Search extends React.Component {
             } else {
               return (
                 <div className="user-search-list">
-                  {users.map(user => <Link to={`/user/${user._id}`}>
-                    <div className="search-user">
-                      {user.image ? <img className="user-search-pic" src={user.image}></img> : <img className="user-search-pic" src={"/light_blue_back_guy.png"}></img>}
-                      <div className="search-info" key={user._id}><p>{user.username}</p><p>{user.fullname}</p></div></div></Link>)}
+                  {users.map(user => <Link className="search-link" to={`/user/${user._id}`}>
+                    <div className="search-user search-item">
+                      {user.image ? 
+                      <div className="user-search-pic" style={{ backgroundImage: `url(${user.image})` }}></div> :
+                      <div className="user-search-pic default-profile-picture"></div>}
+                      <div className="search-info" key={user._id}>
+                        <p className="search-username">{user.username}</p>
+                        <p>{user.fullname}</p>
+                        </div></div></Link>)}
                 </div>
               )
             };
