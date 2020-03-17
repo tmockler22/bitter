@@ -20,6 +20,17 @@ export const FETCH_POSTS = gql`
   }
 `;
 
+export const FETCH_HASHTAGS = gql`
+{
+  tags{
+    tag
+    posts{
+      body
+    }
+  }
+}
+`
+
 export const FETCH_POST = gql`
   query FetchPost($id: ID!) {
     post(_id: $id) {

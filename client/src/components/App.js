@@ -10,6 +10,7 @@ import Splash from "./splash/splash";
 import Search from "./Search/Search";
 import { AuthRoute, ProtectedRoute } from "../util/route_util";
 import EditProfile from "./profile/editProfile";
+import Trending from "./trending/trending";
 const App = () => {
   return (
     <div>
@@ -18,7 +19,7 @@ const App = () => {
       <Route exact path="/search" component={Search} />
 
       <ProtectedRoute path="/" component={Nav} routeType="protected" /> 
-
+      <ProtectedRoute path="/" component={Trending} routeType="protected" />
       <Switch>
         <AuthRoute exact path="/login" component={Login} routeType="auth" />
         <AuthRoute exact path="/" component={Splash} routeType="auth" />
