@@ -15,9 +15,9 @@ class EditProfile extends React.Component {
       email: currentUser().email || "",
       bio: currentUser().bio || "",
       photoFile: null,
-      photoUrl: currentUser().image || "",
+      photoUrl: this.props.user.image || "",
       coverPhotoFile: null,
-      coverPhotoUrl: currentUser().cover_image || ""
+      coverPhotoUrl: this.props.user.cover_image || ""
     };
     this.showProfilePicture = this.showProfilePicture.bind(this);
     this.showCoverPicture = this.showCoverPicture.bind(this);
@@ -38,21 +38,21 @@ class EditProfile extends React.Component {
   }
 
   showCoverPicture() {
-    if (!this.props.user.cover_image) {
+    if (!this.state.coverPhotoUrl) {
       return <div className="edit-cover-picture edit-cover-image-default" style={{ backgroundImage: `url("./froggy.png")` }}></div>;
     } else {
       return (
-        <div className="edit-cover-picture" style={{ backgroundImage: `url("${this.props.user.cover_image}")` }}></div>
+        <div className="edit-cover-picture" style={{ backgroundImage: `url("${this.state.coverPhotoUrl}")` }}></div>
       );
     }
   }
 
   showProfilePicture() {
-    if (!this.props.user.image) {
+    if (!this.state.photoUrl) {
       return <div className="edit-profile-picture" style={{ backgroundImage: `url("./light_blue_back_guy.png")`}}></div>;
     } else {
       return (
-        <div className="edit-profile-picture" style={{ backgroundImage: `url("${this.props.user.image}")` }}></div>
+        <div className="edit-profile-picture" style={{ backgroundImage: `url("${this.state.photoUrl}")` }}></div>
       );
     }
   }
