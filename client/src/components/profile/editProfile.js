@@ -15,9 +15,9 @@ class EditProfile extends React.Component {
       email: currentUser().email || "",
       bio: currentUser().bio || "",
       photoFile: null,
-      photoUrl: this.props.user.image || "",
+      photoUrl: currentUser().image || "",
       coverPhotoFile: null,
-      coverPhotoUrl: this.props.user.cover_image || ""
+      coverPhotoUrl: currentUser().cover_image || ""
     };
     this.showProfilePicture = this.showProfilePicture.bind(this);
     this.showCoverPicture = this.showCoverPicture.bind(this);
