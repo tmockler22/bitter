@@ -73,7 +73,11 @@ class CreatePost extends Component {
         tags: this.state.tags
       }
     });
+    this.setState({
+      body: ''
+    })
   }
+
   render() {
     let user = currentUser()
     return (
@@ -81,9 +85,7 @@ class CreatePost extends Component {
         mutation={CREATE_POST}
         onError={err => this.setState({ message: err.message })}
         onCompleted={data => {
-          console.log(data);
           const { body, image } = data.post;
-          console.log(data);
           this.setState({
             message: body
           });
