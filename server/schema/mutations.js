@@ -3,8 +3,10 @@ const { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLID, GraphQLNonNull,
 const mongoose = require("mongoose");
 const User = mongoose.model("users");
 const Post = mongoose.model("posts");
+const Rebit = mongoose.model("rebits");
 const UserType = require("./types/user_type");
 const PostType = require("./types/post_type");
+const RebitType = require("./types/rebit_type");
 require("../models/index");
 const AuthService = require("../services/Auth");
 const { singleFileUpload } = require("../services/s3");
@@ -138,7 +140,6 @@ const mutation = new GraphQLObjectType({
       },      
         async resolve(_, { body, user, image, tags }, ctx) {
            const updateObj = {};
-          console.log(tags);
          if (user) updateObj.user = user;
          if (body) updateObj.body = body;
          if (image) {
@@ -196,38 +197,41 @@ const mutation = new GraphQLObjectType({
       }
     },
     rebit: {
-      type: UserType,
+      type: RebitType,
       args: {
-        userId: {type: GraphQLID},
-        postId: {type: GraphQLID},
+        user: { type: GraphQLID },
+        original: { type: GraphQLID}
       },
-      async resolve(_, {userId, postId}, ctx){
-        const validUser = await AuthService.verifyUser({token: ctx.token});
-        const alreadyRebited = await User.alreadyRebited(userId, postId);
-
-        if(alreadyRebited){
-          throw new Error('You already rebited that post');
-        }else if (validUser.loggedIn){
-          return User.addRebit(userId, postId);
-        }else{
-          throw new Error('Sorry, you need to be logged in to rebit')
+      async resolve(_, { user, original }, ctx) {
+        const updateObj = {};
+        if (user) updateObj.user = user;
+        if (original) updateObj.original = original;
+        
+        const validUser = await AuthService.verifyUser({ token: ctx.token });
+        if (validUser.loggedIn) {
+          return new Rebit(updateObj)
+            .save().then(rebit => User.addRebit(rebit._id, user, original));
+        } else {
+          throw new Error('Sorry, you need to be logged in to rebit.');
         }
       }
     },
     unRebit: {
-      type: UserType,
+      type: RebitType,
       args: {
         userId: { type: GraphQLID },
         postId: { type: GraphQLID },
+        rebitId: { type: GraphQLID }
       },
-      async resolve(_, { userId, postId }, ctx) {
+      async resolve(_, { userId, rebitId, postId }, ctx) {
         const validUser = await AuthService.verifyUser({ token: ctx.token });
-        const alreadyRebited = await User.alreadyRebited(userId, postId);
+        const alreadyRebited = await User.alreadyRebited(userId, rebitId);
 
         if (!alreadyRebited) {
           throw new Error('You need to rebit that post first');
-        } else if (validUser.loggedIn) {
-          return User.removeRebit(userId, postId);
+        } else 
+        if (validUser.loggedIn) {
+          return User.removeRebit(userId, rebitId, postId);
         } else {
           throw new Error('Sorry, you need to be logged in to rebit')
         }

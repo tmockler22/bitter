@@ -11,6 +11,11 @@
   text-decoration: none;
 }
 
+.post-item-link:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
 .post-item-profile-picture {
   margin: 5px 15px;
   display: inline-block;
@@ -28,6 +33,16 @@
 .post-item-label {
   position: relative;
   bottom: 30px;
+}
+
+.post-rebit-icon {
+  margin-right: 10px;
+}
+
+.post-item-rebitted-by{
+  font-size: 14px;
+  margin-left: 50px;
+  padding-top: 10px;
 }
 
 .post-item-fullname {

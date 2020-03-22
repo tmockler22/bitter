@@ -111,8 +111,8 @@ export const UNFAVORITE = gql`
 
 
 export const REBIT = gql`
-  mutation Rebit($userId: ID!, $postId: ID!){
-    rebit(userId: $userId, postId: $postId){
+  mutation Rebit($user: ID!, $original: ID!){
+    rebit(user: $user, original: $original){
       _id
     }
   }
@@ -121,8 +121,8 @@ export const REBIT = gql`
 
 
 export const UNREBIT = gql`
-  mutation UnRebit($userId: ID!, $postId: ID!){
-    unRebit(userId: $userId, postId: $postId){
+  mutation UnRebit($userId: ID!, $rebitId: ID, $postId: ID!){
+    unRebit(userId: $userId, rebitId: $rebitId, postId: $postId){
       _id
     }
   }

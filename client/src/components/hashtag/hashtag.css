@@ -21,3 +21,12 @@
 .search-title {
   margin-top: 10px; 
 }
+
+.hashtag-header {
+  position: fixed;
+  width: 600px;
+  background-color: rgb(21, 32, 43);
+  z-index: 1;
+  border-bottom: 10px solid rgb(56, 68, 77);
+  padding-bottom: 15px;
+}

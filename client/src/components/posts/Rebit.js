@@ -9,8 +9,10 @@ class Rebit extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userId: currentUser().id,
-      postId: props.post._id
+      currentUser: props.currentUser,
+      userId: props.currentUser._id,
+      post: props.post.original ? props.post.original : props.post,
+      rebit: props.post.original ? props.post : null
     }
     this.hasRebited = this.hasRebited.bind(this);
   }
@@ -33,8 +35,7 @@ class Rebit extends Component {
       let posts = newObj["posts"];
       for (let index = 0; index < posts.length; index++) {
         const el = posts[index];
-        if (el._id === this.state.postId) {
-          // const newArray = []
+        if (el._id === this.state.post._id) {
           el["rebits"] = el["rebits"].concat(data.rebit)
           newPost = el;
           newObj["posts"][index] = newPost
@@ -52,11 +53,10 @@ class Rebit extends Component {
 
       for(let i=0; i < posts.length; i++){
         const post = posts[i];
-        if(posts[i]._id === this.state.postId){
+        if(posts[i]._id === this.state.post._id){
           post["rebits"] = post["rebits"].splice(i, data.unrebit);
         }
       }
-
 
     cache.writeQuery({
       query: FETCH_USER,
@@ -67,43 +67,47 @@ class Rebit extends Component {
   }
 
   hasRebited() {
-    for (let index = 0; index < this.props.post.rebits.length; index++) {
-      const userRebitId = this.props.post.rebits[index]._id;
+    for (let index = 0; index < this.state.post.rebits.length; index++) {
+      const userRebitId = this.state.post.rebits[index]._id;
+      let rebitId = this.state.rebit ? this.state.rebit._id : null
+      if (!rebitId) {
+        this.state.currentUser.rebited_posts.forEach(rebit => {
+          if (rebit.original._id === this.state.post._id) {
+            rebitId = rebit._id
+          };
+        });
+      };
 
       if (this.state.userId === userRebitId) {
         return (<Mutation
           mutation={UNREBIT}
           onCompleted={data => {
-            // if (data.unrebit) {
-            //   const { id } = data.unrebit;
-            // }
           }}
           update={(client, data) => this.updateCache(client, data)}
         >
-          {unrebit => (
+          {unRebit => (
             <div
               className="unrebit"
               onClick={e => {
                 e.preventDefault();
-                unrebit({
+                unRebit({
                   variables: {
                     userId: this.state.userId,
-                    postId: this.state.postId
+                    postId: this.state.post._id,
+                    rebitId: rebitId
                   }
                 });
               }}
-            ><i className="unrebit-icon fa fa-retweet"></i><span className="rebit-count-active">{this.props.post.rebits.length}</span></div>
+            ><i className="unrebit-icon fa fa-retweet"></i><span className="rebit-count-active">{this.state.post.rebits.length}</span></div>
           )}
         </Mutation>
         );
       }
     }
-    return (<Mutation
+    return (
+    <Mutation
       mutation={REBIT}
       onCompleted={data => {
-        // if (data.rebit) {
-        //   const { id } = data.rebit;
-        // }
       }}
       update={(client, data) => this.updateCache(client, data)}
     >
@@ -115,12 +119,12 @@ class Rebit extends Component {
               e.preventDefault();
               rebit({
                 variables: {
-                  userId: this.state.userId,
-                  postId: this.state.postId
+                  user: this.state.userId,
+                  original: this.state.post._id
                 }
               });
             }}
-          ><i className="rebit-icon fa fa-retweet"></i><span className="rebit-count">{this.props.post.rebits.length}</span></div>
+          ><i className="rebit-icon fa fa-retweet"></i><span className="rebit-count">{this.state.post.rebits.length}</span></div>
         </div>
       )}
     </Mutation>
