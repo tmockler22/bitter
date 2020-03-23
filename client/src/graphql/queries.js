@@ -133,24 +133,24 @@ export const FETCH_USER = gql`
         }
       }
       posts {
-          _id 
-          body
+        _id 
+        body
+        image
+        tags
+        timestamp
+        user {
+          _id
+          username
+          fullname
           image
-          tags
-          timestamp
-          user {
-            _id
-            username
-            fullname
-            image
-          }
-          favorites {
-            _id
-          }
-          rebits{
-            _id
-          }
         }
+        favorites {
+          _id
+        }
+        rebits{
+          _id
+        }
+      }
       follows {
         _id
         posts {

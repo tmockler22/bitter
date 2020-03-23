@@ -32,11 +32,10 @@ class Favorite extends Component {
       let newPost; 
       let posts = newObj["posts"];
       for (let index = 0; index < posts.length; index++) {
-        const el = posts[index];
-        if (el._id === this.state.postId) {
-         // const newArray = []
-          el["favorites"] = el["favorites"].concat(data.favorite)
-          newPost = el;
+        const post = posts[index];
+        if (post._id === this.state.postId) {
+          post["favorites"] = post["favorites"].concat(data.favorite)
+          newPost = post;
           newObj["posts"][index] = newPost
         }
       }

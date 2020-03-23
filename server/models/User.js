@@ -227,8 +227,8 @@ UserSchema.statics.addRebit = (rebitId, userId, postId) => {
       return Rebit.findById(rebitId).then(rebit => {
         user.rebited_posts.push(rebit);
         post.rebits.push(userId);
-        return Promise.all([user.save(), post.save(), rebit.save()]).then(
-          ([user, post, rebit]) => (post, user, rebit)
+        return Promise.all([post.save(), rebit.save(), user.save()]).then(
+          ([user, post, rebit]) => (rebit, post)
         );
       })
     });
@@ -248,7 +248,7 @@ UserSchema.statics.removeRebit = (userId, rebitId, postId) => {
         user.rebited_posts.remove(rebit);
         post.rebits.remove(userId);
         return Promise.all([user.save(), post.save()]).then(
-          ([user, post, rebit]) => (post, user, rebit))
+          ([user, post, rebit]) => (rebit))
       });
     });
   });

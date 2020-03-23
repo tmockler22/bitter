@@ -114,6 +114,32 @@ export const REBIT = gql`
   mutation Rebit($user: ID!, $original: ID!){
     rebit(user: $user, original: $original){
       _id
+      timestamp
+      user {
+        _id
+        fullname
+        username
+        image
+      }
+      original {
+        body
+        _id
+        tags
+        timestamp
+        image
+        user {
+          _id
+          username 
+          fullname
+          image
+        }
+        favorites {
+          _id
+        }
+        rebits {
+          _id
+        }
+      }
     }
   }
 `;

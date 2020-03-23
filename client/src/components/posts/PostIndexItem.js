@@ -7,6 +7,7 @@ import "./post_index_item.css";
 const PostIndexItem = (props) => {
   const reactStringReplace = require('react-string-replace');
   let currentUser = props.currentUser
+  let currentUserId = props.currentUserId
   let post = props.post; 
   let params = props.params; 
   let userId = props.userId; 
@@ -24,6 +25,8 @@ const PostIndexItem = (props) => {
   } 
   if (post.original) {
     let original = post.original
+    original._id = original._id.split(" ")[0]
+
     return (
       <div className="post-item-container">
         <Link className="post-item-link" to={`/user/${post.user._id}`}>
@@ -50,12 +53,13 @@ const PostIndexItem = (props) => {
           </div> : null
         }
         <div className="post-item-buttons">
-          <Rebit post={post} params={params} userId={post.user._id} currentUser={currentUser} />
+          <Rebit post={post} params={params} userId={post.user._id} currentUser={currentUser} currentUserId={currentUserId}/>
           <Favorite post={original} params={params} userId={original.user._id} />
         </div>
       </div>
     )
   } else {
+    post._id = post._id.split(" ")[0]
     return (
           <div className="post-item-container">
             <Link className="post-item-link" to={`/user/${post.user._id}`}>
@@ -73,7 +77,7 @@ const PostIndexItem = (props) => {
             </div> : null
             }
             <div className="post-item-buttons">
-              <Rebit post={post} params={params} userId={userId} currentUser={currentUser} />
+              <Rebit post={post} params={params} userId={userId} currentUser={currentUser} currentUserId={currentUserId} />
               <Favorite post={post} params={params} userId={userId}/>
             </div>
           </div>
