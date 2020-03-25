@@ -1,2 +1,0 @@
-# bitter
-Twitter clone

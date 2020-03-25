@@ -40,14 +40,14 @@ class Nav extends React.Component {
   }
 
   setModal(modal) {
-    localStorage.setItem("modal", `${modal}`);
-    this.forceUpdate();
+    localStorage.setItem("modal", `${modal}`);;
   }
 
-  handleProfileButtonClick(e){
+  handleProfileButtonClick(e) {
     e.preventDefault();
-    if(this.props.history.location.pathname !== `/user/${this.state.userId}`){
-          this.props.history.push(`/user/${this.state.userId}`);
+    this.forceUpdate()
+    if (this.props.history.location.pathname !== `/user/${this.state.userId}`) {
+      this.props.history.push(`/user/${this.state.userId}`);
     }
   }
 

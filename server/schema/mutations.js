@@ -206,7 +206,6 @@ const mutation = new GraphQLObjectType({
         const updateObj = {};
         if (user) updateObj.user = user;
         if (original) updateObj.original = original;
-        
         const validUser = await AuthService.verifyUser({ token: ctx.token });
         if (validUser.loggedIn) {
           return new Rebit(updateObj)
