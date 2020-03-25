@@ -1,0 +1,33 @@
+.profile-header {
+  position: fixed;
+  width: 600px;
+  background-color: rgb(21, 32, 43);
+  z-index: 1;
+  border-bottom: 1px solid rgb(56, 68, 77);
+  padding-bottom: 15px;
+}
+
+.profile-container {
+  position: absolute;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 100vh;
+  left: 21.5%;
+  width: 600px;
+  border: 1px solid rgb(56, 68, 77);
+  border-top: none;
+}
+
+.profile-title {
+  display: flex; 
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  padding: 0 15px;
+}
+
+.profile-container-body {
+  margin-top: 64px;
+}

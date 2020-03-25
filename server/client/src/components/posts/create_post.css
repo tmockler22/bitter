@@ -1,0 +1,135 @@
+.create-post-container {
+  border-bottom: 10px solid rgb(56, 68, 77);
+}
+
+.create-post-form {
+  top: -50px;
+  position: relative;
+}
+
+.create-post-profile-picture {
+  margin: 10px 15px;
+  display: inline-block;
+  left: 0px;
+  top: 10px;
+  position: relative;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.create-post-text {
+  resize: none;
+  top: 10px;
+  left: 80px;
+  position: relative;
+  font-weight: bold;
+  color: white;
+  min-height: 40px;
+  width: 500px;
+  background-color: transparent;
+  border: none;
+  font-size: 18px;
+}
+
+.create-post-text::placeholder {
+  color: rgb(187, 187, 187);
+}
+
+.create-post-image-preview {
+  margin-top: 30px;
+  margin-left: 80px;
+  border-radius: 15px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 300px;
+  width: 500px;
+}
+
+.create-post-cancel-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color:rgba(0, 0, 0, 0.77);
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 85px;
+  right: 30px;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.create-post-cancel-image:hover {
+  background-color:rgba(0, 0, 0, 0.63);
+}
+
+.create-post-cancel-image i {
+  color: white;
+}
+
+.create-post-buttons {
+  position: relative;
+  top: 20px;
+  display: flex;
+  width: 100%;
+}
+
+.create-post-label {
+  position: relative;
+  left: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  width: 40px;
+  font-size: 25px;
+  cursor: pointer;
+  color: rgba(29,161,242,1.00);
+}
+
+.create-post-label:hover {
+  background-color: rgb(29, 161, 242, 0.1);
+  border-radius: 50%;
+}
+
+.create-post-submit {
+  position: absolute;
+  right: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: bold;
+  background-color: rgb(29, 161, 242);
+  border: none;
+  border-radius: 20px;
+  width: 80px;
+  height: 40px;
+  cursor: pointer;
+}
+
+.create-post-submit:hover {
+  background-color: rgb(26, 145, 218);
+}
+
+.follow-submit {
+  color: white;
+  font-weight: bold;
+  background-color: rgb(29, 161, 242);
+  border: none;
+  border-radius: 20px;
+  width: 80px;
+  height: 40px;
+  cursor: pointer;
+  margin: 12px; 
+}
+
+.follow-submit:hover {
+  background-color: rgb(26, 145, 218);
+}
