@@ -7,31 +7,20 @@
 .search-results {
   display: none;
   position: absolute;
-<<<<<<< HEAD
-  width: 382px; 
-=======
   left: 30px;
   width: 300px; 
->>>>>>> upstream/master
   box-shadow: rgba(136, 153, 166, 0.2) 0px 0px 15px, rgba(136, 153, 166, 0.15) 0px 0px 3px 1px;
   border-radius: 5px;
   border: 1px solid rgb(56, 68, 77); 
   overflow: hidden;
-<<<<<<< HEAD
-=======
   overflow-y: scroll;
   max-height: 80vh;
->>>>>>> upstream/master
 }
 
 .search-input {
   z-index: 0; 
-<<<<<<< HEAD
-  width: 280px; 
-=======
   width: 200px; 
   margin-left: 10%;
->>>>>>> upstream/master
   padding: 8px 50px; 
   border: 1px solid transparent; 
   border-radius: 20px; 
@@ -46,14 +35,9 @@
   font-size: 18px; 
   z-index: 2; 
   left: 18px; 
-<<<<<<< HEAD
-  top: 9px; 
-}
-=======
   top: 10px; 
 }
 
->>>>>>> upstream/master
 .search-input:focus {
   transition: .15s ease; 
   border-color: rgb(29, 161, 242); 
@@ -80,23 +64,9 @@
   background: rgb(21, 32, 43); 
   margin-top: 4px; 
   width: 382px; 
-<<<<<<< HEAD
-  padding: 8px 0px; 
-=======
   padding: 8px 0px 0px 0px; 
->>>>>>> upstream/master
   border-bottom: 8px solid rgb(56, 68, 77); 
   z-index: 20; 
-<<<<<<< HEAD
-}
-
-.search-hashtag {
-  padding: 12px; 
-  color: white;
-}
-
-.user-search-list {
-=======
   min-height: fit-content;
 }
 
@@ -108,17 +78,10 @@
 
 .user-search-list {
   min-height: fit-content;
->>>>>>> upstream/master
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
   background: rgb(21, 32, 43); 
   width: 382px; 
-<<<<<<< HEAD
-  padding: 8px 0px; 
-  border: 1px solid rgb(25, 43, 58); 
-  overflow: hidden;
-  z-index: 20;
-=======
   padding: 8px 0px 0px 0px; 
   border: 1px solid rgb(25, 43, 58); 
   z-index: 20;
@@ -126,7 +89,6 @@
 
 .search-item {
   border-bottom: 1px solid rgb(56, 68, 77); 
->>>>>>> upstream/master
 }
 
 .search-item:hover {

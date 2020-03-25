@@ -132,17 +132,6 @@
   text-decoration: none;
 }
 .nav-image{
-<<<<<<< HEAD
-    width: 40px;
-    height: 40px;
-    display: inline-block;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: relative;
-    border-radius: 50%;
-    vertical-align: middle;
-=======
   width: 40px;
   height: 40px;
   display: inline-block;
@@ -152,7 +141,6 @@
   position: relative;
   border-radius: 50%;
   vertical-align: middle;
->>>>>>> upstream/master
 }
 .profile-text{
   font-size: 25px;

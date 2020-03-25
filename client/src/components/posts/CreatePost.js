@@ -78,14 +78,10 @@ class CreatePost extends Component {
       }
     });
     this.setState({
-<<<<<<< HEAD
-      body: ''
-=======
       body: '',
       photoFile: null,
       photoUrl: null,
       tags: []
->>>>>>> upstream/master
     })
   }
 
@@ -96,11 +92,7 @@ class CreatePost extends Component {
         mutation={CREATE_POST}
         onError={err => this.setState({ message: err.message })}
         onCompleted={data => {
-<<<<<<< HEAD
-          const { body, image } = data.post;
-=======
           const { body } = data.post;
->>>>>>> upstream/master
           this.setState({
             message: body
           });
