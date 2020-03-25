@@ -41,8 +41,12 @@
   color: white;
 }
 
-.search-input:focus ~ .search-glass, .search-input:focus.search-input::placeholder {
+.search-input:focus ~ .search-glass {
   color: rgb(29, 161, 242);
+}
+
+.search-input:focus.search-input::placeholder {
+  color: white;
 }
 
 .search-input:focus + .search-results, .search-results:active {
