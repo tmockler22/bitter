@@ -7,7 +7,6 @@ import { FETCH_USER } from "../../graphql/queries";
 import Modal from "../modal/modal"
 import "./profile.css"
 import "./home.css";
-import Search from "../Search/Search";
 
 class UserProfile extends Component {
   constructor(props) {
@@ -16,10 +15,6 @@ class UserProfile extends Component {
       id: currentUser().id,
       newFollow: props.match.params.id, 
     }
-  }
-
-  componentWillMount() {
-    localStorage.setItem("modal", "")
   }
 
   setModal(modal) {

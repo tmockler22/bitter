@@ -20,6 +20,7 @@ const PostIndex = (props) => {
     userId = currentUser() ? currentUser().id : null; 
     homeFeed = true; 
   }
+
   return !userId ? <div></div> : (
     <Query query={FETCH_USER} variables={{ id: userId }}>
       {({ loading, error, data }) => {

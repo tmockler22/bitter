@@ -52,6 +52,7 @@
 
 .post-item-body {
   position: relative;
+  width: 84%;
   bottom: 25px;
   left: 80px;
   color: white;

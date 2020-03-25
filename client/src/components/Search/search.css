@@ -11,6 +11,8 @@
   border-radius: 5px;
   border: 1px solid rgb(56, 68, 77); 
   overflow: hidden;
+  overflow-y: scroll;
+  max-height: 80vh;
 }
 
 .search-input {
@@ -48,26 +50,31 @@
   background: rgb(21, 32, 43); 
   margin-top: 4px; 
   width: 382px; 
-  padding: 8px 0px; 
+  padding: 8px 0px 0px 0px; 
   border-bottom: 8px solid rgb(56, 68, 77); 
-  overflow: hidden;
   z-index: 20; 
+  min-height: fit-content;
 }
 
 .search-hashtag {
-  padding: 12px; 
+  padding: 18px 12px; 
   color: white;
+  font-size: 16px;
 }
 
 .user-search-list {
+  min-height: fit-content;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
   background: rgb(21, 32, 43); 
   width: 382px; 
-  padding: 8px 0px; 
+  padding: 8px 0px 0px 0px; 
   border: 1px solid rgb(25, 43, 58); 
-  overflow: hidden;
   z-index: 20;
+}
+
+.search-item {
+  border-bottom: 1px solid rgb(56, 68, 77); 
 }
 
 .search-item:hover {

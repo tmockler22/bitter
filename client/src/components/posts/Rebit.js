@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 import { Mutation } from "react-apollo";
 import { REBIT, UNREBIT } from "../../graphql/mutations";
-import { currentUser } from "../../util/util";
-import { FETCH_USER } from "../../graphql/queries";
-import merge from 'lodash.merge';
 
 class Rebit extends Component {
   constructor(props) {
