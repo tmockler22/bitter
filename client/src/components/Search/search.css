@@ -33,6 +33,7 @@
   left: 18px; 
   top: 12px; 
 }
+
 .search-input:focus {
   transition: .15s ease; 
   border-color: rgb(29, 161, 242); 

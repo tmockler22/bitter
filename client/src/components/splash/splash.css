@@ -77,6 +77,7 @@
   width: 345px;
   min-height: 40px;
   cursor: pointer;
+  transition: .2s;
 }
 
 .sign-up:hover {

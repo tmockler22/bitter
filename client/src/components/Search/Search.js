@@ -76,8 +76,8 @@ class Search extends React.Component {
           value={this.state.search}
           onChange={(e) => this.update(e)}
         />
-        <i className="fas fa-search search-glass"></i>
         {this.getResults()}
+        <i className="fas fa-search search-glass"></i>
       </div>
     )
   };
