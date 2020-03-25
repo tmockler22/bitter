@@ -6,10 +6,6 @@ import "./splash.css"
 
 class Login extends Component {
 
-  componentWillMount() {
-    localStorage.setItem("modal", "")
-  }
-
   setModal(modal) {
     localStorage.setItem("modal", `${modal}`)
     this.forceUpdate()

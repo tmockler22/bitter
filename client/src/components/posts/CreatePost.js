@@ -78,7 +78,14 @@ class CreatePost extends Component {
       }
     });
     this.setState({
+<<<<<<< HEAD
       body: ''
+=======
+      body: '',
+      photoFile: null,
+      photoUrl: null,
+      tags: []
+>>>>>>> upstream/master
     })
   }
 
@@ -89,7 +96,11 @@ class CreatePost extends Component {
         mutation={CREATE_POST}
         onError={err => this.setState({ message: err.message })}
         onCompleted={data => {
+<<<<<<< HEAD
           const { body, image } = data.post;
+=======
+          const { body } = data.post;
+>>>>>>> upstream/master
           this.setState({
             message: body
           });
@@ -101,7 +112,7 @@ class CreatePost extends Component {
             {user && this.props.user.image ? <div className="create-post-profile-picture" style={{ backgroundImage: `url(${this.props.user.image})` }}></div> :
               <div className="create-post-profile-picture default-profile-picture"></div>}
             <form className="create-post-form" onSubmit={(e) => this.handleSubmit(e, newPost)}>
-              <input
+              <textarea
                 className="create-post-text"
                 onChange={(e) => this.update(e, "body")}
                 value={this.state.body}

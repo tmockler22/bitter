@@ -16,10 +16,10 @@ const PostIndexItem = (props) => {
   
   if (tags) {
   for (let index = 0; index < tags.length; index++) {
-    const el = tags[index];
-    const link = el.slice(1);
-    body = reactStringReplace(body, el, (match, i) => (
-      <Link to={`/hashtag/${link}`} key={post._id} style={{ color: "#61dafb"}}>{match}</Link>
+    const tag = tags[index];
+    const link = tag.slice(1);
+    body = reactStringReplace(body, tag, (match, i) => (
+      <Link to={`/hashtag/${link}`} key={post._id + tag} style={{ color: "#61dafb"}}>{match}</Link>
     ));
     }
   } 

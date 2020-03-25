@@ -73,8 +73,10 @@ class Login extends Component {
               className="session-submit" 
               type="submit" 
               onClick={() => {
-                this.state.email = "BitterFrog@Bitter.com"; 
-                this.state.password = "hello123";
+                this.setState({ 
+                  email: "BitterFrog@Bitter.com", 
+                  password: "hello123" 
+                })
                 }}>Demo Log In</button>
             </form>
           </div>

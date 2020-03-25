@@ -8,11 +8,9 @@
 }
 
 .profile-container {
-  position: absolute;
   overflow-y: scroll;
   overflow-x: hidden;
   height: 100vh;
-  left: 21.5%;
   width: 600px;
   border: 1px solid rgb(56, 68, 77);
   border-top: none;

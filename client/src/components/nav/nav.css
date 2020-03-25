@@ -1,13 +1,23 @@
 .nav-container {
-  position: absolute;
   display: flex;
   flex-direction: column;
-  width: 21.5%;
+  align-items: flex-end;
+  width: 25%;
+  min-width: 250px;
 }
+
+.logo-container {
+  padding: 0 40px;
+  min-width: 200px;
+  height: 100vw;
+}
+
+
 .nav-frog-logo{
+  margin-top: 10px;
+  margin-bottom: -10px;
   height: 70px;
   width: 70px;
-  margin-left: 3%;
   background-size: 75%;
   background-repeat: no-repeat;
   background-image: url('/whitefroggy.png');
@@ -15,21 +25,25 @@
   background-position: center;
   transition: 0.2s;
 }
-.nav-frog-logo:hover{
- background-color: rgb(29, 47, 66);
-  background-image: url('/froggy.png');
- cursor: pointer;
- transition: 0.2s;
-}
-.nav-home-logo-wrapper{
-  width: 50%;
-  margin-left: 2%;
+
+.logo-wrapper {
+  margin-top: 20px;
+  display: flex;
   border-radius: 1000px;
   padding: 8px;
-  margin-top: 4%;
   text-decoration: none;
+  width: 150px;
+  transition: 0.2s;
 }
-.nav-home-logo-wrapper:hover{
+
+.nav-frog-logo:hover{
+  background-color: rgb(29, 47, 66);
+  background-image: url('/froggy.png');
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.logo-wrapper:hover{
    background-color: rgb(29, 47, 66);
    cursor: pointer;
    color: rgb(29, 161, 242); 
@@ -39,79 +53,86 @@
   font-size: 35px;
   margin-left: 5%;
 }
+
 .home-text{
   font-size: 25px;
   padding-top: 8px;
   padding-left: 10px;
   color: white;
+  transition: 0.2s;
 }
-.nav-home-logo-wrapper:hover .nav-home-text, .nav-home-logo-wrapper:hover .home-text{
-  color: rgb(29, 161, 242); 
+.logo-wrapper:hover .nav-home-text, .logo-wrapper:hover .home-text{
+  color: rgb(29, 161, 242) !important; 
 }
 .nav-home-text{
-    font-weight: 900;
-    color: white;
+  font-weight: 900;
+  color: white;
+  transition: 0.2s;
 }
 .tweet-button{
-    color: white;
-    font-weight: bold;
-    background-color: rgb(29, 161, 242);
-    border: none;
-    border-radius: 20px;
-    width: 70%;
-    height: 40px;
-    margin-top: 30px;
-    margin-left: 12px;
-    cursor: pointer;
+  color: white;
+  font-weight: bold;
+  background-color: rgb(29, 161, 242);
+  border: none;
+  border-radius: 20px;
+  width: 160px;
+  height: 40px;
+  margin-top: 30px;
+  margin-left: 12px;
+  cursor: pointer;
+  transition: 0.2s;
 }
 .tweet-button:hover{
-    background-color: rgb(26, 145, 218);
+  background-color: rgb(26, 145, 218);
 }
 .edit-profile-button{
   color: white;
   display: flex;
   width: 50%;
-    margin-left: 2%;
-    border-radius: 1000px;
-    padding: 8px;
-    margin-top: 7%;
-    text-decoration: none;
+  margin-left: 2%;
+  border-radius: 1000px;
+  padding: 8px;
+  margin-top: 7%;
+  text-decoration: none;
 }
 .edit-profile-button:hover{
-      background-color: rgb(29, 47, 66);
-      cursor: pointer;
+  background-color: rgb(29, 47, 66);
+  cursor: pointer;
 }
-.edit-profile-button:hover .nav-edit-logo, .edit-profile-button:hover .edit-profile-text {
-    background-color: rgb(29, 47, 66);
-    cursor: pointer;
-     color: rgb(29, 161, 242); 
+.logo-wrapper:hover .nav-edit-logo, .logo-wrapper:hover .edit-profile-text {
+  background-color: rgb(29, 47, 66);
+  cursor: pointer;
+  color: rgb(29, 161, 242); 
 }
 .nav-edit-logo{
   color: white;
   font-size: 35px;
   padding-left: 11px;
+  transition: 0.2s;
 }
 .edit-profile-text{
-    font-size: 25px;
-    padding-top: 8px;
-    padding-left: 11px;
-    color: white;
+  font-size: 25px;
+  padding-top: 8px;
+  padding-left: 11px;
+  color: white;
+  transition: 0.2s;
 }
 
 .image-profile-button-wrapper{
-    border-radius: 1000px;
-    color: white;
-    display: flex;
-    flex-direction: row;
-    width: 50%;
-    margin-left: 2%;
-    border-radius: 1000px;
-    padding: 8px;
-    padding-left: 14px;
-    margin-top: 7%;
-    text-decoration: none;
+  border-radius: 1000px;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  width: 50%;
+  margin-left: 2%;
+  border-radius: 1000px;
+  padding: 8px;
+  padding-left: 14px;
+  margin-top: 7%;
+  text-decoration: none;
 }
 .nav-image{
+<<<<<<< HEAD
     width: 40px;
     height: 40px;
     display: inline-block;
@@ -121,67 +142,58 @@
     position: relative;
     border-radius: 50%;
     vertical-align: middle;
+=======
+  width: 40px;
+  height: 40px;
+  display: inline-block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  border-radius: 50%;
+  vertical-align: middle;
+>>>>>>> upstream/master
 }
 .profile-text{
-    font-size: 25px;
-    padding-top: 8px;
-    padding-left: 11px;
-    color: white;
+  font-size: 25px;
+  padding-top: 8px;
+  padding-left: 11px;
+  color: white;
+  transition: 0.2s;
 }
 .image-profile-button-wrapper:hover{
-    background-color: rgb(29, 47, 66);
-    cursor: pointer;
+  background-color: rgb(29, 47, 66);
+  cursor: pointer;
 }
-.image-profile-button-wrapper:hover .profile-text{
+.logo-wrapper:hover .profile-text, .logo-wrapper:hover .logout-button-text-icon, .logo-wrapper:hover .logout-button-text {
   background-color: rgb(29, 47, 66);
   cursor: pointer;
   color: rgb(29, 161, 242); 
 }
 .logout-button{
-    display: flex;
-    width: 53%;
-    margin-left: 2%;
-    border-radius: 1000px;
-    padding: 8px;
-    margin-top: 7%;
-    text-decoration: none;
+  display: flex;
+  width: 53%;
+  margin-left: 2%;
+  border-radius: 1000px;
+  padding: 8px;
+  margin-top: 7%;
+  text-decoration: none;
 }
 
 .fa-sign-in-alt{
   color: white;
   font-size: 35px;
-  padding-left: 11px
+  padding-left: 11px;
+  transition: 0.2s;
 }
 .logout-button-text{
   font-size: 25px;
   padding-top: 8px;
   padding-left: 11px;
   color: white;
+  transition: 0.2s;
 }
 
 .logout-button:hover {
   background-color: rgb(29, 47, 66);
 }
-
-/* .logout-button:hover .fa-sign-in-alt, .logout-button:hover .logout-button-text{
-  background-color: rgb(29, 47, 66);
-  cursor: pointer;
-  color: rgb(29, 161, 242);
-}
-
-.logout-button {
-  color: white;
-  font-weight: bold;
-  background-color: rgb(29, 161, 242);
-  border: none;
-  border-radius: 20px;
-  width: 70%;
-  height: 40px;
-  cursor: pointer;
-  margin: 12px; 
-}
-
-.logout-button:hover {
-  background-color: rgb(26, 145, 218);
-} */
-
