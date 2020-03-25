@@ -33,6 +33,7 @@
   padding: 8px;
   text-decoration: none;
   width: 150px;
+  transition: 0.2s;
 }
 
 .nav-frog-logo:hover{
@@ -58,13 +59,15 @@
   padding-top: 8px;
   padding-left: 10px;
   color: white;
+  transition: 0.2s;
 }
 .logo-wrapper:hover .nav-home-text, .logo-wrapper:hover .home-text{
   color: rgb(29, 161, 242) !important; 
 }
 .nav-home-text{
-    font-weight: 900;
-    color: white;
+  font-weight: 900;
+  color: white;
+  transition: 0.2s;
 }
 .tweet-button{
     color: white;
@@ -77,6 +80,7 @@
     margin-top: 30px;
     margin-left: 12px;
     cursor: pointer;
+    transition: 0.2s;
 }
 .tweet-button:hover{
     background-color: rgb(26, 145, 218);
@@ -85,62 +89,65 @@
   color: white;
   display: flex;
   width: 50%;
-    margin-left: 2%;
-    border-radius: 1000px;
-    padding: 8px;
-    margin-top: 7%;
-    text-decoration: none;
+  margin-left: 2%;
+  border-radius: 1000px;
+  padding: 8px;
+  margin-top: 7%;
+  text-decoration: none;
 }
 .edit-profile-button:hover{
-      background-color: rgb(29, 47, 66);
-      cursor: pointer;
+  background-color: rgb(29, 47, 66);
+  cursor: pointer;
 }
 .logo-wrapper:hover .nav-edit-logo, .logo-wrapper:hover .edit-profile-text {
-    background-color: rgb(29, 47, 66);
-    cursor: pointer;
-     color: rgb(29, 161, 242); 
+  background-color: rgb(29, 47, 66);
+  cursor: pointer;
+  color: rgb(29, 161, 242); 
 }
 .nav-edit-logo{
   color: white;
   font-size: 35px;
   padding-left: 11px;
+  transition: 0.2s;
 }
 .edit-profile-text{
-    font-size: 25px;
-    padding-top: 8px;
-    padding-left: 11px;
-    color: white;
+  font-size: 25px;
+  padding-top: 8px;
+  padding-left: 11px;
+  color: white;
+  transition: 0.2s;
 }
 
 .image-profile-button-wrapper{
-    border-radius: 1000px;
-    color: white;
-    display: flex;
-    flex-direction: row;
-    width: 50%;
-    margin-left: 2%;
-    border-radius: 1000px;
-    padding: 8px;
-    padding-left: 14px;
-    margin-top: 7%;
-    text-decoration: none;
+  border-radius: 1000px;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  width: 50%;
+  margin-left: 2%;
+  border-radius: 1000px;
+  padding: 8px;
+  padding-left: 14px;
+  margin-top: 7%;
+  text-decoration: none;
 }
 .nav-image{
-    width: 40px;
-    height: 40px;
-    display: inline-block;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: relative;
-    border-radius: 50%;
-    vertical-align: middle;
+  width: 40px;
+  height: 40px;
+  display: inline-block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  border-radius: 50%;
+  vertical-align: middle;
 }
 .profile-text{
     font-size: 25px;
     padding-top: 8px;
     padding-left: 11px;
     color: white;
+    transition: 0.2s;
 }
 .image-profile-button-wrapper:hover{
     background-color: rgb(29, 47, 66);
@@ -164,38 +171,17 @@
 .fa-sign-in-alt{
   color: white;
   font-size: 35px;
-  padding-left: 11px
+  padding-left: 11px;
+  transition: 0.2s;
 }
 .logout-button-text{
   font-size: 25px;
   padding-top: 8px;
   padding-left: 11px;
   color: white;
+  transition: 0.2s;
 }
 
 .logout-button:hover {
   background-color: rgb(29, 47, 66);
 }
-
-/* .logout-button:hover .fa-sign-in-alt, .logout-button:hover .logout-button-text{
-  background-color: rgb(29, 47, 66);
-  cursor: pointer;
-  color: rgb(29, 161, 242);
-}
-
-.logout-button {
-  color: white;
-  font-weight: bold;
-  background-color: rgb(29, 161, 242);
-  border: none;
-  border-radius: 20px;
-  width: 70%;
-  height: 40px;
-  cursor: pointer;
-  margin: 12px; 
-}
-
-.logout-button:hover {
-  background-color: rgb(26, 145, 218);
-} */
-

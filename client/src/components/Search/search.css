@@ -31,7 +31,7 @@
   font-size: 18px; 
   z-index: 2; 
   left: 18px; 
-  top: 9px; 
+  top: 12px; 
 }
 .search-input:focus {
   transition: .15s ease; 

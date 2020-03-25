@@ -91,6 +91,7 @@
   font-size: 25px;
   cursor: pointer;
   color: rgba(29,161,242,1.00);
+  transition: 0.2s;
 }
 
 .create-post-label:hover {
@@ -112,6 +113,7 @@
   width: 80px;
   height: 40px;
   cursor: pointer;
+  transition: 0.2s;
 }
 
 .create-post-submit:hover {
