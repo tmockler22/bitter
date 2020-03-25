@@ -1,6 +1,8 @@
 .splash-main {
   display: flex;
   height: 100vh;
+  width: 100vw;
+  min-width: 800px;
 }
 
 .splash-left {
@@ -27,6 +29,7 @@
 }
 
 .splash-right {
+  height: 100vh;
   width: 50%;
   display: flex;
   flex-direction: column;
@@ -72,8 +75,9 @@
   border: none;
   border-radius: 20px;
   width: 345px;
-  height: 40px;
+  min-height: 40px;
   cursor: pointer;
+  transition: .2s;
 }
 
 .sign-up:hover {

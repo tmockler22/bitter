@@ -129,17 +129,20 @@ export const FETCH_USER = gql`
       favorited_posts {
         _id
       }
-      rebited_posts{
+      rebited_posts {
         _id
-        body
-        tags
-      }
-      posts {
-          _id 
+        timestamp
+        user {
+          _id
+          username
+          fullname
+          image
+        }
+        original {
+          _id
           body
           image
           tags
-          timestamp
           user {
             _id
             username
@@ -149,10 +152,30 @@ export const FETCH_USER = gql`
           favorites {
             _id
           }
-          rebits{
+          rebits {
             _id
           }
         }
+      }
+      posts {
+        _id 
+        body
+        image
+        tags
+        timestamp
+        user {
+          _id
+          username
+          fullname
+          image
+        }
+        favorites {
+          _id
+        }
+        rebits{
+          _id
+        }
+      }
       follows {
         _id
         posts {

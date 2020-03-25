@@ -4,10 +4,12 @@ const { GraphQLObjectType, GraphQLList, GraphQLID, GraphQLNonNull, GraphQLString
 require("../../models/index");
 const UserType = require("./user_type");
 const PostType = require("./post_type");
+const RebitType = require("./rebit_type");
 const TagType = require("./tag_type");
 const Tag = mongoose.model("tags");
 const User = mongoose.model("users");
 const Post = mongoose.model("posts");
+const Rebit = mongoose.model("rebits");
 
 const RootQueryType = new GraphQLObjectType({
   name: "RootQueryType",
@@ -66,6 +68,19 @@ const RootQueryType = new GraphQLObjectType({
       args: { _id: { type: new GraphQLNonNull(GraphQLID) } },
       resolve(_, args) {
         return Post.findById(args._id);
+      }
+    },
+    rebits: {
+      type: new GraphQLList(RebitType),
+      resolve() {
+        return Rebit.find({});
+      }
+    },
+    rebit: {
+      type: RebitType,
+      args: { _id: { type: new GraphQLNonNull(GraphQLID) } },
+      resolve(_, args) {
+        return Rebit.findById(args._id);
       }
     }
   })

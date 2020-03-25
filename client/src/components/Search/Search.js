@@ -69,7 +69,7 @@ class Search extends React.Component {
   render() {
     return (
       <div className="search-bar">
-        <i className="fas fa-search search-glass"></i>
+
         <input
           className='search-input'
           placeholder='Search Bitter'
@@ -77,6 +77,7 @@ class Search extends React.Component {
           onChange={(e) => this.update(e)}
         />
         {this.getResults()}
+        <i className="fas fa-search search-glass"></i>
       </div>
     )
   };

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PostIndex from "../posts/PostIndex";
 import CreatePost from "../posts/CreatePost";
-import Search from "../Search/Search";
 import { FETCH_USER } from "../../graphql/queries";
 import { Query } from "react-apollo";
 import { currentUser } from "../../util/util";
@@ -21,7 +20,6 @@ class HomeProfile extends Component {
               <div className="profile-container">
                 <div className="profile-header">
                   <div className="profile-title">Home
-                  <Search />
                 </div>
                 </div>
                 <div className="profile-container-body">

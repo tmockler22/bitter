@@ -67,7 +67,7 @@ const UserType = new GraphQLObjectType({
       }
     },
     rebited_posts: {
-      type: new GraphQLList(require("./post_type")),
+      type: new GraphQLList(require("./rebit_type")),
       resolve(parentValue){
         return User.findRebits(parentValue._id)
       }

@@ -57,7 +57,7 @@ const UserSchema = new Schema({
   rebited_posts:[
     {
       type: Schema.Types.ObjectId,
-      ref: "posts"
+      ref: "rebits"
     }
   ]
 });
@@ -202,54 +202,55 @@ UserSchema.statics.findRebits = function (userId) {
     .then(user => user.rebited_posts);
 };
 
-UserSchema.statics.alreadyRebited = function(userId, postId){
+UserSchema.statics.alreadyRebited = function(userId, rebitId){
   const User = mongoose.model("users");
 
   return User.findById(userId).then(user => {
-    const newPostString = JSON.stringify(postId); 
+    const rebitIdString = JSON.stringify(rebitId); 
     for (let index = 0; index < user.rebited_posts.length; index++) {
-      const rebit = user.rebited_posts[index];
+      const rebit = user.rebited_posts[index]._id;
       const rebitString = JSON.stringify(rebit)
-
-      if (rebitString === newPostString) {
+      if (rebitString === rebitIdString) {
         return true;
       }
     }
-    return false;
+    return true;
   });
 }
 
-UserSchema.statics.addRebit = (userId, postId) => {
+UserSchema.statics.addRebit = (rebitId, userId, postId) => {
   const User = mongoose.model("users");
   const Post = mongoose.model("posts");
-
+  const Rebit = mongoose.model("rebits");
   return User.findById(userId).then(user => {
     return Post.findById(postId).then(post => {
-      user.rebited_posts.push(postId);
-      user.posts.push(post)
-      post.rebits.push(userId);
-      return Promise.all([user.save(), post.save()]).then(
-        ([user, post]) => (post, user)
-      );
+      return Rebit.findById(rebitId).then(rebit => {
+        user.rebited_posts.push(rebit);
+        post.rebits.push(userId);
+        return Promise.all([post.save(), rebit.save(), user.save()]).then(
+          ([user, post, rebit]) => (rebit, post)
+        );
+      })
     });
   });
 };
 
 
 
-UserSchema.statics.removeRebit = (userId, postId) => {
+UserSchema.statics.removeRebit = (userId, rebitId, postId) => {
   const User = mongoose.model("users");
-  const Post = mongoose.model("posts")
+  const Post = mongoose.model("posts");
+  const Rebit = mongoose.model("rebits")
 
   return User.findById(userId).then(user => {
     return Post.findById(postId).then(post => {
-      user.rebited_posts.remove(post);
-      user.posts.remove(post);
-      post.rebits.remove(user);
-      return Promise.all([user.save(), post.save()]).then(
-        ([user, post]) => post
-      );
+      return Rebit.findById(rebitId).then(rebit => {
+        user.rebited_posts.remove(rebit);
+        post.rebits.remove(userId);
+        return Promise.all([user.save(), post.save()]).then(
+          ([user, post, rebit]) => (rebit))
+      });
     });
   });
-};
+}
 module.exports = mongoose.model("users", UserSchema);

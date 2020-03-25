@@ -1,5 +1,6 @@
 .post-item-container {
   border-bottom: 1px solid rgb(56, 68, 77);
+  transition: 0.2s;
 }
 
 .post-item-container:hover {
@@ -9,6 +10,11 @@
 .post-item-link {
   cursor: pointer;
   text-decoration: none;
+}
+
+.post-item-link:hover {
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 .post-item-profile-picture {
@@ -30,6 +36,16 @@
   bottom: 30px;
 }
 
+.post-rebit-icon {
+  margin-right: 10px;
+}
+
+.post-item-rebitted-by{
+  font-size: 14px;
+  margin-left: 50px;
+  padding-top: 10px;
+}
+
 .post-item-fullname {
   color: white;
   font-weight: bold;
@@ -37,6 +53,7 @@
 
 .post-item-body {
   position: relative;
+  width: 84%;
   bottom: 25px;
   left: 80px;
   color: white;

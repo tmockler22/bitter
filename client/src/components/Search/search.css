@@ -1,21 +1,26 @@
 .search-bar {
   position: relative;
+  top: 20px;
   z-index: 1; 
 }
 
 .search-results {
   display: none;
   position: absolute;
-  width: 382px; 
+  left: 30px;
+  width: 300px; 
   box-shadow: rgba(136, 153, 166, 0.2) 0px 0px 15px, rgba(136, 153, 166, 0.15) 0px 0px 3px 1px;
   border-radius: 5px;
   border: 1px solid rgb(56, 68, 77); 
   overflow: hidden;
+  overflow-y: scroll;
+  max-height: 80vh;
 }
 
 .search-input {
   z-index: 0; 
-  width: 280px; 
+  width: 200px; 
+  margin-left: 10%;
   padding: 8px 50px; 
   border: 1px solid transparent; 
   border-radius: 20px; 
@@ -24,17 +29,28 @@
 }
 
 .search-glass {
+  margin-left: 10%;
   position: absolute; 
   color: gray;
   font-size: 18px; 
   z-index: 2; 
   left: 18px; 
-  top: 9px; 
+  top: 10px; 
 }
+
 .search-input:focus {
   transition: .15s ease; 
-  border-color: lightblue; 
+  border-color: rgb(29, 161, 242); 
   background-color: rgb(21, 32, 43);
+  color: white;
+}
+
+.search-input:focus ~ .search-glass {
+  color: rgb(29, 161, 242);
+}
+
+.search-input:focus.search-input::placeholder {
+  color: white;
 }
 
 .search-input:focus + .search-results, .search-results:active {
@@ -48,26 +64,31 @@
   background: rgb(21, 32, 43); 
   margin-top: 4px; 
   width: 382px; 
-  padding: 8px 0px; 
+  padding: 8px 0px 0px 0px; 
   border-bottom: 8px solid rgb(56, 68, 77); 
-  overflow: hidden;
   z-index: 20; 
+  min-height: fit-content;
 }
 
 .search-hashtag {
-  padding: 12px; 
+  padding: 18px 12px; 
   color: white;
+  font-size: 16px;
 }
 
 .user-search-list {
+  min-height: fit-content;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
   background: rgb(21, 32, 43); 
   width: 382px; 
-  padding: 8px 0px; 
+  padding: 8px 0px 0px 0px; 
   border: 1px solid rgb(25, 43, 58); 
-  overflow: hidden;
   z-index: 20;
+}
+
+.search-item {
+  border-bottom: 1px solid rgb(56, 68, 77); 
 }
 
 .search-item:hover {
