@@ -11,11 +11,7 @@ const HashTagIndex = (props) => {
     <Query query={FETCH_HASHTAG} variables={{ tag: searchTerm }}>
       {({ loading, error, data }) => {
         if (loading) return "Loading...";
-<<<<<<< HEAD
-        if (error) return <div>{error.message}</div>;
-=======
         if (error) window.location.reload();
->>>>>>> upstream/master
         let posts;
         posts = data.tag.posts;
         return (

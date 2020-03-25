@@ -13,12 +13,7 @@ import EditProfile from "./profile/editProfile";
 import Trending from "./trending/trending";
 const App = () => {
   return (
-<<<<<<< HEAD
-    <div>
-      <Route exact path="/hashtag/:hashtag" component={HashTagIndex}/>
-=======
     <div className="main-container">
->>>>>>> upstream/master
       <Route exact path="/search" component={Search} />
       <ProtectedRoute path="/" component={Nav} routeType="protected" /> 
       <Switch>
