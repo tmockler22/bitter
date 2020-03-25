@@ -14,7 +14,7 @@ class Trending extends React.Component {
   }
 
 
-  hande
+  
 
 
   render() {
@@ -34,7 +34,46 @@ class Trending extends React.Component {
                  hashtag.push(sortedHashes[i].tag);
                }
 
+
                let topHashtags = hashtag.slice(0,3);
+
+               let tags = Object.values(data.tags)
+               let users = [];
+               for (let i = 0; i < tags.length; i++) {
+                 for(let j = 0; j < 1; j++){
+                 if(tags[i].posts[j].user.username){
+                   users.push(tags[i].posts[j].user.username)
+                  }
+                }
+               }
+
+
+               let uniqueUsers = [];
+               users.forEach(user =>{
+                 if(!uniqueUsers.includes(user)){
+                   uniqueUsers.push(user)
+                 }
+               })
+
+                 let counter = uniqueUsers.length;
+
+                 while (counter > 0) {
+                   // Pick a random index
+                   let index = Math.floor(Math.random() * counter);
+
+                   // Decrease counter by 1
+                   counter--;
+
+                   // And swap the last element with it
+                   let temp = uniqueUsers[counter];
+                   uniqueUsers[counter] = uniqueUsers[index];
+                   uniqueUsers[index] = temp;
+                 }
+
+                // return uniqueUsers;
+
+
+
                 return (
                   <div className="trending-container">
                     <div className="trends-for-you-container">
@@ -54,17 +93,16 @@ class Trending extends React.Component {
                             }}> 
                               {tag}
                             </div>
-                              // <Link
-                              //   to={`hashtag/${tag.slice(1)}`}
-                              //   className="top-tag-link"
-                              // >
-                              //   {tag}
-                              // </Link>
                             ))}
                           </li>
                         </ul>
                       </div>
                     </div>
+                    <ul>
+                      {uniqueUsers.map(user => {
+                        return <li>{user}</li>
+                      })}
+                    </ul>
                   </div>
                 );
               } else {

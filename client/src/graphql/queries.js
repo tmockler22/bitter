@@ -26,6 +26,9 @@ export const FETCH_HASHTAGS = gql`
     tag
     posts{
       body
+      user{
+        username
+      }
     }
   }
 }
@@ -101,7 +104,15 @@ export const IS_LOGGED_IN = gql`
       isLoggedIn @client
     }
   `;
+export const FETCH_USERS = gql`
+    {
+      users{
+        _id
+        username
+      }
+    }
 
+`
 export const FETCH_USER = gql`
   query FetchUser($id: ID!) {
     user(_id: $id) {

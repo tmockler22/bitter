@@ -9,7 +9,7 @@ class Follow extends Component {
     super(props);
     this.state = {
       id: currentUser().id,
-      newFollow: props.params.match.params.id
+      
     }
     this.hasFollowed = this.hasFollowed.bind(this);
   }
