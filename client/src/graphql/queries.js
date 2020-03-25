@@ -27,12 +27,15 @@ export const FETCH_HASHTAGS = gql`
     posts{
       body
       user{
+        _id
         username
+        fullname
+        image
       }
     }
   }
 }
-`
+`;
 
 export const FETCH_POST = gql`
   query FetchPost($id: ID!) {
