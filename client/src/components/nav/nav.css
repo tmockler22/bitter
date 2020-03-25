@@ -70,20 +70,20 @@
   transition: 0.2s;
 }
 .tweet-button{
-    color: white;
-    font-weight: bold;
-    background-color: rgb(29, 161, 242);
-    border: none;
-    border-radius: 20px;
-    width: 160px;
-    height: 40px;
-    margin-top: 30px;
-    margin-left: 12px;
-    cursor: pointer;
-    transition: 0.2s;
+  color: white;
+  font-weight: bold;
+  background-color: rgb(29, 161, 242);
+  border: none;
+  border-radius: 20px;
+  width: 160px;
+  height: 40px;
+  margin-top: 30px;
+  margin-left: 12px;
+  cursor: pointer;
+  transition: 0.2s;
 }
 .tweet-button:hover{
-    background-color: rgb(26, 145, 218);
+  background-color: rgb(26, 145, 218);
 }
 .edit-profile-button{
   color: white;
@@ -143,15 +143,15 @@
   vertical-align: middle;
 }
 .profile-text{
-    font-size: 25px;
-    padding-top: 8px;
-    padding-left: 11px;
-    color: white;
-    transition: 0.2s;
+  font-size: 25px;
+  padding-top: 8px;
+  padding-left: 11px;
+  color: white;
+  transition: 0.2s;
 }
 .image-profile-button-wrapper:hover{
-    background-color: rgb(29, 47, 66);
-    cursor: pointer;
+  background-color: rgb(29, 47, 66);
+  cursor: pointer;
 }
 .logo-wrapper:hover .profile-text, .logo-wrapper:hover .logout-button-text-icon, .logo-wrapper:hover .logout-button-text {
   background-color: rgb(29, 47, 66);
@@ -159,13 +159,13 @@
   color: rgb(29, 161, 242); 
 }
 .logout-button{
-    display: flex;
-    width: 53%;
-    margin-left: 2%;
-    border-radius: 1000px;
-    padding: 8px;
-    margin-top: 7%;
-    text-decoration: none;
+  display: flex;
+  width: 53%;
+  margin-left: 2%;
+  border-radius: 1000px;
+  padding: 8px;
+  margin-top: 7%;
+  text-decoration: none;
 }
 
 .fa-sign-in-alt{
