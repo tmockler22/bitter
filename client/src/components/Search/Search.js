@@ -69,13 +69,14 @@ class Search extends React.Component {
   render() {
     return (
       <div className="search-bar">
-        <i className="fas fa-search search-glass"></i>
+
         <input
           className='search-input'
           placeholder='Search Bitter'
           value={this.state.search}
           onChange={(e) => this.update(e)}
         />
+        <i className="fas fa-search search-glass"></i>
         {this.getResults()}
       </div>
     )
