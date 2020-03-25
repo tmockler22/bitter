@@ -5,6 +5,7 @@ import {FETCH_HASHTAGS} from '../../graphql/queries'
 import {Link, } from 'react-router-dom';
 import { currentUser } from "../../util/util";
 import "./trending.css";
+import Search from "../Search/Search";
 
 class Trending extends React.Component {
   constructor(props) {
@@ -71,6 +72,7 @@ class Trending extends React.Component {
                 let threeUniqueUsers = uniqueUsers.slice(0,4);
                 return (
                   <div className="trending-container">
+                    <Search />
                     <div className="trends-for-you-container">
                       <h1 className="trends-for-you-title">Trends For You</h1>
                       <div className="top-hash-tags-container">

@@ -15,7 +15,6 @@ const App = () => {
   return (
     <div className="main-container">
       <Route exact path="/search" component={Search} />
-      <ProtectedRoute path="/" component={Trending} routeType="protected"/>
       <ProtectedRoute path="/" component={Nav} routeType="protected" /> 
       <Switch>
         <AuthRoute exact path="/login" component={Login} routeType="auth" />
@@ -26,6 +25,7 @@ const App = () => {
         <ProtectedRoute exact path="/editprofile/:id" component={EditProfile} routeType="protected" />
         <ProtectedRoute path="/home" component={HomeProfile} routeType="protected" />
       </Switch>
+      <ProtectedRoute path="/" component={Trending} routeType="protected"/>
     </div>
   );
 };
