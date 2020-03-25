@@ -60,20 +60,12 @@ class Nav extends React.Component {
             {modal ? (
               <Modal history={this.props.history} user={data.user} modal={modal} />
             ) : null}
-<<<<<<< HEAD
-            <div className="logo container">
-=======
             <div className="logo-container">
->>>>>>> upstream/master
               <div
                 className="nav-frog-logo"
                 onClick={this.handleFrogLogoOrHomeLogoClick}
               ></div>
-<<<<<<< HEAD
-              <div className="nav-home-logo-wrapper">
-=======
               <div className="logo-wrapper">
->>>>>>> upstream/master
                 <div
                   className="nav-home-logo"
                   onClick={this.handleFrogLogoOrHomeLogoClick}
@@ -83,11 +75,7 @@ class Nav extends React.Component {
                 </div>
               </div>
               <div
-<<<<<<< HEAD
-                className="edit-profile-button"
-=======
                 className="logo-wrapper"
->>>>>>> upstream/master
                 onClick={() => { this.setModal("edit-profile") }}
               >
                 <i
@@ -96,32 +84,17 @@ class Nav extends React.Component {
                 ></i>
                 <div className="edit-profile-text">Edit</div>
               </div>
-<<<<<<< HEAD
-              <div>
-                <div className="image-profile-button-wrapper" onClick={this.handleProfileButtonClick}>
-                    {data.user.image ? <div className="nav-image" style={{ backgroundImage: `url(${data.user.image})` }}></div> :
-                      <div className="nav-image default-profile-picture-modal"></div>}
-                    <div className="profile-text">
-                      Profile
-                    </div>
-                </div>
-=======
                 <div className="logo-wrapper" onClick={this.handleProfileButtonClick}>
                   {data.user.image ? <div className="nav-image" style={{ backgroundImage: `url(${data.user.image})` }}></div> :
                     <div className="nav-image default-profile-picture-modal"></div>}
                   <div className="profile-text">
                     Profile
                   </div>
->>>>>>> upstream/master
               </div>
                   <ApolloConsumer>
                     {client => (
               <div
-<<<<<<< HEAD
-                className="logout-button"
-=======
                 className="logo-wrapper"
->>>>>>> upstream/master
                 onClick={e => {
                   e.preventDefault();
                   localStorage.removeItem("auth-token");
@@ -130,11 +103,7 @@ class Nav extends React.Component {
                   this.props.history.push("/");
                 }}
               >
-<<<<<<< HEAD
-                <i className="fas fa-sign-in-alt"></i>
-=======
               <i className="fas fa-sign-in-alt logout-button-text-icon"></i>
->>>>>>> upstream/master
                 <div className="logout-button-text">Logout</div>
               </div>
                     )}
