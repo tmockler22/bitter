@@ -36,10 +36,7 @@ class Nav extends React.Component {
 
   setModal(modal) {
     localStorage.setItem("modal", `${modal}`);;
-<<<<<<< HEAD
-=======
     this.forceUpdate()
->>>>>>> upstream/master
   }
 
   handleProfileButtonClick(e) {
