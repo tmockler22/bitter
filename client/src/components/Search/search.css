@@ -17,6 +17,10 @@
   max-height: 80vh;
 }
 
+.search-results::-webkit-scrollbar {
+  display: none;
+}
+
 .search-input {
   z-index: 0; 
   width: 200px; 

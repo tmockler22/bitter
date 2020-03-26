@@ -17,6 +17,11 @@
   border-radius: 15px;
 }
 
+.edit-profile-form::-webkit-scrollbar {
+  display: none;
+}
+
+
 .edit-profile-form-container {
   width: 100%;
   display: flex;
