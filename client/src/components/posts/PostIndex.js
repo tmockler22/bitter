@@ -54,7 +54,7 @@ const PostIndex = (props) => {
         })
 
           return (
-          <div className="post-index">
+          <div>
             {sortedPosts.map(post => 
             <PostIndexItem 
               key={post._id} 

@@ -17,7 +17,7 @@
 }
 
 .profile-container::-webkit-scrollbar {
-  width: 1em;
+  display: none;
 }
 
 .profile-title {
