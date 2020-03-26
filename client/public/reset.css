@@ -29,11 +29,6 @@ body {
     background-color:rgb(21, 32, 43);
 }
 
-::-webkit-scrollbar-track {
-    background-color:rgb(21, 32, 43);
-    color:rgb(21, 32, 43);
-}
-
 /* make sure to set some focus styles for accessibility */
 :focus {
     outline: 0;

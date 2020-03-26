@@ -16,6 +16,10 @@
   border-top: none;
 }
 
+.profile-container::-webkit-scrollbar {
+  width: 1em;
+}
+
 .profile-title {
   display: flex; 
   justify-content: space-between;

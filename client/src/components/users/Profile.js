@@ -74,9 +74,9 @@ class UserProfile extends Component {
                       )
                     }}
                   </Query>)}
-                <div className="post-index-container">
-                  <PostIndex params={this.props} />
-                </div>
+                  <div className="post-index-container">
+                    <PostIndex params={this.props} />
+                  </div>
               </div>
             </div>
           );
