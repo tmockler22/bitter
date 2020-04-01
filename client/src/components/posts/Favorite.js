@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Mutation } from "react-apollo";
 import { FAVORITE, UNFAVORITE} from "../../graphql/mutations";
+import { Query } from "react-apollo";
 import { currentUser } from "../../util/util";
 import { FETCH_USER } from "../../graphql/queries";
 import merge from 'lodash.merge';
@@ -22,21 +23,25 @@ class Favorite extends Component {
     try {
       user = cache.readQuery({ query: FETCH_USER, variables: { id: currentUserId } });
     } catch {
-      return;
+      window.location.reload()
     }
-
+  
     if (user && data.favorite) {
-      
       let newObj = merge({}, user.user);
-      
       let newPost; 
       let posts = newObj["posts"];
+      posts = posts.concat(newObj.rebited_posts)
       for (let index = 0; index < posts.length; index++) {
         const post = posts[index];
         if (post._id === this.state.postId) {
           post["favorites"] = post["favorites"].concat(data.favorite)
           newPost = post;
           newObj["posts"][index] = newPost
+        }
+        if (post.original && post.original._id === this.state.postId) {
+          post.original["favorites"] = post.original["favorites"].concat(data.favorite)
+          newPost = post.original;
+          newObj.rebited_posts[index - newObj.posts.length].original = newPost
         }
       }
       cache.writeQuery({
@@ -51,12 +56,18 @@ class Favorite extends Component {
 
       let newPost;
       let posts = newObj["posts"];
+      posts = posts.concat(newObj.rebited_posts)
       for (let index = 0; index < posts.length; index++) {
-        const el = posts[index];
-        if (el._id === this.state.postId) {
-          el["favorites"] = el["favorites"].filter(fav => fav._id === data.unfavorite._id);
-          newPost = el;
+        const post = posts[index];
+        if (post._id === this.state.postId) {
+          post["favorites"] = post["favorites"].filter(fav => fav._id !== this.state.userId);
+          newPost = post;
           newObj["posts"][index] = newPost
+        }
+        if (post.original && post.original._id === this.state.postId) {
+          post.original["favorites"] = post["favorites"].filter(fav => fav._id !== this.state.userId);
+          newPost = post.original;
+          newObj.rebited_posts[index - newObj.posts.length].original = newPost
         }
       }
       cache.writeQuery({
@@ -75,9 +86,6 @@ class Favorite extends Component {
         return (<Mutation
           mutation={UNFAVORITE}
           onCompleted={data => {
-            // if (data.unfavorite) {
-            //   const { id } = data.unfavorite;
-            // }
           }}
           update={(client, data) => this.updateCache(client, data)}
         >
@@ -102,9 +110,6 @@ class Favorite extends Component {
     return (<Mutation
       mutation={FAVORITE}
       onCompleted={data => {
-        // if (data.favorite) {
-        //   const { id } = data.favorite;
-        // }
       }}
       update={(client, data) => this.updateCache(client, data)}
     >
