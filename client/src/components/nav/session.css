@@ -20,6 +20,11 @@
   border-radius: 15px;
 }
 
+.session-form::-webkit-scrollbar {
+  display: none;
+}
+
+
 .session-form-container {
   width: 100%;
   display: flex;
