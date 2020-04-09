@@ -57,7 +57,7 @@ const PostIndex = (props) => {
           <div>
             {sortedPosts.map(post => 
             <PostIndexItem 
-              key={post._id} 
+              key={`${post._id}` + `${post.rebits}`} 
               userId={userId} 
               post={post} 
               params={props} 

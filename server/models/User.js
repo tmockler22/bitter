@@ -248,7 +248,7 @@ UserSchema.statics.removeRebit = (userId, rebitId, postId) => {
         user.rebited_posts.remove(rebit);
         post.rebits.remove(userId);
         return Promise.all([user.save(), post.save()]).then(
-          ([user, post, rebit]) => (rebit))
+          ([user, post, rebit]) => (post))
       });
     });
   });
