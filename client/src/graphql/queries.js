@@ -116,6 +116,20 @@ export const FETCH_USERS = gql`
     }
 
 `
+export const FETCH_CURRENT_USER = gql`
+  query FetchUser($id: ID!) {
+    user(_id: $id) {
+      _id
+      username
+      fullname
+      email
+      bio
+      image
+      cover_image
+    }
+  }
+`;
+
 export const FETCH_USER = gql`
   query FetchUser($id: ID!) {
     user(_id: $id) {

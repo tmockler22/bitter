@@ -97,7 +97,7 @@ class Trending extends React.Component {
                       <div className="trends-for-you-container">
                         <h1 className="trends-for-you-title">Top Users</h1>
                         <ul>
-                          {threeUniqueUsers.map(user => {
+                          {threeUniqueUsers.map((user, idx) => {
                               return (
                                 <div className="top-users-wrapper">
                                 <Link className="top-users-link" 
