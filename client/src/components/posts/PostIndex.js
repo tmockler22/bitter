@@ -1,6 +1,6 @@
 import React from "react";
 import { Query } from "react-apollo";
-import { FETCH_USER } from "../../graphql/queries";
+import { FETCH_USER_POSTS } from "../../graphql/queries";
 import { currentUser } from "../../util/util";
 import PostIndexItem from './PostIndexItem';
 
@@ -22,7 +22,7 @@ const PostIndex = (props) => {
   }
 
   return !userId ? <div></div> : (
-    <Query query={FETCH_USER} variables={{ id: userId }}>
+    <Query query={FETCH_USER_POSTS} variables={{ id: userId }}>
       {({ loading, error, data }) => {
         if (loading) return "Loading...";
         if (error) return `Error! ${error.message}`;

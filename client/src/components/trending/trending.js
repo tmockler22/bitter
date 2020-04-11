@@ -1,7 +1,7 @@
 import React from "react";
 import { Query } from "react-apollo";
 import { ApolloConsumer } from "react-apollo";
-import {FETCH_HASHTAGS} from '../../graphql/queries'
+import {FETCH_TRENDING_HASHTAGS} from '../../graphql/queries'
 import {Link, } from 'react-router-dom';
 import { currentUser } from "../../util/util";
 import "./trending.css";
@@ -19,7 +19,7 @@ class Trending extends React.Component {
     return (
       <ApolloConsumer>
         {client => (
-          <Query query={FETCH_HASHTAGS}>
+          <Query query={FETCH_TRENDING_HASHTAGS}>
             {({ data }) => {
               if (data) {
                let hashtag = []
@@ -97,7 +97,7 @@ class Trending extends React.Component {
                       <div className="trends-for-you-container">
                         <h1 className="trends-for-you-title">Top Users</h1>
                         <ul>
-                          {threeUniqueUsers.map((user, idx) => {
+                          {threeUniqueUsers.map(user => {
                               return (
                                 <div className="top-users-wrapper">
                                 <Link className="top-users-link" 
