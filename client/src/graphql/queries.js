@@ -144,29 +144,13 @@ export const FETCH_USERS = gql`
     }
 
 `
-export const FETCH_CURRENT_USER = gql`
-  query FetchUser($id: ID!) {
-    user(_id: $id) {
-      _id
-      username
-      fullname
-      email
-      bio
-      image
-      cover_image
-      posts {
-        _id
-      }
-      follows {
-        _id
-      }
-    }
-  }
-`;
 
 export const FETCH_USER_PROFILE = gql`
   query FetchUser($id: ID!) {
     user(_id: $id) {
+      favorited_posts {
+        _id
+      }
       _id
       username
       fullname

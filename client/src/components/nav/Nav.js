@@ -4,7 +4,7 @@ import { ApolloConsumer } from "react-apollo";
 import "./nav.css";
 import Modal from "../modal/modal";
 import {currentUser} from "../../util/util";
-import { FETCH_CURRENT_USER } from "../../graphql/queries";
+import { FETCH_USER_PROFILE } from "../../graphql/queries";
 
 class Nav extends React.Component {
   constructor(props) {
@@ -51,7 +51,7 @@ class Nav extends React.Component {
     let modal = localStorage.getItem("modal");
       if (this.state.userId) {
         return (
-          <Query query={FETCH_CURRENT_USER} variables={{ id: this.state.userId }}>
+          <Query query={FETCH_USER_PROFILE} variables={{ id: this.state.userId }}>
             {({ loading, error, data }) => {
               if (loading) return "Loading...";
               if (error) return `Error! ${error.message}`;
