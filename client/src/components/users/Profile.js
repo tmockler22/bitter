@@ -3,7 +3,7 @@ import { Query } from "react-apollo";
 import { currentUser } from "../../util/util";
 import Follow from "./Follow";
 import PostIndex from "../posts/PostIndex";
-import { FETCH_USER } from "../../graphql/queries";
+import { FETCH_USER_PROFILE } from "../../graphql/queries";
 import Modal from "../modal/modal"
 import "./profile.css"
 import "./home.css";
@@ -31,9 +31,9 @@ class UserProfile extends Component {
   render() {
     let modal = localStorage.getItem("modal")
     return (
-      <Query query={FETCH_USER} variables={{ id: this.state.newFollow }}>
+      <Query query={FETCH_USER_PROFILE} variables={{ id: this.state.newFollow }}>
         {({ loading, error, data }) => {
-          if (loading) return "Loading...";
+          if (loading) return <div style={{ minWidth: '600px' }}>Loading...</div>;
           if (error) return `Error! ${error.message}`;
 
           return (
@@ -64,7 +64,7 @@ class UserProfile extends Component {
                       Edit profile</div>
                 </div>
                 ) : (
-                  <Query query={FETCH_USER} variables={{ id: this.state.id }}>
+                    <Query query={FETCH_USER_PROFILE} variables={{ id: this.state.id }}>
                     {({ loading, error, data }) => {
                       if (loading) return <p>Loading...</p>;
                       if (error) return <p>Error</p>;
@@ -74,9 +74,9 @@ class UserProfile extends Component {
                       )
                     }}
                   </Query>)}
-                <div className="post-index-container">
-                  <PostIndex params={this.props} />
-                </div>
+                  <div className="post-index-container">
+                    <PostIndex params={this.props} />
+                  </div>
               </div>
             </div>
           );

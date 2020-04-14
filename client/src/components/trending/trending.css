@@ -5,9 +5,28 @@
   border-radius: 15px;
   display: flex;
   flex-direction: column;
-  margin-top: 40px;
+  margin-top: 20px;
   background-color: rgb(25, 45, 60);
   overflow: hidden;
+}
+
+.trends-one {
+  margin-top: 40px;
+}
+
+.trending-container {
+  overflow-y: scroll;
+  height: 100vh;
+  width: 400px;
+}
+
+.trending-container::-webkit-scrollbar {
+  display: none;
+}
+
+.trending-scroll {
+  overflow: hidden;
+  min-height: fit-content;
 }
 
 .trends-for-you-title{
@@ -41,9 +60,6 @@
   box-shadow: inset 0 0 100px 100px rgba(255, 255, 255, 0.1);
 }
 
-.top-users-container{
-  position: absolute;
-}
 .top-users-wrapper{
   display: flex;
   border-top: 1px solid rgb(50, 62, 69);

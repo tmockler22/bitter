@@ -51,9 +51,7 @@ const RootQueryType = new GraphQLObjectType({
       type: TagType,
       args: {tag: { type: new GraphQLNonNull(GraphQLString) } },
       async resolve(_, args) {
-        console.log(args.tag);
         let thisTag = await Tag.find({ tag: args.tag });
-        console.log(thisTag);
         return thisTag[0]; 
       }
     },

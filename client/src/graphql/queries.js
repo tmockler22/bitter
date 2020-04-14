@@ -22,11 +22,11 @@ export const FETCH_POSTS = gql`
 
 export const FETCH_HASHTAGS = gql`
 {
-  tags{
+  tags {
     tag
-    posts{
+    posts {
       body
-      user{
+      user {
         _id
         username
         fullname
@@ -35,6 +35,34 @@ export const FETCH_HASHTAGS = gql`
     }
   }
 }
+`;
+
+export const FETCH_TRENDING_HASHTAGS = gql`
+{
+  tags {
+    tag
+    posts {
+      _id
+      user {
+        _id
+        fullname
+        username
+        image
+      }
+    }
+  }
+}
+`;
+
+export const FETCH_TRENDING_USERS = gql`
+  {
+    users {
+    _id
+    fullname
+    username
+    image
+    }
+  }
 `;
 
 export const FETCH_POST = gql`
@@ -116,6 +144,106 @@ export const FETCH_USERS = gql`
     }
 
 `
+
+export const FETCH_USER_PROFILE = gql`
+  query FetchUser($id: ID!) {
+    user(_id: $id) {
+      favorited_posts {
+        _id
+      }
+      _id
+      username
+      fullname
+      email
+      bio
+      image
+      cover_image
+      posts {
+        _id
+      }
+      follows {
+        _id
+      }
+    }
+  }
+`;
+
+export const FETCH_USER_POSTS = gql`
+  query FetchUser($id: ID!) {
+    user(_id: $id) {
+      _id
+      rebited_posts {
+        _id
+        timestamp
+        user {
+          _id
+          username
+          fullname
+          image
+        }
+        original {
+          _id
+          body
+          image
+          tags
+          user {
+            _id
+            username
+            fullname
+            image
+          }
+          favorites {
+            _id
+          }
+          rebits {
+            _id
+          }
+        }
+      }
+      posts {
+        _id 
+        body
+        image
+        tags
+        timestamp
+        user {
+          _id
+          username
+          fullname
+          image
+        }
+        favorites {
+          _id
+        }
+        rebits{
+          _id
+        }
+      }
+      follows {
+        _id
+        posts {
+          _id
+          body
+          tags
+          image
+          timestamp
+          user {
+            _id
+            username
+            fullname
+            image
+          }
+          favorites {
+            _id
+          }
+          rebits{
+          _id
+          }
+        }
+      }
+    }
+  }
+`;
 export const FETCH_USER = gql`
   query FetchUser($id: ID!) {
     user(_id: $id) {

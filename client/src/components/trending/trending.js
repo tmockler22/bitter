@@ -1,7 +1,7 @@
 import React from "react";
 import { Query } from "react-apollo";
 import { ApolloConsumer } from "react-apollo";
-import {FETCH_HASHTAGS} from '../../graphql/queries'
+import {FETCH_TRENDING_HASHTAGS} from '../../graphql/queries'
 import {Link, } from 'react-router-dom';
 import { currentUser } from "../../util/util";
 import "./trending.css";
@@ -19,22 +19,18 @@ class Trending extends React.Component {
     return (
       <ApolloConsumer>
         {client => (
-          <Query query={FETCH_HASHTAGS}>
+          <Query query={FETCH_TRENDING_HASHTAGS}>
             {({ data }) => {
               if (data) {
-
-                let hashtag = []
-                let hashtags = Object.values(data.tags);
+               let hashtag = []
+               let hashtags = Object.values(data.tags);
                let sortedHashes = hashtags.sort(function(x,y){
                  return y.posts.length - x.posts.length;
                })
                for(let i = 0 ; i < sortedHashes.length; i++){
                  hashtag.push(sortedHashes[i].tag);
                }
-
-
                let topHashtags = hashtag.slice(0,3);
-
                let tags = Object.values(data.tags)
                let users = [];
                for (let i = 0; i < tags.length; i++) {
@@ -44,8 +40,6 @@ class Trending extends React.Component {
                   }
                 }
                }
-
-
                let uniqueUsers = [];
                users.forEach(user =>{
                  if(!uniqueUsers.includes(user)){
@@ -53,16 +47,13 @@ class Trending extends React.Component {
                    uniqueUsers.push(user)
                  }
                })
-
                  let counter = uniqueUsers.length;
 
                  while (counter > 0) {
                    // Pick a random index
                    let index = Math.floor(Math.random() * counter);
-
                    // Decrease counter by 1
                    counter--;
-
                    // And swap the last element with it
                    let temp = uniqueUsers[counter];
                    uniqueUsers[counter] = uniqueUsers[index];
@@ -72,8 +63,9 @@ class Trending extends React.Component {
                 let threeUniqueUsers = uniqueUsers.slice(0,4);
                 return (
                   <div className="trending-container">
+                    <div className="trending-scroll">
                     <Search />
-                    <div className="trends-for-you-container">
+                    <div className="trends-for-you-container trends-one">
                       <h1 className="trends-for-you-title">Trends For You</h1>
                       <div className="top-hash-tags-container">
                         <ul>
@@ -106,58 +98,15 @@ class Trending extends React.Component {
                         <h1 className="trends-for-you-title">Top Users</h1>
                         <ul>
                           {threeUniqueUsers.map(user => {
-                            if (
-                              !this.props.history.location.pathname.includes(
-                                `/user/`
-                              )
-                            ) {
                               return (
                                 <div className="top-users-wrapper">
-                                  <Link
-                                    className="top-users-link"
-                                    to={`user/${user._id}`}
-                                  >
-                                    <li className="top-users-username-link">
-                                      <div
-                                        className="post-item-profile-picture"
-                                        style={{
-                                          backgroundImage: `url(${user.image})`
-                                        }}
-                                      ></div>
-                                      <div className="user-full-name">
-                                        {user.fullname}
-                                        <div className="top-user-username">{`@${user.username}`}</div>
-                                      </div>
-                                    </li>
-                                  </Link>
-                                </div>
-                              );
-                            } else if (
-                              this.props.history.location.pathname.includes(
-                                "/user"
-                              )
-                            ) {
-                              return (
-                                <div className="top-users-wrapper">
-                                <Link
-                                  className="top-users-link"
-                                  to={`${user._id}`}
-                                >
+                                <Link className="top-users-link" 
+                                to={this.props.history.location.pathname.includes("/user") ? `${user._id}` : `user/${user._id}`}>
                                   <li className="top-users-username-link">
                                     <div
                                       className="post-item-profile-picture"
-                                      style={{
-                                        backgroundImage: `url(${user.image})`
-                                      }}
-                                    ></div>
-                                    <div
-                                      className="user-full-name"
-                                      style={{
-                                        display: "flex",
-                                        flexDirection: "column"
-                                      }}
-                                    >
-                                      {user.fullname}
+                                      style={{ backgroundImage: `url(${user.image})` }}></div>
+                                    <div className="user-full-name">{user.fullname}
                                       <div className="top-user-username">{`@${user.username}`}</div>
                                     </div>
                                   </li>
@@ -165,9 +114,50 @@ class Trending extends React.Component {
                               </div>
                               );
                             }
-                          })}
+                          )}
                         </ul>
+                        </div>
+                        <div className="trends-for-you-container">
+                        <h1 className="trends-for-you-title">Creators</h1>
+                        <a className="top-users-link" 
+                        href="https://www.linkedin.com/in/tristan-mockler-bb2360173/"
+                        target="_">
+                        <div className="top-users-wrapper">
+                          <li className="top-users-username-link">
+                                <div className="post-item-profile-picture" style={{ backgroundImage: `url(./tristan.jpeg)` }}></div>
+                            <div className="user-full-name"> Tristan Mockler
+                              <div className="top-user-username">tmocklercoding@gmail.com</div>
+                            </div>
+                          </li>
+                        </div>
+                        </a>
+                        <a className="top-users-link"
+                          href="https://www.linkedin.com/in/garon-hock-15770327/"
+                          target="_">
+                        <div className="top-users-wrapper">
+                          <li className="top-users-username-link">
+                                <div className="post-item-profile-picture" style={{ backgroundImage: `url(./garon.jpeg)` }}></div>
+                            <div className="user-full-name"> Garon Hock
+                              <div className="top-user-username">garonhock@gmail.com</div>
+                            </div>
+                          </li>
+                        </div>
+                        </a>
+                          <a className="top-users-link"
+                          href="https://www.linkedin.com/in/michael-giering-3079901a2/"
+                            target="_">
+                        <div className="top-users-wrapper">
+                          <li className="top-users-username-link">
+                                <div className="post-item-profile-picture" style={{ backgroundImage: `url(./avatar.jpg)` }}></div>
+                            <div className="user-full-name"> Michael Giering
+                              <div className="top-user-username">gieringmj@gmail.com</div>
+                            </div>
+                          </li>
+                        </div>
+                        </a>
                       </div>
+                    </div>
+                    
                     </div>
                   </div>
                 );
